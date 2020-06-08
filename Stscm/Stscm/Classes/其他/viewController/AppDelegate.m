@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "RSStscmController.h"
+
 
 @interface AppDelegate ()
 
@@ -17,18 +19,41 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    RSStscmController * stscmVc = [[RSStscmController alloc]init];
+    stscmVc.title = @"首页";
+    RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:stscmVc];
+    self.window.rootViewController = myNav;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
-
-#pragma mark - UISceneSession lifecycle
-
-
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window{
+    if (_allowRotation == true) {   // 如果属性值为YES,仅允许屏幕向左旋转,否则仅允许竖屏
+        return UIInterfaceOrientationMaskAll;  // 这里是屏幕要旋转的方向
+    }else{
+        return (UIInterfaceOrientationMaskPortrait);
+    }
 }
+
+- (BOOL)shouldAutorotate
+{
+    if (_allowRotation == true) {
+        return YES;
+    }
+    return NO;
+}
+
+
+//#pragma mark - UISceneSession lifecycle
+//
+//
+//- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
+//    // Called when a new scene session is being created.
+//    // Use this method to select a configuration to create the new scene with.
+//    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+//}
 
 
 - (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {

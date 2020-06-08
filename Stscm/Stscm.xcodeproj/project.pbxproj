@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044758F5248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758EF248DECB1003BBBCF /* AFHTTPSessionManager+ShareManger.m */; };
+		044758F6248DECB2003BBBCF /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F1248DECB2003BBBCF /* UIColor+HexColor.m */; };
+		044758F7248DECB2003BBBCF /* XLAFNetworkingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F4248DECB2003BBBCF /* XLAFNetworkingBlock.m */; };
+		044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F8248DECC2003BBBCF /* RSMyNavigationViewController.m */; };
+		044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758FB248DECC2003BBBCF /* UIView+Frame.m */; };
+		04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758FF248DEE09003BBBCF /* UIBarButtonItem+Item.m */; };
+		04475905248E0DDB003BBBCF /* RSAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475904248E0DDA003BBBCF /* RSAllViewController.m */; };
+		04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475907248E0FB7003BBBCF /* RSStscmController.m */; };
+		0447590E248E3BC2003BBBCF /* RSNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447590D248E3BC2003BBBCF /* RSNetworkTool.m */; };
 		04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E806248DDEFF00BABB6F /* AppDelegate.m */; };
 		04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E809248DDEFF00BABB6F /* SceneDelegate.m */; };
 		04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E80C248DDEFF00BABB6F /* ViewController.m */; };
@@ -17,6 +26,7 @@
 		04D6E81B248DDF0700BABB6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E81A248DDF0700BABB6F /* main.m */; };
 		04D6E825248DDF0700BABB6F /* StscmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E824248DDF0700BABB6F /* StscmTests.m */; };
 		04D6E830248DDF0700BABB6F /* StscmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E82F248DDF0700BABB6F /* StscmUITests.m */; };
+		67D0F4C2D0AF66F1769B6A90 /* libPods-Stscm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 282B9D671207E40785441153 /* libPods-Stscm.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +47,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04D6E802248DDEFF00BABB6F /* Stscm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stscm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		044758EE248DE901003BBBCF /* StscmDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StscmDemo.pch; sourceTree = "<group>"; };
+		044758EF248DECB1003BBBCF /* AFHTTPSessionManager+ShareManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+ShareManger.m"; sourceTree = "<group>"; };
+		044758F0248DECB1003BBBCF /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
+		044758F1248DECB2003BBBCF /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
+		044758F2248DECB2003BBBCF /* XLAFNetworkingBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLAFNetworkingBlock.h; sourceTree = "<group>"; };
+		044758F3248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+ShareManger.h"; sourceTree = "<group>"; };
+		044758F4248DECB2003BBBCF /* XLAFNetworkingBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLAFNetworkingBlock.m; sourceTree = "<group>"; };
+		044758F8248DECC2003BBBCF /* RSMyNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMyNavigationViewController.m; sourceTree = "<group>"; };
+		044758F9248DECC2003BBBCF /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		044758FA248DECC2003BBBCF /* RSMyNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSMyNavigationViewController.h; sourceTree = "<group>"; };
+		044758FB248DECC2003BBBCF /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		044758FE248DEE09003BBBCF /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
+		044758FF248DEE09003BBBCF /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
+		04475903248E0DDA003BBBCF /* RSAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAllViewController.h; path = "../../../../../../../需要用到/RSAllViewController.h"; sourceTree = "<group>"; };
+		04475904248E0DDA003BBBCF /* RSAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAllViewController.m; path = "../../../../../../../需要用到/RSAllViewController.m"; sourceTree = "<group>"; };
+		04475906248E0FB7003BBBCF /* RSStscmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSStscmController.h; sourceTree = "<group>"; };
+		04475907248E0FB7003BBBCF /* RSStscmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSStscmController.m; sourceTree = "<group>"; };
+		0447590C248E3BC2003BBBCF /* RSNetworkTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSNetworkTool.h; sourceTree = "<group>"; };
+		0447590D248E3BC2003BBBCF /* RSNetworkTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSNetworkTool.m; sourceTree = "<group>"; };
+		04D6E802248DDEFF00BABB6F /* 石材进销存.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "石材进销存.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E805248DDEFF00BABB6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04D6E806248DDEFF00BABB6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04D6E808248DDEFF00BABB6F /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -56,6 +85,9 @@
 		04D6E82B248DDF0700BABB6F /* StscmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StscmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E82F248DDF0700BABB6F /* StscmUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StscmUITests.m; sourceTree = "<group>"; };
 		04D6E831248DDF0700BABB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		282B9D671207E40785441153 /* libPods-Stscm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stscm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A49FB9F47AC6F5F752AA21E /* Pods-Stscm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stscm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stscm/Pods-Stscm.debug.xcconfig"; sourceTree = "<group>"; };
+		41ADC3F8BDEB8A551D875254 /* Pods-Stscm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stscm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stscm/Pods-Stscm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67D0F4C2D0AF66F1769B6A90 /* libPods-Stscm.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +116,220 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044758D5248DE6DC003BBBCF /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				044758D6248DE6DC003BBBCF /* 其他 */,
+				044758DD248DE6DC003BBBCF /* 荒料 */,
+				044758E1248DE6DC003BBBCF /* 登录 */,
+				044758E5248DE6DC003BBBCF /* 共用界面 */,
+				044758E9248DE6DC003BBBCF /* 大板 */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		044758D6248DE6DC003BBBCF /* 其他 */ = {
+			isa = PBXGroup;
+			children = (
+				044758D7248DE6DC003BBBCF /* 分类 */,
+				044758D8248DE6DC003BBBCF /* model */,
+				044758D9248DE6DC003BBBCF /* view */,
+				044758DA248DE6DC003BBBCF /* Lib */,
+				044758DB248DE6DC003BBBCF /* 工具类 */,
+				044758DC248DE6DC003BBBCF /* viewController */,
+			);
+			path = "其他";
+			sourceTree = "<group>";
+		};
+		044758D7248DE6DC003BBBCF /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				044758FE248DEE09003BBBCF /* UIBarButtonItem+Item.h */,
+				044758FF248DEE09003BBBCF /* UIBarButtonItem+Item.m */,
+				044758FA248DECC2003BBBCF /* RSMyNavigationViewController.h */,
+				044758F8248DECC2003BBBCF /* RSMyNavigationViewController.m */,
+				044758F9248DECC2003BBBCF /* UIView+Frame.h */,
+				044758FB248DECC2003BBBCF /* UIView+Frame.m */,
+			);
+			path = "分类";
+			sourceTree = "<group>";
+		};
+		044758D8248DE6DC003BBBCF /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		044758D9248DE6DC003BBBCF /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		044758DA248DE6DC003BBBCF /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		044758DB248DE6DC003BBBCF /* 工具类 */ = {
+			isa = PBXGroup;
+			children = (
+				044758EE248DE901003BBBCF /* StscmDemo.pch */,
+				0447590C248E3BC2003BBBCF /* RSNetworkTool.h */,
+				0447590D248E3BC2003BBBCF /* RSNetworkTool.m */,
+				044758F2248DECB2003BBBCF /* XLAFNetworkingBlock.h */,
+				044758F4248DECB2003BBBCF /* XLAFNetworkingBlock.m */,
+				044758F3248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.h */,
+				044758EF248DECB1003BBBCF /* AFHTTPSessionManager+ShareManger.m */,
+				044758F0248DECB1003BBBCF /* UIColor+HexColor.h */,
+				044758F1248DECB2003BBBCF /* UIColor+HexColor.m */,
+			);
+			path = "工具类";
+			sourceTree = "<group>";
+		};
+		044758DC248DE6DC003BBBCF /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				04475903248E0DDA003BBBCF /* RSAllViewController.h */,
+				04475904248E0DDA003BBBCF /* RSAllViewController.m */,
+				04D6E805248DDEFF00BABB6F /* AppDelegate.h */,
+				04D6E806248DDEFF00BABB6F /* AppDelegate.m */,
+				04D6E808248DDEFF00BABB6F /* SceneDelegate.h */,
+				04D6E809248DDEFF00BABB6F /* SceneDelegate.m */,
+				04475906248E0FB7003BBBCF /* RSStscmController.h */,
+				04475907248E0FB7003BBBCF /* RSStscmController.m */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		044758DD248DE6DC003BBBCF /* 荒料 */ = {
+			isa = PBXGroup;
+			children = (
+				044758DE248DE6DC003BBBCF /* model */,
+				044758DF248DE6DC003BBBCF /* view */,
+				044758E0248DE6DC003BBBCF /* viewController */,
+			);
+			path = "荒料";
+			sourceTree = "<group>";
+		};
+		044758DE248DE6DC003BBBCF /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		044758DF248DE6DC003BBBCF /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		044758E0248DE6DC003BBBCF /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		044758E1248DE6DC003BBBCF /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				044758E2248DE6DC003BBBCF /* model */,
+				044758E3248DE6DC003BBBCF /* view */,
+				044758E4248DE6DC003BBBCF /* viewController */,
+			);
+			path = "登录";
+			sourceTree = "<group>";
+		};
+		044758E2248DE6DC003BBBCF /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		044758E3248DE6DC003BBBCF /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		044758E4248DE6DC003BBBCF /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		044758E5248DE6DC003BBBCF /* 共用界面 */ = {
+			isa = PBXGroup;
+			children = (
+				044758E6248DE6DC003BBBCF /* model */,
+				044758E7248DE6DC003BBBCF /* view */,
+				044758E8248DE6DC003BBBCF /* viewController */,
+			);
+			path = "共用界面";
+			sourceTree = "<group>";
+		};
+		044758E6248DE6DC003BBBCF /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		044758E7248DE6DC003BBBCF /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		044758E8248DE6DC003BBBCF /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		044758E9248DE6DC003BBBCF /* 大板 */ = {
+			isa = PBXGroup;
+			children = (
+				044758EA248DE6DC003BBBCF /* model */,
+				044758EB248DE6DC003BBBCF /* view */,
+				044758EC248DE6DC003BBBCF /* viewController */,
+			);
+			path = "大板";
+			sourceTree = "<group>";
+		};
+		044758EA248DE6DC003BBBCF /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		044758EB248DE6DC003BBBCF /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		044758EC248DE6DC003BBBCF /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
 		04D6E7F9248DDEFF00BABB6F = {
 			isa = PBXGroup;
 			children = (
@@ -90,13 +337,15 @@
 				04D6E823248DDF0700BABB6F /* StscmTests */,
 				04D6E82E248DDF0700BABB6F /* StscmUITests */,
 				04D6E803248DDEFF00BABB6F /* Products */,
+				DD909343EC732BCA90BEEE14 /* Pods */,
+				9C3C7A017BB885BB0647B7F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		04D6E803248DDEFF00BABB6F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04D6E802248DDEFF00BABB6F /* Stscm.app */,
+				04D6E802248DDEFF00BABB6F /* 石材进销存.app */,
 				04D6E820248DDF0700BABB6F /* StscmTests.xctest */,
 				04D6E82B248DDF0700BABB6F /* StscmUITests.xctest */,
 			);
@@ -106,10 +355,7 @@
 		04D6E804248DDEFF00BABB6F /* Stscm */ = {
 			isa = PBXGroup;
 			children = (
-				04D6E805248DDEFF00BABB6F /* AppDelegate.h */,
-				04D6E806248DDEFF00BABB6F /* AppDelegate.m */,
-				04D6E808248DDEFF00BABB6F /* SceneDelegate.h */,
-				04D6E809248DDEFF00BABB6F /* SceneDelegate.m */,
+				044758D5248DE6DC003BBBCF /* Classes */,
 				04D6E80B248DDEFF00BABB6F /* ViewController.h */,
 				04D6E80C248DDEFF00BABB6F /* ViewController.m */,
 				04D6E80E248DDEFF00BABB6F /* Main.storyboard */,
@@ -140,6 +386,23 @@
 			path = StscmUITests;
 			sourceTree = "<group>";
 		};
+		9C3C7A017BB885BB0647B7F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				282B9D671207E40785441153 /* libPods-Stscm.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD909343EC732BCA90BEEE14 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A49FB9F47AC6F5F752AA21E /* Pods-Stscm.debug.xcconfig */,
+				41ADC3F8BDEB8A551D875254 /* Pods-Stscm.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +410,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04D6E834248DDF0700BABB6F /* Build configuration list for PBXNativeTarget "Stscm" */;
 			buildPhases = (
+				F870706758675C5A810F0C78 /* [CP] Check Pods Manifest.lock */,
 				04D6E7FE248DDEFF00BABB6F /* Sources */,
 				04D6E7FF248DDEFF00BABB6F /* Frameworks */,
 				04D6E800248DDEFF00BABB6F /* Resources */,
+				0023E8B2D838D3432455159C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -157,7 +422,7 @@
 			);
 			name = Stscm;
 			productName = Stscm;
-			productReference = 04D6E802248DDEFF00BABB6F /* Stscm.app */;
+			productReference = 04D6E802248DDEFF00BABB6F /* 石材进销存.app */;
 			productType = "com.apple.product-type.application";
 		};
 		04D6E81F248DDF0700BABB6F /* StscmTests */ = {
@@ -202,6 +467,7 @@
 		04D6E7FA248DDEFF00BABB6F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = RS;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = mac;
 				TargetAttributes = {
@@ -265,15 +531,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0023E8B2D838D3432455159C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Stscm/Pods-Stscm-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Stscm/Pods-Stscm-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F870706758675C5A810F0C78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stscm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		04D6E7FE248DDEFF00BABB6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				044758F6248DECB2003BBBCF /* UIColor+HexColor.m in Sources */,
 				04D6E81B248DDF0700BABB6F /* main.m in Sources */,
 				04D6E813248DDEFF00BABB6F /* Stscm.xcdatamodeld in Sources */,
 				04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */,
+				044758F5248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.m in Sources */,
+				04475905248E0DDB003BBBCF /* RSAllViewController.m in Sources */,
 				04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */,
+				0447590E248E3BC2003BBBCF /* RSNetworkTool.m in Sources */,
+				04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */,
+				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
+				04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */,
+				044758F7248DECB2003BBBCF /* XLAFNetworkingBlock.m in Sources */,
+				044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */,
 				04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +697,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -431,7 +749,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -441,35 +759,45 @@
 		};
 		04D6E835248DDF0700BABB6F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A49FB9F47AC6F5F752AA21E /* Pods-Stscm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Stscm/Classes/其他/工具类/StscmDemo.pch";
 				INFOPLIST_FILE = Stscm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xxxx.Stscm;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruishi.Stscm;
+				PRODUCT_NAME = "石材进销存";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		04D6E836248DDF0700BABB6F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41ADC3F8BDEB8A551D875254 /* Pods-Stscm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Stscm/Classes/其他/工具类/StscmDemo.pch";
 				INFOPLIST_FILE = Stscm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xxxx.Stscm;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruishi.Stscm;
+				PRODUCT_NAME = "石材进销存";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
