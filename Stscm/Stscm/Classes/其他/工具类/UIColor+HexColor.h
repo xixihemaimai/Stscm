@@ -24,6 +24,9 @@
 + (UIColor *)colorRedShow;
 /**黄色*/
 + (UIColor *)colorYellowShow;
+/**白色*/
++ (UIColor *)colorWhiteShow;
+
 /**暗黑模式和白天模式要改变的颜色*/
 + (UIColor *)colorWithDyColorChangObject:(UIView *)object andHexLightColorStr:(NSString *)lightcolorStr andHexDarkColorStr:(NSString *)darkColorStr;
 

@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		044758F5248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758EF248DECB1003BBBCF /* AFHTTPSessionManager+ShareManger.m */; };
+		0419256024B70907002B794F /* RSNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419255F24B70907002B794F /* RSNetworkTool.m */; };
 		044758F6248DECB2003BBBCF /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F1248DECB2003BBBCF /* UIColor+HexColor.m */; };
-		044758F7248DECB2003BBBCF /* XLAFNetworkingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F4248DECB2003BBBCF /* XLAFNetworkingBlock.m */; };
 		044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F8248DECC2003BBBCF /* RSMyNavigationViewController.m */; };
 		044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758FB248DECC2003BBBCF /* UIView+Frame.m */; };
 		04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758FF248DEE09003BBBCF /* UIBarButtonItem+Item.m */; };
-		04475905248E0DDB003BBBCF /* RSAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475904248E0DDA003BBBCF /* RSAllViewController.m */; };
 		04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475907248E0FB7003BBBCF /* RSStscmController.m */; };
-		0447590E248E3BC2003BBBCF /* RSNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447590D248E3BC2003BBBCF /* RSNetworkTool.m */; };
+		04475911248F2DA0003BBBCF /* RSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475910248F2DA0003BBBCF /* RSBaseViewController.m */; };
+		04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475913248F7CFC003BBBCF /* RSStscmHeaderView.m */; };
+		04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475916248F7FEC003BBBCF /* RSPersonalEditionCell.m */; };
+		0447591A248F80C9003BBBCF /* RSPublishButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475919248F80C9003BBBCF /* RSPublishButton.m */; };
+		0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447591C248F8BBF003BBBCF /* RSCustomLabel.m */; };
+		04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475920249077A8003BBBCF /* ZZQEmptyView.m */; };
+		0447592424908FAB003BBBCF /* Nonetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447592224908FAA003BBBCF /* Nonetwork.m */; };
 		04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E806248DDEFF00BABB6F /* AppDelegate.m */; };
 		04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E809248DDEFF00BABB6F /* SceneDelegate.m */; };
 		04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E80C248DDEFF00BABB6F /* ViewController.m */; };
@@ -47,25 +51,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0419255E24B70907002B794F /* RSNetworkTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSNetworkTool.h; sourceTree = "<group>"; };
+		0419255F24B70907002B794F /* RSNetworkTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSNetworkTool.m; sourceTree = "<group>"; };
 		044758EE248DE901003BBBCF /* StscmDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StscmDemo.pch; sourceTree = "<group>"; };
-		044758EF248DECB1003BBBCF /* AFHTTPSessionManager+ShareManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+ShareManger.m"; sourceTree = "<group>"; };
 		044758F0248DECB1003BBBCF /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
 		044758F1248DECB2003BBBCF /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
-		044758F2248DECB2003BBBCF /* XLAFNetworkingBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLAFNetworkingBlock.h; sourceTree = "<group>"; };
-		044758F3248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+ShareManger.h"; sourceTree = "<group>"; };
-		044758F4248DECB2003BBBCF /* XLAFNetworkingBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLAFNetworkingBlock.m; sourceTree = "<group>"; };
 		044758F8248DECC2003BBBCF /* RSMyNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMyNavigationViewController.m; sourceTree = "<group>"; };
 		044758F9248DECC2003BBBCF /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		044758FA248DECC2003BBBCF /* RSMyNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSMyNavigationViewController.h; sourceTree = "<group>"; };
 		044758FB248DECC2003BBBCF /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		044758FE248DEE09003BBBCF /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		044758FF248DEE09003BBBCF /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
-		04475903248E0DDA003BBBCF /* RSAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSAllViewController.h; path = "../../../../../../../需要用到/RSAllViewController.h"; sourceTree = "<group>"; };
-		04475904248E0DDA003BBBCF /* RSAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSAllViewController.m; path = "../../../../../../../需要用到/RSAllViewController.m"; sourceTree = "<group>"; };
 		04475906248E0FB7003BBBCF /* RSStscmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSStscmController.h; sourceTree = "<group>"; };
 		04475907248E0FB7003BBBCF /* RSStscmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSStscmController.m; sourceTree = "<group>"; };
-		0447590C248E3BC2003BBBCF /* RSNetworkTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSNetworkTool.h; sourceTree = "<group>"; };
-		0447590D248E3BC2003BBBCF /* RSNetworkTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSNetworkTool.m; sourceTree = "<group>"; };
+		0447590F248F2D9F003BBBCF /* RSBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSBaseViewController.h; sourceTree = "<group>"; };
+		04475910248F2DA0003BBBCF /* RSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSBaseViewController.m; sourceTree = "<group>"; };
+		04475912248F7CFC003BBBCF /* RSStscmHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSStscmHeaderView.h; sourceTree = "<group>"; };
+		04475913248F7CFC003BBBCF /* RSStscmHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSStscmHeaderView.m; sourceTree = "<group>"; };
+		04475915248F7FEC003BBBCF /* RSPersonalEditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPersonalEditionCell.h; sourceTree = "<group>"; };
+		04475916248F7FEC003BBBCF /* RSPersonalEditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPersonalEditionCell.m; sourceTree = "<group>"; };
+		04475918248F80C8003BBBCF /* RSPublishButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPublishButton.h; sourceTree = "<group>"; };
+		04475919248F80C9003BBBCF /* RSPublishButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPublishButton.m; sourceTree = "<group>"; };
+		0447591B248F8BBF003BBBCF /* RSCustomLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSCustomLabel.h; sourceTree = "<group>"; };
+		0447591C248F8BBF003BBBCF /* RSCustomLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSCustomLabel.m; sourceTree = "<group>"; };
+		0447591F249077A8003BBBCF /* ZZQEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZQEmptyView.h; sourceTree = "<group>"; };
+		04475920249077A8003BBBCF /* ZZQEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZQEmptyView.m; sourceTree = "<group>"; };
+		0447592224908FAA003BBBCF /* Nonetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nonetwork.m; sourceTree = "<group>"; };
+		0447592324908FAB003BBBCF /* Nonetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nonetwork.h; sourceTree = "<group>"; };
 		04D6E802248DDEFF00BABB6F /* 石材进销存.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "石材进销存.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E805248DDEFF00BABB6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04D6E806248DDEFF00BABB6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -150,6 +162,8 @@
 				044758F8248DECC2003BBBCF /* RSMyNavigationViewController.m */,
 				044758F9248DECC2003BBBCF /* UIView+Frame.h */,
 				044758FB248DECC2003BBBCF /* UIView+Frame.m */,
+				0447592324908FAB003BBBCF /* Nonetwork.h */,
+				0447592224908FAA003BBBCF /* Nonetwork.m */,
 			);
 			path = "分类";
 			sourceTree = "<group>";
@@ -164,6 +178,10 @@
 		044758D9248DE6DC003BBBCF /* view */ = {
 			isa = PBXGroup;
 			children = (
+				04475912248F7CFC003BBBCF /* RSStscmHeaderView.h */,
+				04475913248F7CFC003BBBCF /* RSStscmHeaderView.m */,
+				04475915248F7FEC003BBBCF /* RSPersonalEditionCell.h */,
+				04475916248F7FEC003BBBCF /* RSPersonalEditionCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -171,6 +189,7 @@
 		044758DA248DE6DC003BBBCF /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				0447591E249077A8003BBBCF /* ZZQEmptyView */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -178,15 +197,15 @@
 		044758DB248DE6DC003BBBCF /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
+				04475918248F80C8003BBBCF /* RSPublishButton.h */,
+				04475919248F80C9003BBBCF /* RSPublishButton.m */,
 				044758EE248DE901003BBBCF /* StscmDemo.pch */,
-				0447590C248E3BC2003BBBCF /* RSNetworkTool.h */,
-				0447590D248E3BC2003BBBCF /* RSNetworkTool.m */,
-				044758F2248DECB2003BBBCF /* XLAFNetworkingBlock.h */,
-				044758F4248DECB2003BBBCF /* XLAFNetworkingBlock.m */,
-				044758F3248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.h */,
-				044758EF248DECB1003BBBCF /* AFHTTPSessionManager+ShareManger.m */,
 				044758F0248DECB1003BBBCF /* UIColor+HexColor.h */,
 				044758F1248DECB2003BBBCF /* UIColor+HexColor.m */,
+				0447591B248F8BBF003BBBCF /* RSCustomLabel.h */,
+				0447591C248F8BBF003BBBCF /* RSCustomLabel.m */,
+				0419255E24B70907002B794F /* RSNetworkTool.h */,
+				0419255F24B70907002B794F /* RSNetworkTool.m */,
 			);
 			path = "工具类";
 			sourceTree = "<group>";
@@ -194,8 +213,8 @@
 		044758DC248DE6DC003BBBCF /* viewController */ = {
 			isa = PBXGroup;
 			children = (
-				04475903248E0DDA003BBBCF /* RSAllViewController.h */,
-				04475904248E0DDA003BBBCF /* RSAllViewController.m */,
+				0447590F248F2D9F003BBBCF /* RSBaseViewController.h */,
+				04475910248F2DA0003BBBCF /* RSBaseViewController.m */,
 				04D6E805248DDEFF00BABB6F /* AppDelegate.h */,
 				04D6E806248DDEFF00BABB6F /* AppDelegate.m */,
 				04D6E808248DDEFF00BABB6F /* SceneDelegate.h */,
@@ -328,6 +347,15 @@
 			children = (
 			);
 			path = viewController;
+			sourceTree = "<group>";
+		};
+		0447591E249077A8003BBBCF /* ZZQEmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				0447591F249077A8003BBBCF /* ZZQEmptyView.h */,
+				04475920249077A8003BBBCF /* ZZQEmptyView.m */,
+			);
+			path = ZZQEmptyView;
 			sourceTree = "<group>";
 		};
 		04D6E7F9248DDEFF00BABB6F = {
@@ -579,20 +607,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0447592424908FAB003BBBCF /* Nonetwork.m in Sources */,
 				044758F6248DECB2003BBBCF /* UIColor+HexColor.m in Sources */,
 				04D6E81B248DDF0700BABB6F /* main.m in Sources */,
 				04D6E813248DDEFF00BABB6F /* Stscm.xcdatamodeld in Sources */,
 				04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */,
-				044758F5248DECB2003BBBCF /* AFHTTPSessionManager+ShareManger.m in Sources */,
-				04475905248E0DDB003BBBCF /* RSAllViewController.m in Sources */,
+				04475911248F2DA0003BBBCF /* RSBaseViewController.m in Sources */,
 				04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */,
-				0447590E248E3BC2003BBBCF /* RSNetworkTool.m in Sources */,
+				04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */,
+				04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */,
+				0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */,
 				04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */,
 				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
+				04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */,
 				04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */,
-				044758F7248DECB2003BBBCF /* XLAFNetworkingBlock.m in Sources */,
 				044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */,
+				0447591A248F80C9003BBBCF /* RSPublishButton.m in Sources */,
 				04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */,
+				0419256024B70907002B794F /* RSNetworkTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

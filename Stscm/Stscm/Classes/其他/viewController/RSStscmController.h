@@ -6,11 +6,15 @@
 //  Copyright © 2020 mac. All rights reserved.
 //
 
-#import "RSAllViewController.h"
+#import "RSBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RSStscmController : RSAllViewController
+@interface RSStscmController : RSBaseViewController
+
+
+
+
 
 @end
 

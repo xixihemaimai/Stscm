@@ -18,6 +18,16 @@
 /**屏幕的高度*/
 #define SCH [UIScreen mainScreen].bounds.size.height
 
+#define iPhone4 SCH == 480
+#define iPhone5 SCH == 568
+#define iPhone6 SCH == 667
+#define iPhone6p SCH == 736
+#define iphonex SCH == 812
+
+#define iPhoneXR SCH == 896
+#define iPhoneXS iphonex
+#define iPhoneXSMax iPhoneXR
+
 
 //FIXME:第三方框架
 #import <AFNetworking.h>
@@ -30,6 +40,14 @@
 //FIXME:本地分类和工具类
 #import "RSMyNavigationViewController.h"
 #import "UIView+Frame.h"
+#import "UIColor+HexColor.h"
+#import "RSCustomLabel.h"
+#import "ZZQEmptyView.h"
+#import "Nonetwork.h"
 
+
+
+//文字大小适配
+#define Textadaptation(a) (NSInteger)a * (SCW / 375.0)
 
 #endif /* StscmDemo_pch */

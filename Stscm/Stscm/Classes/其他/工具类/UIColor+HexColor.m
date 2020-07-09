@@ -26,6 +26,10 @@
     return [self colorWithHexColorStr:@"#FDAD32"];
 }
 
++ (UIColor *)colorWhiteShow{
+    return [self colorWithHexColorStr:@"#ffffff"];
+}
+
 
 // 将美工给的十六进制颜色字符串转换成颜色
 // 可以解析的颜色字符串：#666666 0x666666 666666
