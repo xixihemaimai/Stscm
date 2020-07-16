@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0419256024B70907002B794F /* RSNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0419255F24B70907002B794F /* RSNetworkTool.m */; };
+		041925AD24BDA248002B794F /* RSRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 041925AC24BDA248002B794F /* RSRegisterViewController.m */; };
 		044758F6248DECB2003BBBCF /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F1248DECB2003BBBCF /* UIColor+HexColor.m */; };
 		044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758F8248DECC2003BBBCF /* RSMyNavigationViewController.m */; };
 		044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 044758FB248DECC2003BBBCF /* UIView+Frame.m */; };
@@ -30,6 +31,9 @@
 		04D6E81B248DDF0700BABB6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E81A248DDF0700BABB6F /* main.m */; };
 		04D6E825248DDF0700BABB6F /* StscmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E824248DDF0700BABB6F /* StscmTests.m */; };
 		04D6E830248DDF0700BABB6F /* StscmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E82F248DDF0700BABB6F /* StscmUITests.m */; };
+		04FB05A324BEA546007DB579 /* RJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB059F24BEA544007DB579 /* RJTextField.m */; };
+		04FB05A424BEA546007DB579 /* SmsButtonHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB05A224BEA546007DB579 /* SmsButtonHandle.m */; };
+		04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB05A624BEE680007DB579 /* RSLoginViewController.m */; };
 		67D0F4C2D0AF66F1769B6A90 /* libPods-Stscm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 282B9D671207E40785441153 /* libPods-Stscm.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +57,8 @@
 /* Begin PBXFileReference section */
 		0419255E24B70907002B794F /* RSNetworkTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSNetworkTool.h; sourceTree = "<group>"; };
 		0419255F24B70907002B794F /* RSNetworkTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSNetworkTool.m; sourceTree = "<group>"; };
+		041925AB24BDA248002B794F /* RSRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSRegisterViewController.h; sourceTree = "<group>"; };
+		041925AC24BDA248002B794F /* RSRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSRegisterViewController.m; sourceTree = "<group>"; };
 		044758EE248DE901003BBBCF /* StscmDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StscmDemo.pch; sourceTree = "<group>"; };
 		044758F0248DECB1003BBBCF /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
 		044758F1248DECB2003BBBCF /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
@@ -97,6 +103,12 @@
 		04D6E82B248DDF0700BABB6F /* StscmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StscmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E82F248DDF0700BABB6F /* StscmUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StscmUITests.m; sourceTree = "<group>"; };
 		04D6E831248DDF0700BABB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04FB059F24BEA544007DB579 /* RJTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTextField.m; sourceTree = "<group>"; };
+		04FB05A024BEA545007DB579 /* RJTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTextField.h; sourceTree = "<group>"; };
+		04FB05A124BEA545007DB579 /* SmsButtonHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmsButtonHandle.h; sourceTree = "<group>"; };
+		04FB05A224BEA546007DB579 /* SmsButtonHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmsButtonHandle.m; sourceTree = "<group>"; };
+		04FB05A524BEE680007DB579 /* RSLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSLoginViewController.h; sourceTree = "<group>"; };
+		04FB05A624BEE680007DB579 /* RSLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSLoginViewController.m; sourceTree = "<group>"; };
 		282B9D671207E40785441153 /* libPods-Stscm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stscm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A49FB9F47AC6F5F752AA21E /* Pods-Stscm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stscm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stscm/Pods-Stscm.debug.xcconfig"; sourceTree = "<group>"; };
 		41ADC3F8BDEB8A551D875254 /* Pods-Stscm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stscm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stscm/Pods-Stscm.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,11 +143,12 @@
 		044758D5248DE6DC003BBBCF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				04F7D8B724C005E5008CE45D /* 工作台 */,
+				04F7D8B324C005E5008CE45D /* 我的 */,
+				04F7D8BB24C005E5008CE45D /* 消息 */,
 				044758D6248DE6DC003BBBCF /* 其他 */,
-				044758DD248DE6DC003BBBCF /* 荒料 */,
 				044758E1248DE6DC003BBBCF /* 登录 */,
 				044758E5248DE6DC003BBBCF /* 共用界面 */,
-				044758E9248DE6DC003BBBCF /* 大板 */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -178,10 +191,6 @@
 		044758D9248DE6DC003BBBCF /* view */ = {
 			isa = PBXGroup;
 			children = (
-				04475912248F7CFC003BBBCF /* RSStscmHeaderView.h */,
-				04475913248F7CFC003BBBCF /* RSStscmHeaderView.m */,
-				04475915248F7FEC003BBBCF /* RSPersonalEditionCell.h */,
-				04475916248F7FEC003BBBCF /* RSPersonalEditionCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -197,6 +206,10 @@
 		044758DB248DE6DC003BBBCF /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
+				04FB05A024BEA545007DB579 /* RJTextField.h */,
+				04FB059F24BEA544007DB579 /* RJTextField.m */,
+				04FB05A124BEA545007DB579 /* SmsButtonHandle.h */,
+				04FB05A224BEA546007DB579 /* SmsButtonHandle.m */,
 				04475918248F80C8003BBBCF /* RSPublishButton.h */,
 				04475919248F80C9003BBBCF /* RSPublishButton.m */,
 				044758EE248DE901003BBBCF /* StscmDemo.pch */,
@@ -219,39 +232,6 @@
 				04D6E806248DDEFF00BABB6F /* AppDelegate.m */,
 				04D6E808248DDEFF00BABB6F /* SceneDelegate.h */,
 				04D6E809248DDEFF00BABB6F /* SceneDelegate.m */,
-				04475906248E0FB7003BBBCF /* RSStscmController.h */,
-				04475907248E0FB7003BBBCF /* RSStscmController.m */,
-			);
-			path = viewController;
-			sourceTree = "<group>";
-		};
-		044758DD248DE6DC003BBBCF /* 荒料 */ = {
-			isa = PBXGroup;
-			children = (
-				044758DE248DE6DC003BBBCF /* model */,
-				044758DF248DE6DC003BBBCF /* view */,
-				044758E0248DE6DC003BBBCF /* viewController */,
-			);
-			path = "荒料";
-			sourceTree = "<group>";
-		};
-		044758DE248DE6DC003BBBCF /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		044758DF248DE6DC003BBBCF /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		044758E0248DE6DC003BBBCF /* viewController */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -283,6 +263,10 @@
 		044758E4248DE6DC003BBBCF /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				041925AB24BDA248002B794F /* RSRegisterViewController.h */,
+				041925AC24BDA248002B794F /* RSRegisterViewController.m */,
+				04FB05A524BEE680007DB579 /* RSLoginViewController.h */,
+				04FB05A624BEE680007DB579 /* RSLoginViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -312,37 +296,6 @@
 			sourceTree = "<group>";
 		};
 		044758E8248DE6DC003BBBCF /* viewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewController;
-			sourceTree = "<group>";
-		};
-		044758E9248DE6DC003BBBCF /* 大板 */ = {
-			isa = PBXGroup;
-			children = (
-				044758EA248DE6DC003BBBCF /* model */,
-				044758EB248DE6DC003BBBCF /* view */,
-				044758EC248DE6DC003BBBCF /* viewController */,
-			);
-			path = "大板";
-			sourceTree = "<group>";
-		};
-		044758EA248DE6DC003BBBCF /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		044758EB248DE6DC003BBBCF /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		044758EC248DE6DC003BBBCF /* viewController */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -412,6 +365,105 @@
 				04D6E831248DDF0700BABB6F /* Info.plist */,
 			);
 			path = StscmUITests;
+			sourceTree = "<group>";
+		};
+		04F7D8B324C005E5008CE45D /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				04F7D8B424C005E5008CE45D /* model */,
+				04F7D8B524C005E5008CE45D /* view */,
+				04F7D8B624C005E5008CE45D /* viewController */,
+			);
+			path = "我的";
+			sourceTree = "<group>";
+		};
+		04F7D8B424C005E5008CE45D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		04F7D8B524C005E5008CE45D /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04F7D8B624C005E5008CE45D /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		04F7D8B724C005E5008CE45D /* 工作台 */ = {
+			isa = PBXGroup;
+			children = (
+				04F7D8B824C005E5008CE45D /* model */,
+				04F7D8B924C005E5008CE45D /* view */,
+				04F7D8BA24C005E5008CE45D /* viewController */,
+			);
+			path = "工作台";
+			sourceTree = "<group>";
+		};
+		04F7D8B824C005E5008CE45D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		04F7D8B924C005E5008CE45D /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04475912248F7CFC003BBBCF /* RSStscmHeaderView.h */,
+				04475913248F7CFC003BBBCF /* RSStscmHeaderView.m */,
+				04475915248F7FEC003BBBCF /* RSPersonalEditionCell.h */,
+				04475916248F7FEC003BBBCF /* RSPersonalEditionCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04F7D8BA24C005E5008CE45D /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				04475906248E0FB7003BBBCF /* RSStscmController.h */,
+				04475907248E0FB7003BBBCF /* RSStscmController.m */,
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		04F7D8BB24C005E5008CE45D /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				04F7D8BC24C005E5008CE45D /* model */,
+				04F7D8BD24C005E5008CE45D /* view */,
+				04F7D8BE24C005E5008CE45D /* viewController */,
+			);
+			path = "消息";
+			sourceTree = "<group>";
+		};
+		04F7D8BC24C005E5008CE45D /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		04F7D8BD24C005E5008CE45D /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04F7D8BE24C005E5008CE45D /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
 			sourceTree = "<group>";
 		};
 		9C3C7A017BB885BB0647B7F0 /* Frameworks */ = {
@@ -612,11 +664,13 @@
 				04D6E81B248DDF0700BABB6F /* main.m in Sources */,
 				04D6E813248DDEFF00BABB6F /* Stscm.xcdatamodeld in Sources */,
 				04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */,
+				04FB05A324BEA546007DB579 /* RJTextField.m in Sources */,
 				04475911248F2DA0003BBBCF /* RSBaseViewController.m in Sources */,
 				04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */,
 				04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */,
 				04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */,
 				0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */,
+				04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */,
 				04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */,
 				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
 				04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */,
@@ -624,6 +678,8 @@
 				044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */,
 				0447591A248F80C9003BBBCF /* RSPublishButton.m in Sources */,
 				04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */,
+				041925AD24BDA248002B794F /* RSRegisterViewController.m in Sources */,
+				04FB05A424BEA546007DB579 /* SmsButtonHandle.m in Sources */,
 				0419256024B70907002B794F /* RSNetworkTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,12 @@
 #import "AppDelegate.h"
 #import "RSStscmController.h"
 
+/**注册*/
+#import "RSRegisterViewController.h"
+
+/**登录*/
+#import "RSLoginViewController.h"
+
 
 @interface AppDelegate ()
 {
@@ -20,10 +26,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    RSStscmController * stscmVc = [[RSStscmController alloc]init];
-//    stscmVc.title = @"首页";
-    RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:stscmVc];
-    self.window.rootViewController = myNav;
+    
+    RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
+    self.window.rootViewController = loginVc;
+    
+    
+//    RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
+//    registerVc.type = @"phone";
+//    self.window.rootViewController = registerVc;
+    
+    
+//    RSStscmController * stscmVc = [[RSStscmController alloc]init];
+//    RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:stscmVc];
+//    self.window.rootViewController = myNav;
     
     [self.window makeKeyAndVisible];
     //设置键盘

@@ -36,6 +36,7 @@
 #import <SDAutoLayout.h>
 #import <SVProgressHUD.h>
 #import <UIImageView+WebCache.h>
+#import <Masonry.h>
 
 //FIXME:本地分类和工具类
 #import "RSMyNavigationViewController.h"
@@ -44,10 +45,31 @@
 #import "RSCustomLabel.h"
 #import "ZZQEmptyView.h"
 #import "Nonetwork.h"
-
+#import "RJTextField.h"
+#import "SmsButtonHandle.h"
 
 
 //文字大小适配
 #define Textadaptation(a) (NSInteger)a * (SCW / 375.0)
 
+/** define:屏幕的宽高比 */
+#define CURRENT_SIZE(_size) _size / 375.0 * SCW
+
+/**
+ *define:颜色设置的宏定义
+ *prame: _r -- RGB的红
+ *parma: _g -- RGB的绿
+ *parma: _g -- RGB的蓝
+ *parma: _alpha -- RGB的透明度
+ */
+#define SELECT_COLOR(_r,_g,_b,_alpha) [UIColor colorWithRed:_r / 255.0 green:_g / 255.0 blue:_b / 255.0 alpha:_alpha]
+
+/** 弱引用 */
+#define WEAKSELF __weak typeof(self) weakSelf = self;
+
 #endif /* StscmDemo_pch */
+
+
+
+
+

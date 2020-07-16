@@ -8,6 +8,7 @@
 
 #import "RSBaseViewController.h"
 
+
 @interface RSBaseViewController ()
 
 @end
@@ -42,14 +43,10 @@
     return _emptyView;
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //[IQKeyboardManager sharedManager].enable = NO;
 }
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,14 +56,12 @@
       self.automaticallyAdjustsScrollViewInsets = NO;
     }
     [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
-    
 //    if ([self isKindOfClass:[RSHomeViewController class]]) {
 //        self.frostedViewController.panGestureEnabled = YES;
 //    }else{
 //        self.frostedViewController.panGestureEnabled = NO;
 //    }
-   
-        [self.view addSubview:self.tableview];
+    [self.view addSubview:self.tableview];
     
     
 //    if ([self isKindOfClass:[RSMenuViewController class]] || [self isKindOfClass:[RSMailDetailViewController class]] || [self isKindOfClass:[RSOnlineVideoPlayViewController class]]) {
@@ -84,6 +79,93 @@
 //    }
     [self.view addSubview:self.emptyView];
 }
+
+
+
+- (void)setRegisterUIView:(UIView *)superview andTitle:(NSString *)title{
+    
+    UIView * view = [[UIView alloc]init];
+    view.frame = CGRectMake(34,120,48,34);
+    [superview addSubview:view];
+    
+    UIView * view1 = [[UIView alloc] init];
+    view1.frame = CGRectMake(4,21,40,8);
+    view1.layer.backgroundColor = [UIColor colorWithRed:252/255.0 green:200/255.0 blue:40/255.0 alpha:1.0].CGColor;
+    view1.layer.cornerRadius = 4;
+    [view addSubview:view1];
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0,0,48,34);
+    label.text = title;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"PingFangSC" size:24];
+    label.numberOfLines = 0;
+    [view addSubview:label];
+    label.alpha = 1.0;
+}
+
+
+
+- (void)showPhoneAndPasswordType:(inputEnum)inputEnum andFirstName:(NSString *)firstName andSecondName:(NSString *)secondName andSuperView:(UIView *)superView{
+    
+   
+    
+    
+    
+    
+    if (inputEnum == phoneType) {
+        
+        
+        
+    }else{
+        
+        
+       
+       
+        
+        
+        UILabel * detextLabel = [[UILabel alloc]init];
+        detextLabel.text = @"为了您的数据安全,请设置密码";
+        detextLabel.textColor = [UIColor colorWithHexColorStr:@"#9B9B9B"];
+        detextLabel.font = [UIFont systemFontOfSize:14];
+        detextLabel.textAlignment = NSTextAlignmentLeft;
+        [superView addSubview:detextLabel];
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    //注册底下
+    UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loginBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [loginBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
+    [loginBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FFFFFF"] forState:UIControlStateNormal];
+    loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [superView addSubview:loginBtn];
+    
+    //已有账号，还有跳动
+    UIButton * jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [jumpBtn setTitle:@"跳过" forState:UIControlStateNormal];
+//    [jumpBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
+    [jumpBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
+    jumpBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [superView addSubview:jumpBtn];
+    
+    
+    
+    
+    
+    //登录的隐私的部分
+    
+}
+
+
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -127,11 +209,7 @@
     NSString *regex = @"^[\u4e00-\u9fa5]{0,19}$";
     NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [predicate1 evaluateWithObject:company];
-    
 }
-
-
-
 
 - (BOOL)isEnglishAndChinese:(NSString *)textf{
     //@"^[\u4e00-\u9fa5a-zA-Z]*$" [a-zA-Z\u4e00-\u9fa5]+
@@ -143,7 +221,6 @@
 -(BOOL)istext:(UITextField *)textf
 {
     NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    
     if (textf.text.length<=0||textf.text==nil||[textf.text isEqualToString:@""]||[textf.text isKindOfClass:[NSNull class]]||[[textf.text stringByTrimmingCharactersInSet:set]length]==0)
     {
         return YES;
@@ -156,7 +233,6 @@
 -(BOOL)isnstring:(NSString *)textf;
 {
     NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    
     if (textf.length<=0||textf==nil||[textf isEqualToString:@""]||[textf isKindOfClass:[NSNull class]]||[[textf stringByTrimmingCharactersInSet:set]length]==0)
     {
         return YES;
@@ -171,7 +247,6 @@
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
     return [pre evaluateWithObject:pwd];
 }
-
 //手机号验证
 - (BOOL)isTrueMobile:(NSString *)mobile
 {
@@ -179,15 +254,11 @@
     //    NSString *phoneRegex = @"^1(3|5|7|8|4)\\d{9}";
     //    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     //    return [phoneTest evaluateWithObject:mobile];
-    
     // NSString *MOBILE = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[0678])\\d{8}$";
     NSString * MOBILE = @"^((13[0-9])|(15[^4])|(18[0,1,2,3,5-9])|(17[0-8])|(19[8,9])|(166)|(147))\\d{8}$";
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     return [regextestmobile evaluateWithObject:mobile];
-    
 }
-
-
 /*车牌号验证 MODIFIED BY HELENSONG*/
 - (BOOL) validateCarNo:(NSString*) carNo
 {
@@ -196,22 +267,15 @@
     //NSLog(@"carTest is %@",carTest);
     return [carTest evaluateWithObject:carNo];
 }
-
-
-
-
 /**密码设置有大小写字母和数字*/
 - (BOOL)validatePassword:(NSString *)passWord
 {
     //NSString *passWordRegex = @"^[a-zA-Z0-9]{6,18}+$";
     //NSString * passWordRegex = @"[0-9a-zA-Z\u4e00-\u9fa5\\.\\*\\)\\(\\+\\$\\[\\?\\\\\\^\\{\\|\\]\\}%%%@\'\",。‘、-【】·！_——=:;；<>《》‘’“”!#~]+";
-    
     NSString *passWordRegex = @"^[A-Za-z0-9\\u4e00-\u9fa5]+$";
     NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
     return [passWordPredicate evaluateWithObject:passWord];
 }
-
-
 /* 身份证
  *
  *
@@ -222,40 +286,30 @@
     if (userID.length!=18) {
         return NO;
     }
-    
     //校验格式
     NSString *regex2 = @"^(^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$)|(^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d{4})|\\d{3}[Xx])$)$";
     NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
     BOOL flag = [identityCardPredicate evaluateWithObject:userID];
-    
     if (!flag) {
         return flag;    //格式错误
     }else {
         //格式正确在判断是否合法
-        
         //将前17位加权因子保存在数组里
         NSArray * idCardWiArray = @[@"7", @"9", @"10", @"5", @"8", @"4", @"2", @"1", @"6", @"3", @"7", @"9", @"10", @"5", @"8", @"4", @"2"];
-        
         //这是除以11后，可能产生的11位余数、验证码，也保存成数组
         NSArray * idCardYArray = @[@"1", @"0", @"10", @"9", @"8", @"7", @"6", @"5", @"4", @"3", @"2"];
-        
         //用来保存前17位各自乖以加权因子后的总和
         NSInteger idCardWiSum = 0;
         for(int i = 0;i < 17;i++)
         {
             NSInteger subStrIndex = [[userID substringWithRange:NSMakeRange(i, 1)] integerValue];
             NSInteger idCardWiIndex = [[idCardWiArray objectAtIndex:i] integerValue];
-            
             idCardWiSum+= subStrIndex * idCardWiIndex;
-            
         }
-        
         //计算出校验码所在数组的位置
         NSInteger idCardMod=idCardWiSum%11;
-        
         //得到最后一位身份证号码
         NSString * idCardLast= [userID substringWithRange:NSMakeRange(17, 1)];
-        
         //如果等于2，则说明校验码是10，身份证号码最后一位应该是X
         if(idCardMod==2)
         {
@@ -279,10 +333,6 @@
         }
     }
 }
-
-
-
-
 /**
  *  判断名称是否合法
  *  @param name 名称
@@ -291,13 +341,11 @@
 -(BOOL)isNameValid:(NSString *)name
 {
     BOOL isValid = NO;
-    
     if (name.length > 0)
     {
         for (NSInteger i=0; i<name.length; i++)
         {
             unichar chr = [name characterAtIndex:i];
-            
             if (chr < 0x80)
             { //字符
                 if (chr >= 'a' && chr <= 'z')
@@ -329,17 +377,14 @@
             { //无效字符
                 isValid = NO;
             }
-            
             if (!isValid)
             {
                 break;
             }
         }
     }
-    
     return isValid;
 }
-
 // 昵称
 - (BOOL) validateNickname:(NSString *)nickname
 {
@@ -379,14 +424,12 @@
 //根据金额内容进行判断，如果是只有整数位，就显示整数金额，如果是有小数位，就取小数位后两位，小数点后若为0则去掉不显示
 -(NSString *)cutStr:(double)pNum
 {
-    
     NSString *res=[NSString stringWithFormat:@"%.2f",pNum];
     if(([res intValue]-pNum)==0.0)
     {
         res=[NSString stringWithFormat:@"%d",(int)pNum];
     }
     return res;
-    
 }
 
 - (BOOL)isPureNumandCharacters:(NSString *)string

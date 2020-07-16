@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum InputEnum {
+    phoneType = 0,
+    passwordType = 1,
+}inputEnum;
+
 
 @interface RSBaseViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
@@ -74,9 +79,9 @@
 //对数组进行拆分的方法
 - (NSArray *)splitArray: (NSArray *)array withSubSize : (int)subSize;
 //将不同的部门的数组进行数组的重组
-- (NSMutableArray *)changeArrayRule:(NSArray *)contentarray;
+//- (NSMutableArray *)changeArrayRule:(NSArray *)contentarray;
 
-- (NSMutableArray *)changeNewArrayRule:(NSArray *)contentarray;
+//- (NSMutableArray *)changeNewArrayRule:(NSArray *)contentarray;
 
 
 //根据时间来获取星期几
@@ -95,6 +100,15 @@
 - (void)showDisplayTheTimeToSelectTime:(UIButton *)firstTimeBtn andSecondTime:(UIButton *)secondTimeBtn;
 //获取时间
 -(NSDate *)nsstringConversionNSDate:(NSString *)dateStr;
+
+
+
+//注册和登录需要的界面
+- (void)setRegisterUIView:(UIView *)superview andTitle:(NSString *)title;
+
+
+//注册和注册密码，密码登录，验证码登录
+- (void)showPhoneAndPasswordType:(inputEnum)inputEnum andFirstName:(NSString *)firstName andSecondName:(NSString *)secondName andSuperView:(UIView *)superView;
 
 @end
 

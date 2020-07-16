@@ -227,9 +227,9 @@ xsi:type=\"q0:Array\">" \
     }];
     [manager POST:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        block(responseObject,YES);
+        block(responseObject,YES);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        block(error,NO);
+        block(error,NO);
     }];
 }
 
@@ -263,7 +263,7 @@ xsi:type=\"q0:Array\">" \
 
 
 //这边是直接新的请求方式的部分
-
+//- (void)directPostWebNewData:(NSString *)urlStr;
 
 
 
@@ -277,6 +277,7 @@ xsi:type=\"q0:Array\">" \
     if ([elementName isEqualToString:@"unsafeInvokeServiceReturn"]) {
         storingFlag = true;
     }
+    
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
