@@ -15,6 +15,9 @@
 /**登录*/
 #import "RSLoginViewController.h"
 
+/**主界面*/
+#import "RSMainViewController.h"
+
 
 @interface AppDelegate ()
 {
@@ -27,8 +30,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
-    self.window.rootViewController = loginVc;
+    
+    RSMainViewController * mainVc = [[RSMainViewController alloc]init];
+    self.window.rootViewController = mainVc;
+    
+    
+//    RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
+//    self.window.rootViewController = loginVc;
     
     
 //    RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];

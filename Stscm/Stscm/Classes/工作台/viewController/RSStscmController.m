@@ -9,6 +9,7 @@
 #import "RSStscmController.h"
 #import "RSStscmHeaderView.h"
 #import "RSPersonalEditionCell.h"
+#import "RSRoleManagementViewController.h"
 
 @interface RSStscmController ()<RSPersonalEditionCellDelegate>
 
@@ -19,10 +20,16 @@
 
 @implementation RSStscmController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     NSLog(@"---------------------------");
-    self.navigationController.navigationBar.hidden = YES;
     self.emptyView.hidden = YES;
     
     [self setUi];
@@ -53,6 +60,7 @@
     //用户
     UIButton * userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [userBtn setImage:[UIImage imageNamed:@"默认头像"] forState:UIControlStateNormal];
+    [userBtn addTarget:self action:@selector(userAction:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:userBtn];
     
     
@@ -381,6 +389,23 @@
     
     
 }
+
+
+
+- (void)userAction:(UIButton *)userBtn{
+    RSRoleManagementViewController * roleMangementVc = [[RSRoleManagementViewController alloc]init];
+    [self.navigationController pushViewController:roleMangementVc animated:YES];
+}
+
+
+
+
+
+
+
+
+
+
 
 
 - (void)switchAction:(UIButton *)btn{

@@ -108,7 +108,12 @@ typedef enum InputEnum {
 
 
 //注册和注册密码，密码登录，验证码登录
-- (void)showPhoneAndPasswordType:(inputEnum)inputEnum andFirstName:(NSString *)firstName andSecondName:(NSString *)secondName andSuperView:(UIView *)superView;
+//- (void)showPhoneAndPasswordType:(inputEnum)inputEnum andFirstName:(NSString *)firstName andSecondName:(NSString *)secondName andSuperView:(UIView *)superView;
+
+
+
+//自适应字体
+-(CGSize)sizeWithString:(NSString*)string font:(UIFont*)font width:(float)width;
 
 @end
 

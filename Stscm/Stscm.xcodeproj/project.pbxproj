@@ -21,6 +21,15 @@
 		0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447591C248F8BBF003BBBCF /* RSCustomLabel.m */; };
 		04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475920249077A8003BBBCF /* ZZQEmptyView.m */; };
 		0447592424908FAB003BBBCF /* Nonetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447592224908FAA003BBBCF /* Nonetwork.m */; };
+		0453CC4624C5745C006ECA95 /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC4524C5745C006ECA95 /* UITextView+WZB.m */; };
+		0453CC5424C580BA006ECA95 /* RJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5224C580B9006ECA95 /* RJTextField.m */; };
+		0466135D24C140E2004B570D /* RSPersonSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466135B24C140E1004B570D /* RSPersonSecondCell.m */; };
+		0466135E24C140E2004B570D /* RSPersonFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466135C24C140E1004B570D /* RSPersonFirstCell.m */; };
+		0466136124C14771004B570D /* RSRoleManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136024C14771004B570D /* RSRoleManagementViewController.m */; };
+		0466136424C14823004B570D /* RSRoleManementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136324C14823004B570D /* RSRoleManementCell.m */; };
+		0466136724C1567B004B570D /* RSAddRoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136624C1567B004B570D /* RSAddRoleViewController.m */; };
+		0466136A24C18A07004B570D /* RSAddRoleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136924C18A07004B570D /* RSAddRoleCell.m */; };
+		0466136D24C18CBF004B570D /* RSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136C24C18CBF004B570D /* RSTextView.m */; };
 		04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E806248DDEFF00BABB6F /* AppDelegate.m */; };
 		04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E809248DDEFF00BABB6F /* SceneDelegate.m */; };
 		04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E80C248DDEFF00BABB6F /* ViewController.m */; };
@@ -31,7 +40,12 @@
 		04D6E81B248DDF0700BABB6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E81A248DDF0700BABB6F /* main.m */; };
 		04D6E825248DDF0700BABB6F /* StscmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E824248DDF0700BABB6F /* StscmTests.m */; };
 		04D6E830248DDF0700BABB6F /* StscmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E82F248DDF0700BABB6F /* StscmUITests.m */; };
-		04FB05A324BEA546007DB579 /* RJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB059F24BEA544007DB579 /* RJTextField.m */; };
+		04F7D8C124C007F4008CE45D /* RSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8C024C007F4008CE45D /* RSMainViewController.m */; };
+		04F7D8C424C02A57008CE45D /* RSMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8C324C02A57008CE45D /* RSMessageViewController.m */; };
+		04F7D8C724C02A77008CE45D /* RSMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8C624C02A77008CE45D /* RSMineViewController.m */; };
+		04F7D8CC24C043EB008CE45D /* RSCustomMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8C824C043E9008CE45D /* RSCustomMenuCell.m */; };
+		04F7D8CD24C043EB008CE45D /* RSMenuHeaderFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8CB24C043EB008CE45D /* RSMenuHeaderFootView.m */; };
+		04F7D8D024C04A4A008CE45D /* RSMineInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8CF24C04A4A008CE45D /* RSMineInformationViewController.m */; };
 		04FB05A424BEA546007DB579 /* SmsButtonHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB05A224BEA546007DB579 /* SmsButtonHandle.m */; };
 		04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB05A624BEE680007DB579 /* RSLoginViewController.m */; };
 		67D0F4C2D0AF66F1769B6A90 /* libPods-Stscm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 282B9D671207E40785441153 /* libPods-Stscm.a */; };
@@ -84,6 +98,24 @@
 		04475920249077A8003BBBCF /* ZZQEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZQEmptyView.m; sourceTree = "<group>"; };
 		0447592224908FAA003BBBCF /* Nonetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nonetwork.m; sourceTree = "<group>"; };
 		0447592324908FAB003BBBCF /* Nonetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nonetwork.h; sourceTree = "<group>"; };
+		0453CC4424C5745B006ECA95 /* UITextView+WZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WZB.h"; sourceTree = "<group>"; };
+		0453CC4524C5745C006ECA95 /* UITextView+WZB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WZB.m"; sourceTree = "<group>"; };
+		0453CC5224C580B9006ECA95 /* RJTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTextField.m; sourceTree = "<group>"; };
+		0453CC5324C580BA006ECA95 /* RJTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTextField.h; sourceTree = "<group>"; };
+		0466135924C140E0004B570D /* RSPersonFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPersonFirstCell.h; sourceTree = "<group>"; };
+		0466135A24C140E0004B570D /* RSPersonSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPersonSecondCell.h; sourceTree = "<group>"; };
+		0466135B24C140E1004B570D /* RSPersonSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPersonSecondCell.m; sourceTree = "<group>"; };
+		0466135C24C140E1004B570D /* RSPersonFirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPersonFirstCell.m; sourceTree = "<group>"; };
+		0466135F24C14771004B570D /* RSRoleManagementViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSRoleManagementViewController.h; sourceTree = "<group>"; };
+		0466136024C14771004B570D /* RSRoleManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSRoleManagementViewController.m; sourceTree = "<group>"; };
+		0466136224C14823004B570D /* RSRoleManementCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSRoleManementCell.h; sourceTree = "<group>"; };
+		0466136324C14823004B570D /* RSRoleManementCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSRoleManementCell.m; sourceTree = "<group>"; };
+		0466136524C1567B004B570D /* RSAddRoleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAddRoleViewController.h; sourceTree = "<group>"; };
+		0466136624C1567B004B570D /* RSAddRoleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAddRoleViewController.m; sourceTree = "<group>"; };
+		0466136824C18A07004B570D /* RSAddRoleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAddRoleCell.h; sourceTree = "<group>"; };
+		0466136924C18A07004B570D /* RSAddRoleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAddRoleCell.m; sourceTree = "<group>"; };
+		0466136B24C18CBF004B570D /* RSTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSTextView.h; sourceTree = "<group>"; };
+		0466136C24C18CBF004B570D /* RSTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSTextView.m; sourceTree = "<group>"; };
 		04D6E802248DDEFF00BABB6F /* 石材进销存.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "石材进销存.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E805248DDEFF00BABB6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04D6E806248DDEFF00BABB6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -103,8 +135,18 @@
 		04D6E82B248DDF0700BABB6F /* StscmUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StscmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E82F248DDF0700BABB6F /* StscmUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StscmUITests.m; sourceTree = "<group>"; };
 		04D6E831248DDF0700BABB6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		04FB059F24BEA544007DB579 /* RJTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTextField.m; sourceTree = "<group>"; };
-		04FB05A024BEA545007DB579 /* RJTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTextField.h; sourceTree = "<group>"; };
+		04F7D8BF24C007F4008CE45D /* RSMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSMainViewController.h; sourceTree = "<group>"; };
+		04F7D8C024C007F4008CE45D /* RSMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSMainViewController.m; sourceTree = "<group>"; };
+		04F7D8C224C02A57008CE45D /* RSMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSMessageViewController.h; sourceTree = "<group>"; };
+		04F7D8C324C02A57008CE45D /* RSMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSMessageViewController.m; sourceTree = "<group>"; };
+		04F7D8C524C02A77008CE45D /* RSMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSMineViewController.h; sourceTree = "<group>"; };
+		04F7D8C624C02A77008CE45D /* RSMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSMineViewController.m; sourceTree = "<group>"; };
+		04F7D8C824C043E9008CE45D /* RSCustomMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSCustomMenuCell.m; sourceTree = "<group>"; };
+		04F7D8C924C043EA008CE45D /* RSMenuHeaderFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSMenuHeaderFootView.h; sourceTree = "<group>"; };
+		04F7D8CA24C043EA008CE45D /* RSCustomMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSCustomMenuCell.h; sourceTree = "<group>"; };
+		04F7D8CB24C043EB008CE45D /* RSMenuHeaderFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMenuHeaderFootView.m; sourceTree = "<group>"; };
+		04F7D8CE24C04A4A008CE45D /* RSMineInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSMineInformationViewController.h; sourceTree = "<group>"; };
+		04F7D8CF24C04A4A008CE45D /* RSMineInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSMineInformationViewController.m; sourceTree = "<group>"; };
 		04FB05A124BEA545007DB579 /* SmsButtonHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmsButtonHandle.h; sourceTree = "<group>"; };
 		04FB05A224BEA546007DB579 /* SmsButtonHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmsButtonHandle.m; sourceTree = "<group>"; };
 		04FB05A524BEE680007DB579 /* RSLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSLoginViewController.h; sourceTree = "<group>"; };
@@ -169,6 +211,10 @@
 		044758D7248DE6DC003BBBCF /* 分类 */ = {
 			isa = PBXGroup;
 			children = (
+				0453CC4424C5745B006ECA95 /* UITextView+WZB.h */,
+				0453CC4524C5745C006ECA95 /* UITextView+WZB.m */,
+				044758F0248DECB1003BBBCF /* UIColor+HexColor.h */,
+				044758F1248DECB2003BBBCF /* UIColor+HexColor.m */,
 				044758FE248DEE09003BBBCF /* UIBarButtonItem+Item.h */,
 				044758FF248DEE09003BBBCF /* UIBarButtonItem+Item.m */,
 				044758FA248DECC2003BBBCF /* RSMyNavigationViewController.h */,
@@ -206,19 +252,19 @@
 		044758DB248DE6DC003BBBCF /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
-				04FB05A024BEA545007DB579 /* RJTextField.h */,
-				04FB059F24BEA544007DB579 /* RJTextField.m */,
+				0453CC5324C580BA006ECA95 /* RJTextField.h */,
+				0453CC5224C580B9006ECA95 /* RJTextField.m */,
 				04FB05A124BEA545007DB579 /* SmsButtonHandle.h */,
 				04FB05A224BEA546007DB579 /* SmsButtonHandle.m */,
 				04475918248F80C8003BBBCF /* RSPublishButton.h */,
 				04475919248F80C9003BBBCF /* RSPublishButton.m */,
 				044758EE248DE901003BBBCF /* StscmDemo.pch */,
-				044758F0248DECB1003BBBCF /* UIColor+HexColor.h */,
-				044758F1248DECB2003BBBCF /* UIColor+HexColor.m */,
 				0447591B248F8BBF003BBBCF /* RSCustomLabel.h */,
 				0447591C248F8BBF003BBBCF /* RSCustomLabel.m */,
 				0419255E24B70907002B794F /* RSNetworkTool.h */,
 				0419255F24B70907002B794F /* RSNetworkTool.m */,
+				0466136B24C18CBF004B570D /* RSTextView.h */,
+				0466136C24C18CBF004B570D /* RSTextView.m */,
 			);
 			path = "工具类";
 			sourceTree = "<group>";
@@ -298,6 +344,8 @@
 		044758E8248DE6DC003BBBCF /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				04F7D8BF24C007F4008CE45D /* RSMainViewController.h */,
+				04F7D8C024C007F4008CE45D /* RSMainViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -387,6 +435,14 @@
 		04F7D8B524C005E5008CE45D /* view */ = {
 			isa = PBXGroup;
 			children = (
+				04F7D8CA24C043EA008CE45D /* RSCustomMenuCell.h */,
+				04F7D8C824C043E9008CE45D /* RSCustomMenuCell.m */,
+				04F7D8C924C043EA008CE45D /* RSMenuHeaderFootView.h */,
+				04F7D8CB24C043EB008CE45D /* RSMenuHeaderFootView.m */,
+				0466135924C140E0004B570D /* RSPersonFirstCell.h */,
+				0466135C24C140E1004B570D /* RSPersonFirstCell.m */,
+				0466135A24C140E0004B570D /* RSPersonSecondCell.h */,
+				0466135B24C140E1004B570D /* RSPersonSecondCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -394,6 +450,10 @@
 		04F7D8B624C005E5008CE45D /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				04F7D8C524C02A77008CE45D /* RSMineViewController.h */,
+				04F7D8C624C02A77008CE45D /* RSMineViewController.m */,
+				04F7D8CE24C04A4A008CE45D /* RSMineInformationViewController.h */,
+				04F7D8CF24C04A4A008CE45D /* RSMineInformationViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -422,6 +482,10 @@
 				04475913248F7CFC003BBBCF /* RSStscmHeaderView.m */,
 				04475915248F7FEC003BBBCF /* RSPersonalEditionCell.h */,
 				04475916248F7FEC003BBBCF /* RSPersonalEditionCell.m */,
+				0466136224C14823004B570D /* RSRoleManementCell.h */,
+				0466136324C14823004B570D /* RSRoleManementCell.m */,
+				0466136824C18A07004B570D /* RSAddRoleCell.h */,
+				0466136924C18A07004B570D /* RSAddRoleCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -431,6 +495,10 @@
 			children = (
 				04475906248E0FB7003BBBCF /* RSStscmController.h */,
 				04475907248E0FB7003BBBCF /* RSStscmController.m */,
+				0466135F24C14771004B570D /* RSRoleManagementViewController.h */,
+				0466136024C14771004B570D /* RSRoleManagementViewController.m */,
+				0466136524C1567B004B570D /* RSAddRoleViewController.h */,
+				0466136624C1567B004B570D /* RSAddRoleViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -462,6 +530,8 @@
 		04F7D8BE24C005E5008CE45D /* viewController */ = {
 			isa = PBXGroup;
 			children = (
+				04F7D8C224C02A57008CE45D /* RSMessageViewController.h */,
+				04F7D8C324C02A57008CE45D /* RSMessageViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -662,21 +732,35 @@
 				0447592424908FAB003BBBCF /* Nonetwork.m in Sources */,
 				044758F6248DECB2003BBBCF /* UIColor+HexColor.m in Sources */,
 				04D6E81B248DDF0700BABB6F /* main.m in Sources */,
+				04F7D8CD24C043EB008CE45D /* RSMenuHeaderFootView.m in Sources */,
+				0466136724C1567B004B570D /* RSAddRoleViewController.m in Sources */,
 				04D6E813248DDEFF00BABB6F /* Stscm.xcdatamodeld in Sources */,
+				04F7D8CC24C043EB008CE45D /* RSCustomMenuCell.m in Sources */,
 				04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */,
-				04FB05A324BEA546007DB579 /* RJTextField.m in Sources */,
+				0466135E24C140E2004B570D /* RSPersonFirstCell.m in Sources */,
 				04475911248F2DA0003BBBCF /* RSBaseViewController.m in Sources */,
 				04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */,
+				04F7D8C124C007F4008CE45D /* RSMainViewController.m in Sources */,
+				0466136D24C18CBF004B570D /* RSTextView.m in Sources */,
+				04F7D8C724C02A77008CE45D /* RSMineViewController.m in Sources */,
 				04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */,
 				04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */,
 				0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */,
 				04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */,
+				04F7D8C424C02A57008CE45D /* RSMessageViewController.m in Sources */,
+				04F7D8D024C04A4A008CE45D /* RSMineInformationViewController.m in Sources */,
 				04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */,
 				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
 				04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */,
+				0466135D24C140E2004B570D /* RSPersonSecondCell.m in Sources */,
+				0466136124C14771004B570D /* RSRoleManagementViewController.m in Sources */,
 				04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */,
 				044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */,
 				0447591A248F80C9003BBBCF /* RSPublishButton.m in Sources */,
+				0466136A24C18A07004B570D /* RSAddRoleCell.m in Sources */,
+				0453CC5424C580BA006ECA95 /* RJTextField.m in Sources */,
+				0466136424C14823004B570D /* RSRoleManementCell.m in Sources */,
+				0453CC4624C5745C006ECA95 /* UITextView+WZB.m in Sources */,
 				04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */,
 				041925AD24BDA248002B794F /* RSRegisterViewController.m in Sources */,
 				04FB05A424BEA546007DB579 /* SmsButtonHandle.m in Sources */,

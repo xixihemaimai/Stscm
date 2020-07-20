@@ -16,6 +16,8 @@
     
     UILabel * _codeName;
     
+    RJTextField * _account;
+    
     RJTextField * _password;
     
     UIButton * _button;
@@ -103,6 +105,8 @@
     account.type = @"phone";
     account.textField.keyboardType = UIKeyboardTypePhonePad;
     [self.view addSubview:account];
+    _account = account;
+    
     
     
     UILabel * codeName = [[UILabel alloc]init];
@@ -127,8 +131,15 @@
     
     
     
-    UIButton * button = [[SmsButtonHandle sharedSmsBHandle]buttonWithTitle:@"获取验证码" action:@selector(buttonAction) superVC:self];
+    UIButton * button = [[SmsButtonHandle sharedSmsBHandle]buttonWithTitle:@"获取验证码" action:@selector(buttonAction:) superVC:self];
     [button setTitle:@"" forState:UIControlStateNormal];
+    
+    
+    if (_passwordBtn.selected == YES) {
+        [button setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal];
+        
+    }
+    
     [self.view addSubview:button];
     _button = button;
     
@@ -153,8 +164,8 @@
     
     
     UIButton * choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [choiceBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-    [choiceBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+    [choiceBtn setImage:[UIImage imageNamed:@"未选"] forState:UIControlStateNormal];
+    [choiceBtn setImage:[UIImage imageNamed:@"选择备份"] forState:UIControlStateSelected];
     [self.view addSubview:choiceBtn];
     
     
@@ -238,8 +249,7 @@
     
     choiceLabel.sd_layout
     .leftSpaceToView(choiceBtn, 0)
-    .topEqualToView(choiceBtn)
-    .bottomEqualToView(choiceBtn)
+    .bottomSpaceToView(self.view, 35)
     .heightIs(16.5)
     .widthIs(100);
     
@@ -266,10 +276,26 @@
 }
 
 
-- (void)buttonAction{
-    NSLog(@"按钮事件");
-    //此处可以先调接口，成功后再调此方法
-    [[SmsButtonHandle sharedSmsBHandle] startTimer];
+- (void)buttonAction:(UIButton *)btn{
+    
+    if (_passwordBtn.selected == YES) {
+        
+        btn.selected = !btn.selected;
+        if (btn.selected) {
+            [btn setImage:[UIImage imageNamed:@"眼睛"] forState:UIControlStateNormal];
+            _password.textField.secureTextEntry = NO;
+            
+        }else{
+            [btn setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal];
+            _password.textField.secureTextEntry = YES;
+        }
+    }else{
+        [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        //[button setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal]
+        NSLog(@"按钮事件");
+        //此处可以先调接口，成功后再调此方法
+        [[SmsButtonHandle sharedSmsBHandle] startTimer];
+    }
 }
 
 
@@ -277,12 +303,14 @@
     btn.selected = YES;
     _codeBtn.selected = NO;
     _codeName.text = @"密码";
+    _account.textField.text = @"";
+    _password.textField.text = @"";
     _password.placeholder = @"请输入密码";
     _password.maxLength = 18;
     _password.errorStr = @"超出字数限制";
     _password.type = @"passwork";
-       
-       
+    _password.textField.secureTextEntry = YES;
+    [_button setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal];
     [_button setTitle:@"" forState:UIControlStateNormal];
     
 }
@@ -292,12 +320,14 @@
     btn.selected = YES;
     _passwordBtn.selected = NO;
     _codeName.text = @"验证码";
+    
+    _account.textField.text = @"";
+    _password.textField.text = @"";
     _password.placeholder = @"请输入验证码";
     _password.maxLength = 6;
     _password.errorStr = @"超出字数限制";
     _password.type = @"phone";
-    
-    
+    [_button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_button setTitle:@"获取验证码" forState:UIControlStateNormal];
 
 }

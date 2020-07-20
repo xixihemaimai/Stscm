@@ -126,8 +126,8 @@
     
     
     UIButton * choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [choiceBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-    [choiceBtn setImage:[UIImage imageNamed:@""] forState:UIControlStateSelected];
+    [choiceBtn setImage:[UIImage imageNamed:@"未选"] forState:UIControlStateNormal];
+    [choiceBtn setImage:[UIImage imageNamed:@"选择备份"] forState:UIControlStateSelected];
     [self.view addSubview:choiceBtn];
     
     
@@ -224,8 +224,7 @@
     
     choiceLabel.sd_layout
     .leftSpaceToView(choiceBtn, 0)
-    .topEqualToView(choiceBtn)
-    .bottomEqualToView(choiceBtn)
+    .bottomSpaceToView(self.view, 35)
     .heightIs(16.5)
     .widthIs(100);
     

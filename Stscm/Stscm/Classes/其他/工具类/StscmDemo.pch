@@ -37,6 +37,7 @@
 #import <SVProgressHUD.h>
 #import <UIImageView+WebCache.h>
 #import <Masonry.h>
+#import <KTVHTTPCache.h>
 
 //FIXME:本地分类和工具类
 #import "RSMyNavigationViewController.h"
@@ -45,8 +46,9 @@
 #import "RSCustomLabel.h"
 #import "ZZQEmptyView.h"
 #import "Nonetwork.h"
-#import "RJTextField.h"
+
 #import "SmsButtonHandle.h"
+#import "UITextView+WZB.h"
 
 
 //文字大小适配

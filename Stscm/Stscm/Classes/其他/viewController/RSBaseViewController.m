@@ -7,7 +7,9 @@
 //
 
 #import "RSBaseViewController.h"
-
+#import "RSStscmController.h"
+#import "RSMineViewController.h"
+#import "RSMessageViewController.h"
 
 @interface RSBaseViewController ()
 
@@ -64,19 +66,22 @@
     [self.view addSubview:self.tableview];
     
     
-//    if ([self isKindOfClass:[RSMenuViewController class]] || [self isKindOfClass:[RSMailDetailViewController class]] || [self isKindOfClass:[RSOnlineVideoPlayViewController class]]) {
+    if ([self isKindOfClass:[RSStscmController class]] || [self isKindOfClass:[RSMineViewController class]] || [self isKindOfClass:[RSMessageViewController class]]) {
+        
         self.tableview.sd_layout
         .leftSpaceToView(self.view, 0)
         .rightSpaceToView(self.view, 0)
         .topSpaceToView(self.view, 0)
         .bottomSpaceToView(self.view, 0);
-//    }else{
-//        self.tableview.sd_layout
-//        .leftSpaceToView(self.view, 0)
-//        .rightSpaceToView(self.view, 0)
-//        .topSpaceToView(self.navigationController.navigationBar, 0)
-//        .bottomSpaceToView(self.view, 0);
-//    }
+        
+       
+    }else{
+       self.tableview.sd_layout
+       .leftSpaceToView(self.view, 0)
+       .rightSpaceToView(self.view, 0)
+       .topSpaceToView(self.navigationController.navigationBar, 0)
+       .bottomSpaceToView(self.view, 0);
+    }
     [self.view addSubview:self.emptyView];
 }
 
@@ -106,62 +111,62 @@
 
 
 
-- (void)showPhoneAndPasswordType:(inputEnum)inputEnum andFirstName:(NSString *)firstName andSecondName:(NSString *)secondName andSuperView:(UIView *)superView{
-    
-   
-    
-    
-    
-    
-    if (inputEnum == phoneType) {
-        
-        
-        
-    }else{
-        
-        
-       
-       
-        
-        
-        UILabel * detextLabel = [[UILabel alloc]init];
-        detextLabel.text = @"为了您的数据安全,请设置密码";
-        detextLabel.textColor = [UIColor colorWithHexColorStr:@"#9B9B9B"];
-        detextLabel.font = [UIFont systemFontOfSize:14];
-        detextLabel.textAlignment = NSTextAlignmentLeft;
-        [superView addSubview:detextLabel];
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    //注册底下
-    UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginBtn setTitle:@"注册" forState:UIControlStateNormal];
-    [loginBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
-    [loginBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FFFFFF"] forState:UIControlStateNormal];
-    loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    [superView addSubview:loginBtn];
-    
-    //已有账号，还有跳动
-    UIButton * jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [jumpBtn setTitle:@"跳过" forState:UIControlStateNormal];
-//    [jumpBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
-    [jumpBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
-    jumpBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    [superView addSubview:jumpBtn];
-    
-    
-    
-    
-    
-    //登录的隐私的部分
-    
-}
+//- (void)showPhoneAndPasswordType:(inputEnum)inputEnum andFirstName:(NSString *)firstName andSecondName:(NSString *)secondName andSuperView:(UIView *)superView{
+//    
+//   
+//    
+//    
+//    
+//    
+//    if (inputEnum == phoneType) {
+//        
+//        
+//        
+//    }else{
+//        
+//        
+//       
+//       
+//        
+//        
+//        UILabel * detextLabel = [[UILabel alloc]init];
+//        detextLabel.text = @"为了您的数据安全,请设置密码";
+//        detextLabel.textColor = [UIColor colorWithHexColorStr:@"#9B9B9B"];
+//        detextLabel.font = [UIFont systemFontOfSize:14];
+//        detextLabel.textAlignment = NSTextAlignmentLeft;
+//        [superView addSubview:detextLabel];
+//        
+//        
+//        
+//    }
+//    
+//    
+//    
+//    
+//    
+//    //注册底下
+//    UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [loginBtn setTitle:@"注册" forState:UIControlStateNormal];
+//    [loginBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
+//    [loginBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FFFFFF"] forState:UIControlStateNormal];
+//    loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+//    [superView addSubview:loginBtn];
+//    
+//    //已有账号，还有跳动
+//    UIButton * jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [jumpBtn setTitle:@"跳过" forState:UIControlStateNormal];
+////    [jumpBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
+//    [jumpBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
+//    jumpBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+//    [superView addSubview:jumpBtn];
+//    
+//    
+//    
+//    
+//    
+//    //登录的隐私的部分
+//    
+//}
 
 
 
@@ -756,7 +761,13 @@ return encodedImageStr;
 
 
 
-
+ /**
+  *  自适应字体
+  */
+ -(CGSize)sizeWithString:(NSString*)string font:(UIFont*)font width:(float)width{
+   CGRect rect = [string boundingRectWithSize:CGSizeMake(width,MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading    |NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+   return rect.size;
+}
 
 
 
