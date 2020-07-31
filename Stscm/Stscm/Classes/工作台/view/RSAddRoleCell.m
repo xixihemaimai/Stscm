@@ -20,11 +20,12 @@
         roleLabel.font = [UIFont systemFontOfSize:16];
         roleLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:roleLabel];
-        
+        _roleLabel = roleLabel;
         
         UITextView *textView = [[UITextView alloc] init];
         textView.wzb_placeholder = @"请输入";
         textView.wzb_placeholderColor = [UIColor colorWithHexColorStr:@"#999999"];
+        textView.textAlignment=NSTextAlignmentRight;
         textView.font = [UIFont systemFontOfSize:17];
         [self.contentView addSubview:textView];
         _textView = textView;

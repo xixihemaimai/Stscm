@@ -13,12 +13,21 @@ typedef enum InputEnum {
     passwordType = 1,
 }inputEnum;
 
+typedef void(^CustomBlock)(NSInteger pageNum);
+
 
 @interface RSBaseViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView * tableview;
 
 @property (nonatomic,strong)ZZQEmptyView * emptyView;
+
+/**刷新片数*/
+@property (nonatomic,assign)NSInteger pageNum;
+
+
+@property (nonatomic,strong)CustomBlock customBlock;
+
 //FIXME:去掉空格
 - (NSString *)delSpaceAndNewline:(NSString *)string;
 
@@ -102,18 +111,14 @@ typedef enum InputEnum {
 -(NSDate *)nsstringConversionNSDate:(NSString *)dateStr;
 
 
-
 //注册和登录需要的界面
 - (void)setRegisterUIView:(UIView *)superview andTitle:(NSString *)title;
-
-
-//注册和注册密码，密码登录，验证码登录
-//- (void)showPhoneAndPasswordType:(inputEnum)inputEnum andFirstName:(NSString *)firstName andSecondName:(NSString *)secondName andSuperView:(UIView *)superView;
-
-
-
 //自适应字体
 -(CGSize)sizeWithString:(NSString*)string font:(UIFont*)font width:(float)width;
+
+
+
+
 
 @end
 

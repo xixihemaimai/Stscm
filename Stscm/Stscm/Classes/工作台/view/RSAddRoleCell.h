@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RSAddRoleCell : UITableViewCell
 
+@property (nonatomic,strong)UILabel * roleLabel;
+
 @property (nonatomic,strong)UITextView *textView;
 
 @end

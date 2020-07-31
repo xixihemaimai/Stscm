@@ -23,6 +23,22 @@
 		0447592424908FAB003BBBCF /* Nonetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447592224908FAA003BBBCF /* Nonetwork.m */; };
 		0453CC4624C5745C006ECA95 /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC4524C5745C006ECA95 /* UITextView+WZB.m */; };
 		0453CC5424C580BA006ECA95 /* RJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5224C580B9006ECA95 /* RJTextField.m */; };
+		0453CC5724C5871E006ECA95 /* RSAddRoleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5624C5871E006ECA95 /* RSAddRoleHeaderView.m */; };
+		0453CC5A24C58944006ECA95 /* RSRoleUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5924C58944006ECA95 /* RSRoleUserCell.m */; };
+		0453CC5D24C58D30006ECA95 /* RSRoleTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5C24C58D30006ECA95 /* RSRoleTimeCell.m */; };
+		0453CC6624C59559006ECA95 /* WSDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0453CC6224C59559006ECA95 /* WSDatePickerView.xib */; };
+		0453CC6724C59559006ECA95 /* WSDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC6324C59559006ECA95 /* WSDatePickerView.m */; };
+		0453CC6824C59559006ECA95 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC6424C59559006ECA95 /* NSDate+Extension.m */; };
+		0453CC6924C59559006ECA95 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC6524C59559006ECA95 /* UIView+Extension.m */; };
+		0453CC6C24C69576006ECA95 /* SPDateTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC6B24C69576006ECA95 /* SPDateTimePickerView.m */; };
+		0453CC6F24C69CBF006ECA95 /* RSStscmAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC6E24C69CBF006ECA95 /* RSStscmAlertView.m */; };
+		0453CC7524C69D23006ECA95 /* JJOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC7224C69D22006ECA95 /* JJOptionView.m */; };
+		0453CC7624C69D23006ECA95 /* list_icon_drfault@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0453CC7324C69D22006ECA95 /* list_icon_drfault@3x.png */; };
+		0453CC7724C69D23006ECA95 /* list_icon_drfault@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0453CC7424C69D22006ECA95 /* list_icon_drfault@2x.png */; };
+		0453CC7B24C7D8B5006ECA95 /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC7A24C7D8B5006ECA95 /* RSAEncryptor.m */; };
+		0453CC7E24C833EF006ECA95 /* RSPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC7D24C833EF006ECA95 /* RSPasswordViewController.m */; };
+		0453CC8224C83917006ECA95 /* MyMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC8024C83916006ECA95 /* MyMD5.m */; };
+		0453CC8524CEC6E3006ECA95 /* UIView+LLXAlertPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC8324CEC6E2006ECA95 /* UIView+LLXAlertPop.m */; };
 		0466135D24C140E2004B570D /* RSPersonSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466135B24C140E1004B570D /* RSPersonSecondCell.m */; };
 		0466135E24C140E2004B570D /* RSPersonFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466135C24C140E1004B570D /* RSPersonFirstCell.m */; };
 		0466136124C14771004B570D /* RSRoleManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136024C14771004B570D /* RSRoleManagementViewController.m */; };
@@ -102,6 +118,35 @@
 		0453CC4524C5745C006ECA95 /* UITextView+WZB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WZB.m"; sourceTree = "<group>"; };
 		0453CC5224C580B9006ECA95 /* RJTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTextField.m; sourceTree = "<group>"; };
 		0453CC5324C580BA006ECA95 /* RJTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTextField.h; sourceTree = "<group>"; };
+		0453CC5524C5871E006ECA95 /* RSAddRoleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAddRoleHeaderView.h; sourceTree = "<group>"; };
+		0453CC5624C5871E006ECA95 /* RSAddRoleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAddRoleHeaderView.m; sourceTree = "<group>"; };
+		0453CC5824C58944006ECA95 /* RSRoleUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSRoleUserCell.h; sourceTree = "<group>"; };
+		0453CC5924C58944006ECA95 /* RSRoleUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSRoleUserCell.m; sourceTree = "<group>"; };
+		0453CC5B24C58D30006ECA95 /* RSRoleTimeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSRoleTimeCell.h; sourceTree = "<group>"; };
+		0453CC5C24C58D30006ECA95 /* RSRoleTimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSRoleTimeCell.m; sourceTree = "<group>"; };
+		0453CC5F24C59559006ECA95 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		0453CC6024C59559006ECA95 /* WSDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSDatePickerView.h; sourceTree = "<group>"; };
+		0453CC6124C59559006ECA95 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		0453CC6224C59559006ECA95 /* WSDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSDatePickerView.xib; sourceTree = "<group>"; };
+		0453CC6324C59559006ECA95 /* WSDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSDatePickerView.m; sourceTree = "<group>"; };
+		0453CC6424C59559006ECA95 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		0453CC6524C59559006ECA95 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		0453CC6A24C69575006ECA95 /* SPDateTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDateTimePickerView.h; sourceTree = "<group>"; };
+		0453CC6B24C69576006ECA95 /* SPDateTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDateTimePickerView.m; sourceTree = "<group>"; };
+		0453CC6D24C69CBF006ECA95 /* RSStscmAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSStscmAlertView.h; sourceTree = "<group>"; };
+		0453CC6E24C69CBF006ECA95 /* RSStscmAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSStscmAlertView.m; sourceTree = "<group>"; };
+		0453CC7124C69D22006ECA95 /* JJOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJOptionView.h; sourceTree = "<group>"; };
+		0453CC7224C69D22006ECA95 /* JJOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJOptionView.m; sourceTree = "<group>"; };
+		0453CC7324C69D22006ECA95 /* list_icon_drfault@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_icon_drfault@3x.png"; sourceTree = "<group>"; };
+		0453CC7424C69D22006ECA95 /* list_icon_drfault@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_icon_drfault@2x.png"; sourceTree = "<group>"; };
+		0453CC7924C7D8B5006ECA95 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		0453CC7A24C7D8B5006ECA95 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
+		0453CC7C24C833EF006ECA95 /* RSPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSPasswordViewController.h; sourceTree = "<group>"; };
+		0453CC7D24C833EF006ECA95 /* RSPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSPasswordViewController.m; sourceTree = "<group>"; };
+		0453CC8024C83916006ECA95 /* MyMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMD5.m; sourceTree = "<group>"; };
+		0453CC8124C83916006ECA95 /* MyMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMD5.h; sourceTree = "<group>"; };
+		0453CC8324CEC6E2006ECA95 /* UIView+LLXAlertPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LLXAlertPop.m"; sourceTree = "<group>"; };
+		0453CC8424CEC6E3006ECA95 /* UIView+LLXAlertPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LLXAlertPop.h"; sourceTree = "<group>"; };
 		0466135924C140E0004B570D /* RSPersonFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPersonFirstCell.h; sourceTree = "<group>"; };
 		0466135A24C140E0004B570D /* RSPersonSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPersonSecondCell.h; sourceTree = "<group>"; };
 		0466135B24C140E1004B570D /* RSPersonSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPersonSecondCell.m; sourceTree = "<group>"; };
@@ -244,6 +289,10 @@
 		044758DA248DE6DC003BBBCF /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				0453CC7F24C83916006ECA95 /* MyMD5 */,
+				0453CC7824C7D8B5006ECA95 /* RSA */,
+				0453CC7024C69D22006ECA95 /* JJOptionView */,
+				0453CC5E24C59559006ECA95 /* WSDaePickerView */,
 				0447591E249077A8003BBBCF /* ZZQEmptyView */,
 			);
 			path = Lib;
@@ -252,6 +301,10 @@
 		044758DB248DE6DC003BBBCF /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
+				0453CC8424CEC6E3006ECA95 /* UIView+LLXAlertPop.h */,
+				0453CC8324CEC6E2006ECA95 /* UIView+LLXAlertPop.m */,
+				0453CC6A24C69575006ECA95 /* SPDateTimePickerView.h */,
+				0453CC6B24C69576006ECA95 /* SPDateTimePickerView.m */,
 				0453CC5324C580BA006ECA95 /* RJTextField.h */,
 				0453CC5224C580B9006ECA95 /* RJTextField.m */,
 				04FB05A124BEA545007DB579 /* SmsButtonHandle.h */,
@@ -265,6 +318,8 @@
 				0419255F24B70907002B794F /* RSNetworkTool.m */,
 				0466136B24C18CBF004B570D /* RSTextView.h */,
 				0466136C24C18CBF004B570D /* RSTextView.m */,
+				0453CC6D24C69CBF006ECA95 /* RSStscmAlertView.h */,
+				0453CC6E24C69CBF006ECA95 /* RSStscmAlertView.m */,
 			);
 			path = "工具类";
 			sourceTree = "<group>";
@@ -311,6 +366,8 @@
 			children = (
 				041925AB24BDA248002B794F /* RSRegisterViewController.h */,
 				041925AC24BDA248002B794F /* RSRegisterViewController.m */,
+				0453CC7C24C833EF006ECA95 /* RSPasswordViewController.h */,
+				0453CC7D24C833EF006ECA95 /* RSPasswordViewController.m */,
 				04FB05A524BEE680007DB579 /* RSLoginViewController.h */,
 				04FB05A624BEE680007DB579 /* RSLoginViewController.m */,
 			);
@@ -357,6 +414,49 @@
 				04475920249077A8003BBBCF /* ZZQEmptyView.m */,
 			);
 			path = ZZQEmptyView;
+			sourceTree = "<group>";
+		};
+		0453CC5E24C59559006ECA95 /* WSDaePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				0453CC5F24C59559006ECA95 /* NSDate+Extension.h */,
+				0453CC6424C59559006ECA95 /* NSDate+Extension.m */,
+				0453CC6024C59559006ECA95 /* WSDatePickerView.h */,
+				0453CC6324C59559006ECA95 /* WSDatePickerView.m */,
+				0453CC6224C59559006ECA95 /* WSDatePickerView.xib */,
+				0453CC6124C59559006ECA95 /* UIView+Extension.h */,
+				0453CC6524C59559006ECA95 /* UIView+Extension.m */,
+			);
+			path = WSDaePickerView;
+			sourceTree = "<group>";
+		};
+		0453CC7024C69D22006ECA95 /* JJOptionView */ = {
+			isa = PBXGroup;
+			children = (
+				0453CC7124C69D22006ECA95 /* JJOptionView.h */,
+				0453CC7224C69D22006ECA95 /* JJOptionView.m */,
+				0453CC7324C69D22006ECA95 /* list_icon_drfault@3x.png */,
+				0453CC7424C69D22006ECA95 /* list_icon_drfault@2x.png */,
+			);
+			path = JJOptionView;
+			sourceTree = "<group>";
+		};
+		0453CC7824C7D8B5006ECA95 /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+				0453CC7924C7D8B5006ECA95 /* RSAEncryptor.h */,
+				0453CC7A24C7D8B5006ECA95 /* RSAEncryptor.m */,
+			);
+			path = RSA;
+			sourceTree = "<group>";
+		};
+		0453CC7F24C83916006ECA95 /* MyMD5 */ = {
+			isa = PBXGroup;
+			children = (
+				0453CC8024C83916006ECA95 /* MyMD5.m */,
+				0453CC8124C83916006ECA95 /* MyMD5.h */,
+			);
+			path = MyMD5;
 			sourceTree = "<group>";
 		};
 		04D6E7F9248DDEFF00BABB6F = {
@@ -486,6 +586,12 @@
 				0466136324C14823004B570D /* RSRoleManementCell.m */,
 				0466136824C18A07004B570D /* RSAddRoleCell.h */,
 				0466136924C18A07004B570D /* RSAddRoleCell.m */,
+				0453CC5524C5871E006ECA95 /* RSAddRoleHeaderView.h */,
+				0453CC5624C5871E006ECA95 /* RSAddRoleHeaderView.m */,
+				0453CC5824C58944006ECA95 /* RSRoleUserCell.h */,
+				0453CC5924C58944006ECA95 /* RSRoleUserCell.m */,
+				0453CC5B24C58D30006ECA95 /* RSRoleTimeCell.h */,
+				0453CC5C24C58D30006ECA95 /* RSRoleTimeCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -660,7 +766,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D6E818248DDF0700BABB6F /* LaunchScreen.storyboard in Resources */,
+				0453CC7624C69D23006ECA95 /* list_icon_drfault@3x.png in Resources */,
+				0453CC7724C69D23006ECA95 /* list_icon_drfault@2x.png in Resources */,
 				04D6E815248DDF0700BABB6F /* Assets.xcassets in Resources */,
+				0453CC6624C59559006ECA95 /* WSDatePickerView.xib in Resources */,
 				04D6E810248DDEFF00BABB6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -692,12 +801,14 @@
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -734,33 +845,46 @@
 				04D6E81B248DDF0700BABB6F /* main.m in Sources */,
 				04F7D8CD24C043EB008CE45D /* RSMenuHeaderFootView.m in Sources */,
 				0466136724C1567B004B570D /* RSAddRoleViewController.m in Sources */,
+				0453CC5D24C58D30006ECA95 /* RSRoleTimeCell.m in Sources */,
 				04D6E813248DDEFF00BABB6F /* Stscm.xcdatamodeld in Sources */,
 				04F7D8CC24C043EB008CE45D /* RSCustomMenuCell.m in Sources */,
 				04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */,
 				0466135E24C140E2004B570D /* RSPersonFirstCell.m in Sources */,
+				0453CC6824C59559006ECA95 /* NSDate+Extension.m in Sources */,
 				04475911248F2DA0003BBBCF /* RSBaseViewController.m in Sources */,
 				04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */,
 				04F7D8C124C007F4008CE45D /* RSMainViewController.m in Sources */,
+				0453CC7524C69D23006ECA95 /* JJOptionView.m in Sources */,
 				0466136D24C18CBF004B570D /* RSTextView.m in Sources */,
+				0453CC6724C59559006ECA95 /* WSDatePickerView.m in Sources */,
 				04F7D8C724C02A77008CE45D /* RSMineViewController.m in Sources */,
+				0453CC8524CEC6E3006ECA95 /* UIView+LLXAlertPop.m in Sources */,
+				0453CC7E24C833EF006ECA95 /* RSPasswordViewController.m in Sources */,
 				04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */,
 				04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */,
 				0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */,
 				04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */,
 				04F7D8C424C02A57008CE45D /* RSMessageViewController.m in Sources */,
+				0453CC7B24C7D8B5006ECA95 /* RSAEncryptor.m in Sources */,
 				04F7D8D024C04A4A008CE45D /* RSMineInformationViewController.m in Sources */,
 				04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */,
+				0453CC6924C59559006ECA95 /* UIView+Extension.m in Sources */,
 				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
 				04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */,
+				0453CC8224C83917006ECA95 /* MyMD5.m in Sources */,
+				0453CC6F24C69CBF006ECA95 /* RSStscmAlertView.m in Sources */,
+				0453CC5A24C58944006ECA95 /* RSRoleUserCell.m in Sources */,
 				0466135D24C140E2004B570D /* RSPersonSecondCell.m in Sources */,
 				0466136124C14771004B570D /* RSRoleManagementViewController.m in Sources */,
 				04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */,
 				044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */,
 				0447591A248F80C9003BBBCF /* RSPublishButton.m in Sources */,
 				0466136A24C18A07004B570D /* RSAddRoleCell.m in Sources */,
+				0453CC6C24C69576006ECA95 /* SPDateTimePickerView.m in Sources */,
 				0453CC5424C580BA006ECA95 /* RJTextField.m in Sources */,
 				0466136424C14823004B570D /* RSRoleManementCell.m in Sources */,
 				0453CC4624C5745C006ECA95 /* UITextView+WZB.m in Sources */,
+				0453CC5724C5871E006ECA95 /* RSAddRoleHeaderView.m in Sources */,
 				04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */,
 				041925AD24BDA248002B794F /* RSRegisterViewController.m in Sources */,
 				04FB05A424BEA546007DB579 /* SmsButtonHandle.m in Sources */,
@@ -941,10 +1065,7 @@
 				GCC_PREFIX_HEADER = "Stscm/Classes/其他/工具类/StscmDemo.pch";
 				INFOPLIST_FILE = Stscm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruishi.Stscm;
 				PRODUCT_NAME = "石材进销存";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -963,10 +1084,7 @@
 				GCC_PREFIX_HEADER = "Stscm/Classes/其他/工具类/StscmDemo.pch";
 				INFOPLIST_FILE = Stscm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruishi.Stscm;
 				PRODUCT_NAME = "石材进销存";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -981,11 +1099,7 @@
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1001,11 +1115,7 @@
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1019,11 +1129,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1037,11 +1143,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -22,7 +22,7 @@
     // Do any additional setup after loading the view.
     self.popDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
-   // self.navigationBar.barTintColor = [UIColor colorWithHexColorStr:@"#ffffff"];
+    self.navigationBar.barTintColor = [UIColor colorWithHexColorStr:@"#ffffff"];
 }
 
 //- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{

@@ -36,5 +36,7 @@
 /** 底部线条选中颜色(默认深绿色) */
 @property (nonatomic,strong) UIColor *lineSelectedColor;
 
+@property (nonatomic,strong)void(^InputBlock)(NSString * inputBlock,NSInteger lenth);
+
 
 @end

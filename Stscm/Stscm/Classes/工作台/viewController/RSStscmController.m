@@ -9,12 +9,16 @@
 #import "RSStscmController.h"
 #import "RSStscmHeaderView.h"
 #import "RSPersonalEditionCell.h"
+//角色
 #import "RSRoleManagementViewController.h"
+
+#import "RSStscmAlertView.h"
 
 @interface RSStscmController ()<RSPersonalEditionCellDelegate>
 
 @property (nonatomic,strong)UIButton * currentSelectButton;
 
+@property (nonatomic,strong)RSStscmAlertView * stscmAlertview;
 
 @end
 
@@ -25,18 +29,27 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
+- (RSStscmAlertView *)stscmAlertview{
+    if (!_stscmAlertview) {
+        self.stscmAlertview = [[RSStscmAlertView alloc] initWithFrame:CGRectMake(33, (SCH/2) - 141, SCW - 66 , 282)];
+        self.stscmAlertview.backgroundColor = [UIColor whiteColor];
+        self.stscmAlertview.layer.cornerRadius = 15;
+    }
+    return _stscmAlertview;
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSLog(@"---------------------------");
     self.emptyView.hidden = YES;
-    
+    self.tableview.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     [self setUi];
-    
-    
-    
 }
+
+
 
 
 
@@ -53,15 +66,49 @@
     
     
     //进销存
-    UILabel * purchaseLabel = [RSCustomLabel creatCustomLabelAndText:@"进销存" andTextColor:[UIColor colorWithHexColorStr:@"#161616"] andFont:[UIFont fontWithName:@"PingFangSC" size: 24] andTextAlignment:NSTextAlignmentLeft andBackgroundColor:[UIColor clearColor]];
-    [headerView addSubview:purchaseLabel];
+//    UILabel * purchaseLabel = [RSCustomLabel creatCustomLabelAndText:@"进销存" andTextColor:[UIColor colorWithHexColorStr:@"#161616"] andFont:[UIFont fontWithName:@"PingFangSC" size: 24] andTextAlignment:NSTextAlignmentLeft andBackgroundColor:[UIColor clearColor]];
+//    [headerView addSubview:purchaseLabel];
+  
+    
+    
+    //用户的信息
+    UIView * userView = [[UIView alloc]init];
+    userView.backgroundColor = [UIColor colorWithHexColorStr:@"#000000" alpha:0.2];
+    [headerView addSubview:userView];
     
     
     //用户
     UIButton * userBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [userBtn setImage:[UIImage imageNamed:@"默认头像"] forState:UIControlStateNormal];
+    [userBtn setImage:[UIImage imageNamed:@"头像"] forState:UIControlStateNormal];
     [userBtn addTarget:self action:@selector(userAction:) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:userBtn];
+    [userView addSubview:userBtn];
+    
+    
+    //用户名称
+    UILabel * userLabel = [[UILabel alloc]init];
+    userLabel.textColor = [UIColor colorWithHexColorStr:@"#FFFFFF"];
+    userLabel.font = [UIFont systemFontOfSize:14];
+    userLabel.text = @"咿呀咿有限公司";
+    userLabel.textAlignment = NSTextAlignmentLeft;
+    [userView addSubview:userLabel];
+    
+    //职位
+    UILabel * positionLabel = [[UILabel alloc]init];
+    positionLabel.textColor = [UIColor colorWithHexColorStr:@"#FFFFFF"];
+    positionLabel.font = [UIFont systemFontOfSize:11];
+    positionLabel.text = @"销售";
+    positionLabel.textAlignment = NSTextAlignmentLeft;
+    [userView addSubview:positionLabel];
+    
+    
+    //切换
+    UIButton * switchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [switchBtn setImage:[UIImage imageNamed:@"切换"] forState:UIControlStateNormal];
+    [switchBtn addTarget:self action:@selector(swithUserAction:) forControlEvents:UIControlEventTouchUpInside];
+    [userView addSubview:switchBtn];
+    
+    
+    
     
     
     
@@ -288,19 +335,51 @@
     
     
     
-    purchaseLabel.sd_layout
-    .leftSpaceToView(headerView, 15.5)
-    .topSpaceToView(headerView, 35.5)
-    .heightIs(33.5)
-    .widthIs(72);
+    userView.sd_layout
+    .leftSpaceToView(headerView, 15)
+    .topSpaceToView(headerView, 37)
+    .widthIs(167)
+    .heightIs(34);
+    
+    userView.layer.cornerRadius = 16.5;
+    userView.layer.masksToBounds = YES;
+//    userView.alpha = 0.1;
+    
+//    purchaseLabel.sd_layout
+//    .leftSpaceToView(headerView, 15.5)
+//    .topSpaceToView(headerView, 35.5)
+//    .heightIs(33.5)
+//    .widthIs(72);
     
     
     userBtn.sd_layout
-    .rightSpaceToView(headerView, 15.5)
-    .topSpaceToView(headerView, 38.5)
+    .leftSpaceToView(userView, 3)
+    .centerYEqualToView(userView)
     .widthIs(28)
     .heightEqualToWidth();
     
+   
+    
+    
+    switchBtn.sd_layout
+    .centerYEqualToView(userView)
+    .rightSpaceToView(userView, 5)
+    .widthIs(18)
+    .heightEqualToWidth();
+    
+    
+    userLabel.sd_layout
+    .leftSpaceToView(userBtn, 7.5)
+    .topSpaceToView(userView, 0)
+    .heightIs(20)
+    .rightSpaceToView(switchBtn, 0);
+       
+    positionLabel.sd_layout
+    .leftEqualToView(userLabel)
+    .rightEqualToView(userLabel)
+    .topSpaceToView(userLabel, 0)
+    .bottomSpaceToView(userView, 0);
+
     
     
     backImage.sd_layout
@@ -385,32 +464,20 @@
     [headerView setupAutoHeightWithBottomView:noticeView bottomMargin:20];
     [headerView layoutIfNeeded];
     self.tableview.tableHeaderView = headerView;
-    
-    
-    
 }
-
-
 
 - (void)userAction:(UIButton *)userBtn{
     RSRoleManagementViewController * roleMangementVc = [[RSRoleManagementViewController alloc]init];
     [self.navigationController pushViewController:roleMangementVc animated:YES];
 }
 
-
-
-
-
-
-
-
-
-
-
+//FIXME:切换用户信息
+- (void)swithUserAction:(UIButton *)swithBtn{
+    [self.stscmAlertview showView];
+}
 
 - (void)switchAction:(UIButton *)btn{
     //btn.selected = !btn.selected;
-    
     self.currentSelectButton.selected = NO;
     [self.currentSelectButton setBackgroundColor:[UIColor colorWithHexColorStr:@"#323232"]];
     btn.selected = YES;

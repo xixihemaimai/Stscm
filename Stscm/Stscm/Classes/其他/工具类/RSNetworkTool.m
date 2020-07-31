@@ -17,7 +17,7 @@
 
 @implementation RSNetworkTool
 
-
+/*
 #define URL_YIGODATA_IOS(A,B,C) [NSString stringWithFormat:@ \
 \
 "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns0=\"http:// \
@@ -50,7 +50,7 @@ xsi:type=\"q0:Array\">" \
 \
 "</soapenv:Envelope>",A,B,C] \
 \
-
+*/
 
 
 
@@ -60,19 +60,7 @@ xsi:type=\"q0:Array\">" \
 
 
 
-//密码进行md5的加密----注册,登录，修改密码部分
--(NSString *) md5: (NSString *) inPutText
-{
-    const char *cStr = [inPutText UTF8String];
-    unsigned char result[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(cStr, (CC_LONG)strlen(cStr), result);
-    return [[NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-             result[0], result[1], result[2], result[3],
-             result[4], result[5], result[6], result[7],
-             result[8], result[9], result[10], result[11],
-             result[12], result[13], result[14], result[15]
-             ] lowercaseString];
-}
+
 
 
 
@@ -209,9 +197,10 @@ xsi:type=\"q0:Array\">" \
 }
 
 
+
 //MARK: - 这边是请求的部分
 //这边是获取单页的UITableview的数据
-+ (void)reloadWebServiceNetDataUrl:(NSString *)URLStr andParameters:(NSString *)soapStr withBlock:(AFNetworkingBlock)block{
+- (void)reloadWebServiceNetDataUrl:(NSString *)URLStr  andType:(NSString *)type andParameters:(NSString *)soapStr withBlock:(AFNetworkingBlock)block{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
     // 设置请求超时时间
@@ -225,17 +214,97 @@ xsi:type=\"q0:Array\">" \
     {
              return soapStr;
     }];
-    [manager POST:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull uploadProgress) {
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        block(responseObject,YES);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        block(error,NO);
+    if ([type isEqualToString:@"POST"]) {
+        [manager POST:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull uploadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            block(responseObject,YES);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            block(error,NO);
+        }];
+    }else{
+        [manager GET:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull downloadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"-------------------%@",responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"---------32323----------%@",error);
+        }];
+    }
+}
+
+
+
+
++ (void)netWorkToolWebServiceDataUrl:(NSString *)url andType:(NSString *)type withParameters:(NSString *)parameters andURLName:(NSString *)urlName withBlock:(AFNetworkingBlock)block{
+    RSNetworkTool * networktool = [[RSNetworkTool alloc]init];
+    [networktool newReloadWebServiceNetDataUrl:url andType:type withParameters:parameters andURLName:url withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        if (block) {
+            block(responseObject,YES);
+        }
     }];
 }
 
 
+
++ (void)loginUserUrl:(NSString *)url requestType:(NSString *)request SopaStrPasswordAndCodeType:(NSString *)type andPasswordAndCode:(NSString *)code andPhoneNumber:(NSString *)phoneNumber andPKey:(NSString *)pKey andBlock:(AFNetworkingBlock)block{
+    RSNetworkTool * network = [[RSNetworkTool alloc]init];
+    //获取当前的时间戳
+    NSInteger timeInt = [network getNowTimestamp];
+    //NSString * aes = [FSAES128 AES128Encrypt:[NSString stringWithFormat:@"%ld",timeInt] key:@"123456"];
+    //保存在本地
+    NSString * aes1 = [NSString stringWithFormat:@"%ld",(long)timeInt];
+    NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
+    //拼凑成一个16位的数
+    int a = arc4random() % 100000;
+    NSString *str = [NSString stringWithFormat:@"%06d", a];
+    NSString * const aes2 = [NSString stringWithFormat:@"%@%@",aes1,str];
+    [user setObject:aes2 forKey:@"AES"];
+    [user synchronize];
+    NSString * loginType = [NSString string];
+    NSString * passwordStr = [NSString string];
+    NSString * codeStr = [NSString string];
+    if ([type isEqualToString:@"password"]) {
+        loginType = @"pwd";
+        passwordStr = [MyMD5 md5:code];
+        codeStr = @"";
+    }else{
+        loginType = @"vcode";
+        passwordStr = @"";
+        codeStr = code;
+    }
+    NSString * data = [NSString stringWithFormat:@"{userPhone:'%@',loginType:'%@',password:'%@',verificationCode:'%@',aesKey:'%@'}",phoneNumber,loginType,passwordStr,codeStr,aes2];
+    //RSA加密
+    NSString * rsaEncryptor = [RSAEncryptor encryptString:data publicKey:pKey];
+    
+    [network newReloadWebServiceNetDataUrl:url andType:request withParameters:rsaEncryptor andURLName:url withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        if (block) {
+            block(responseObject,YES);
+        }
+    }];
+}
+
+//获取当前系统时间的时间戳
+#pragma mark - 获取当前时间的 时间戳
+- (NSInteger)getNowTimestamp{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"]; // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+    //设置时区,这个对于时间的处理有时很重要
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    [formatter setTimeZone:timeZone];
+    NSDate *datenow = [NSDate date];//现在时间
+    //NSLog(@"设备当前的时间:%@",[formatter stringFromDate:datenow]);
+    //时间转时间戳的方法:
+    NSInteger timeSp = [[NSNumber numberWithDouble:[datenow timeIntervalSince1970]] integerValue];
+    //NSLog(@"设备当前的时间戳:%ld",(long)timeSp); //时间戳的值
+    return timeSp;
+}
+
+
+
+
 //新的请求方式
-- (void)newReloadWebServiceNetDataUrl:(NSString *)url withParameters:(NSDictionary *)parameters andURLName:(NSString *)urlName withBlock:(AFNetworkingBlock)block{
+- (void)newReloadWebServiceNetDataUrl:(NSString *)url andType:(NSString *)type withParameters:(NSString *)parameters andURLName:(NSString *)urlName withBlock:(AFNetworkingBlock)block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
 //    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes =[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", nil];
@@ -245,25 +314,48 @@ xsi:type=\"q0:Array\">" \
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     manager.requestSerializer.timeoutInterval = 30.0f;
-    [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //请求成功
-        block(responseObject,YES);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //请求失败
-        block(error,NO);
-    }];
+    if ([type isEqualToString:@"POST"]) {
+        [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+           } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+               //请求成功
+//               NSLog(@"-======================%@",responseObject);
+               if ([responseObject[@"success"] boolValue]) {
+                   block(responseObject,YES);
+               }else{
+                   NSLog(@"-======================%@",responseObject[@"errmsg"]);
+                   jxt_showToastTitle(responseObject[@"errmsg"], 0.75);
+               }
+           } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+               //请求失败
+               //block(error,NO);
+               jxt_showToastTitle(@"请求失败", 0.75);
+           }];
+        
+    }else{
+        [manager GET:url parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//            NSLog(@"---------------------------%@",responseObject);
+//            block(responseObject,YES);
+//            if (success) {
+//                NSLog(@"-======================%@",responseObject);
+                if ([responseObject[@"success"] boolValue]) {
+                    block(responseObject,YES);
+                }else{
+                    NSLog(@"-======================%@",responseObject[@"errmsg"]);
+                    jxt_showToastTitle(responseObject[@"errmsg"], 0.75);
+                }
+//            }else{
+               //NSLog(@"+++++++++++++++++++++++%@",responseObject);
+                  //block(responseObject,NO);
+//                jxt_showToastTitle(responseObject[@"msg"], 0.75);
+//            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"=====2=33==================%@",error);
+//            block(error,NO);
+            jxt_showToastTitle(@"请求失败", 0.75);
+        }];
+    }
 }
-
-
-
-//这边要进行设置进入解析步骤的方法---这种需要的是加密和解密的部分
-
-
-
-
-//这边是直接新的请求方式的部分
-//- (void)directPostWebNewData:(NSString *)urlStr;
 
 
 
@@ -301,9 +393,7 @@ xsi:type=\"q0:Array\">" \
         if (issuccess) {
             
         }
-        
     }
-        
 }
 
     

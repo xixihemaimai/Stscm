@@ -16,30 +16,42 @@
     
     UILabel * _codeName;
     
-    RJTextField * _account;
-    
-    RJTextField * _password;
-    
     UIButton * _button;
     
 }
 
+@property (nonatomic,strong) RJTextField * account;
 
+@property (nonatomic,strong) RJTextField * password;
+
+@property (nonatomic,strong) UIButton * choiceBtn;
+
+/**这边是保存公钥的一个*/
+@property (nonatomic,strong)NSString * PublickKeyTemp;
 
 @end
 
 @implementation RSLoginViewController
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setRegisterUIView:self.view andTitle:@"登录"];
     self.emptyView.hidden = YES;
-    //    self.tableview.hidden = YES;
-    
+    self.PublickKeyTemp = @"";
     [self setUi];
     
 }
+
+
+
+
 
 - (void)setUi{
     
@@ -151,6 +163,7 @@
     [loginBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
     [loginBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FFFFFF"] forState:UIControlStateNormal];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [loginBtn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
     
     
@@ -160,13 +173,16 @@
     UIButton * accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [accountBtn setAttributedTitle:underAttr forState:UIControlStateNormal];
     accountBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [accountBtn addTarget:self action:@selector(backRegisterAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:accountBtn];
     
     
     UIButton * choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [choiceBtn setImage:[UIImage imageNamed:@"未选"] forState:UIControlStateNormal];
     [choiceBtn setImage:[UIImage imageNamed:@"选择备份"] forState:UIControlStateSelected];
+    [choiceBtn addTarget:self action:@selector(choiceAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:choiceBtn];
+    _choiceBtn = choiceBtn;
     
     
     UILabel * choiceLabel = [[UILabel alloc]init];
@@ -248,7 +264,7 @@
     .heightEqualToWidth();
     
     choiceLabel.sd_layout
-    .leftSpaceToView(choiceBtn, 0)
+    .leftSpaceToView(choiceBtn, 5)
     .bottomSpaceToView(self.view, 35)
     .heightIs(16.5)
     .widthIs(100);
@@ -279,7 +295,7 @@
 - (void)buttonAction:(UIButton *)btn{
     
     if (_passwordBtn.selected == YES) {
-        
+        // 密码
         btn.selected = !btn.selected;
         if (btn.selected) {
             [btn setImage:[UIImage imageNamed:@"眼睛"] forState:UIControlStateNormal];
@@ -290,13 +306,33 @@
             _password.textField.secureTextEntry = YES;
         }
     }else{
+        //验证码
+        
         [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        //[button setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal]
-        NSLog(@"按钮事件");
-        //此处可以先调接口，成功后再调此方法
-        [[SmsButtonHandle sharedSmsBHandle] startTimer];
+        
+        if (![self isTrueMobile:_account.textField.text]) {
+            [SVProgressHUD setMinimumDismissTimeInterval:0.3];
+            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+            [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
+           
+        }else{
+            //此处可以先调接口，成功后再调此方法
+            [[SmsButtonHandle sharedSmsBHandle] startTimer];
+            
+            NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@'}",_account.textField.text];
+            //这边要对发短信
+            [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+            }];
+        }
     }
 }
+
+
+//FIXME:是否同意需要隐私按键
+- (void)choiceAction:(UIButton *)choiceBtn{
+    choiceBtn.selected = !choiceBtn.selected;
+}
+
 
 
 - (void)changPassworkAction:(UIButton *)btn{
@@ -320,7 +356,6 @@
     btn.selected = YES;
     _passwordBtn.selected = NO;
     _codeName.text = @"验证码";
-    
     _account.textField.text = @"";
     _password.textField.text = @"";
     _password.placeholder = @"请输入验证码";
@@ -330,6 +365,90 @@
     [_button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_button setTitle:@"获取验证码" forState:UIControlStateNormal];
 
+}
+
+
+//MARK:登录的
+- (void)loginAction:(UIButton *)loginBtn{
+    
+    
+    RSWeakself
+    NSString * type = [NSString string];
+    if (_passwordBtn.selected == YES) {
+        //密码登录
+        //手机号
+        if (![self isTrueMobile:_account.textField.text]) {
+            [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+            return;
+        }
+        //密码
+        if(![self validatePassword:_password.textField.text])
+        {
+            jxt_showToastMessage(@"请设置注册密码", 0.75);
+            return;
+        }
+        if (_password.textField.text.length<6)
+        {
+            jxt_showToastMessage(@"请设置6-18位密码", 0.75);
+            return;
+        }
+        if (_password.textField.text.length>18)
+        {
+            jxt_showToastMessage(@"请设置6-18位密码", 0.75);
+            return;
+        }
+        //是否同意隐私政策
+        if (_choiceBtn.selected != YES) {
+            [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
+            return;
+        }
+        type = @"password";
+    }else{
+        //验证码登录
+        //手机号
+        if (![self isTrueMobile:_account.textField.text]) {
+            [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+            return;
+        }
+        //验证码
+        if (_password.textField.text.length < 6 || _password.textField.text.length > 6) {
+            [SVProgressHUD showErrorWithStatus:@"请输入正确验证码"];
+            return;
+        }
+        //是否同意隐私政策
+        if (_choiceBtn.selected != YES) {
+            [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
+            return;
+        }
+        type = @"vcode";
+    }
+    [self reloadUdid:^(BOOL isValue) {
+        if (isValue) {
+            jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:weakSelf.password.textField.text andPhoneNumber:weakSelf.account.textField.text andPKey:weakSelf.PublickKeyTemp andBlock:^(id  _Nonnull responseObject, BOOL success) {
+                     //改变主页
+                    jxt_dismissHUD();
+                    NSLog(@"-----11111--------------%@",responseObject);
+                }];
+            });
+        }
+    }];
+}
+
+- (void)reloadUdid:(void(^)(BOOL isValue))Obtain{
+    //设备的唯一标识号
+    NSString *udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSString * ukey = [NSString stringWithFormat:@"{ukey:'%@'}",udid];
+    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:ukey andURLName:URL_KEY_GET_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        self.PublickKeyTemp = responseObject[@"data"][@"pKey"];
+        Obtain(true);
+    }];
+}
+
+//FIXME:返回到注册界面
+- (void)backRegisterAction:(UIButton *)backBtn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

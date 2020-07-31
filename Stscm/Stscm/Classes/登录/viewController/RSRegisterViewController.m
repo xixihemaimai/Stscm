@@ -8,11 +8,28 @@
 
 #import "RSRegisterViewController.h"
 
+#import "RSPasswordViewController.h"
+
+#import "RSLoginViewController.h"
+
+
 @interface RSRegisterViewController ()
+
+@property (nonatomic,strong) RJTextField * account;
+
+@property (nonatomic,strong) RJTextField * password;
+
+@property (nonatomic,strong) UIButton * choiceBtn;
+
 
 @end
 
 @implementation RSRegisterViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,8 +56,9 @@
        
        
     RJTextField * account = [[RJTextField alloc]init];
+    account.maxLength = 11;
     [self.view addSubview:account];
-    
+
     
     UILabel * codeName = [[UILabel alloc]init];
     codeName.text = @"验证码";
@@ -48,88 +66,59 @@
     codeName.textColor = [UIColor colorWithHexColorStr:@"#393939"];
     codeName.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:codeName];
-    
+    _account = account;
        
     RJTextField * password = [[RJTextField alloc]init];
+    password.maxLength = 6;
     [self.view addSubview:password];
+
+
     
-//    account.placeholder = @"请输入手机号";
-//    account.maxLength = 11;
-//    account.errorStr = @"超出字数限制";
-    account.type = @"phone";
     account.textField.keyboardType = UIKeyboardTypePhonePad;
-          
-          
-//    password.placeholder = @"请输入验证码";
-//    password.maxLength = 6;
-//    password.errorStr = @"超出字数限制";
-    password.type = @"phone";
-    password.textField.keyboardType = UIKeyboardTypePhonePad;
     
-     if ([self.type isEqualToString:@"phone"]) {
-         NSLog(@"=------------------------------------------------------");
-         account.placeholder = @"请输入手机号";
-         password.placeholder = @"请输入验证码";
+    password.textField.keyboardType = UIKeyboardTypePhonePad;
+    _password = password;
+    
+     
+    account.placeholder = @"请输入手机号";
+    password.placeholder = @"请输入验证码";
+        
+    account.maxLength = 11;
+    account.errorStr = @"超出字数限制";
+    account.type = @"phone";
          
-         account.maxLength = 11;
-         account.errorStr = @"超出字数限制";
-         account.type = @"phone";
-         
-         password.maxLength = 6;
-         password.errorStr = @"超出字数限制";
-         password.type = @"phone";
-     }else{
-         NSLog(@"=++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-         account.placeholder = @"请输入密码";
-         password.placeholder = @"请再次输入密码";
-                
-         account.maxLength = 18;
-         account.errorStr = @"超出字数限制";
-         account.type = @"phone";
-                
-         password.maxLength = 18;
-         password.errorStr = @"超出字数限制";
-         password.type = @"phone";
-     }
+    password.maxLength = 6;
+    password.errorStr = @"超出字数限制";
+    password.type = @"phone";
+     
 
     UIButton * button = [[SmsButtonHandle sharedSmsBHandle]buttonWithTitle:@"获取验证码" action:@selector(buttonAction) superVC:self];
     [self.view addSubview:button];
     
-    
-    UILabel * alertLabel = [[UILabel alloc]init];
-    alertLabel.text = @"*为了您的数据安全,请设置密码";
-    alertLabel.textColor = [UIColor colorWithHexColorStr:@"#9B9B9B"];
-    alertLabel.font = [UIFont systemFontOfSize:14];
-    alertLabel.textAlignment = NSTextAlignmentLeft;
-    [self.view addSubview:alertLabel];
-    
-    
-    UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [loginBtn setTitle:@"注册" forState:UIControlStateNormal];
-    [loginBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
-    [loginBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FFFFFF"] forState:UIControlStateNormal];
-    loginBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    [self.view addSubview:loginBtn];
-    
-    UIButton * jumpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [jumpBtn setTitle:@"跳过" forState:UIControlStateNormal];
-    [jumpBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
-    jumpBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    [self.view addSubview:jumpBtn];
+    UIButton * registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [registerBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
+    [registerBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FFFFFF"] forState:UIControlStateNormal];
+    registerBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+    [registerBtn addTarget:self action:@selector(registerAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:registerBtn];
+
     
     NSDictionary * underAttribtDic  = @{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle],NSForegroundColorAttributeName:[UIColor colorWithRed:252/255.0 green:200/255.0 blue:40/255.0 alpha:1.0]};
     NSMutableAttributedString * underAttr = [[NSMutableAttributedString alloc] initWithString:@"已有账号，去登录" attributes:underAttribtDic];
     UIButton * accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [accountBtn setAttributedTitle:underAttr forState:UIControlStateNormal];
     accountBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [accountBtn addTarget:self action:@selector(jumpLoginAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:accountBtn];
     
     
     UIButton * choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [choiceBtn setImage:[UIImage imageNamed:@"未选"] forState:UIControlStateNormal];
     [choiceBtn setImage:[UIImage imageNamed:@"选择备份"] forState:UIControlStateSelected];
+    [choiceBtn addTarget:self action:@selector(choiceAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:choiceBtn];
-    
+    _choiceBtn = choiceBtn;
     
     UILabel * choiceLabel = [[UILabel alloc]init];
     choiceLabel.text = @"登录和注册即同意";
@@ -155,9 +144,6 @@
     privateBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:privateBtn];
     
-    
-    
-
     name.sd_layout
     .leftSpaceToView(self.view, 35)
     .topSpaceToView(self.view, 245)
@@ -182,21 +168,14 @@
     .topSpaceToView(codeName, 8.5)
     .heightIs(34.5);
     
-    alertLabel.sd_layout
-    .leftEqualToView(name)
-    .rightEqualToView(name)
-    .topSpaceToView(password, 3.5)
-    .heightIs(20);
-    
-    
-    loginBtn.sd_layout
+    registerBtn.sd_layout
     .rightEqualToView(password)
     .leftEqualToView(password)
     .topSpaceToView(password, 48.5)
     .heightIs(49);
     
-    loginBtn.layer.cornerRadius = 27;
-    loginBtn.layer.masksToBounds = YES;
+    registerBtn.layer.cornerRadius = 27;
+    registerBtn.layer.masksToBounds = YES;
     
     button.sd_layout
     .rightSpaceToView(self.view, 35)
@@ -204,16 +183,10 @@
     .widthIs(70)
     .heightIs(20);
     
-    jumpBtn.sd_layout
-    .leftEqualToView(loginBtn)
-    .rightEqualToView(loginBtn)
-    .topSpaceToView(loginBtn, 4)
-    .heightIs(24);
-    
     accountBtn.sd_layout
-    .leftEqualToView(jumpBtn)
-    .rightEqualToView(jumpBtn)
-    .topSpaceToView(jumpBtn, 21.5)
+    .leftEqualToView(registerBtn)
+    .rightEqualToView(registerBtn)
+    .topSpaceToView(registerBtn, 39)
     .heightIs(20);
     
     choiceBtn.sd_layout
@@ -223,7 +196,7 @@
     .heightEqualToWidth();
     
     choiceLabel.sd_layout
-    .leftSpaceToView(choiceBtn, 0)
+    .leftSpaceToView(choiceBtn, 5)
     .bottomSpaceToView(self.view, 35)
     .heightIs(16.5)
     .widthIs(100);
@@ -247,39 +220,81 @@
     .widthIs(50)
     .heightIs(16.5);
     
-    if ([self.type isEqualToString:@"phone"]) {
-        
-        name.text = @"手机号";
-        codeName.text = @"验证码";
-        
-        
-        
-        accountBtn.hidden = YES;
-        jumpBtn.hidden = YES;
-        alertLabel.hidden = YES;
-        button.hidden = NO;
-        
-    }else{
-        name.text = @"密码";
-        codeName.text = @"确认密码";
-        
-       
-        accountBtn.hidden = NO;
-        jumpBtn.hidden = NO;
-        alertLabel.hidden = NO;
-        button.hidden = YES;
-        
-        
-        
-    }
-    
-    
+    name.text = @"手机号";
+    codeName.text = @"验证码";
+    button.hidden = NO;
 }
 
+//FIXME:获取验证码的按键
 - (void)buttonAction{
+    NSLog(@"----------------%@",_account.textField.text);
     NSLog(@"按钮事件");
-    //此处可以先调接口，成功后再调此方法
-    [[SmsButtonHandle sharedSmsBHandle] startTimer];
+    if (![self isTrueMobile:_account.textField.text]) {
+        [SVProgressHUD setMinimumDismissTimeInterval:0.3];
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
+       
+    }else{
+        //此处可以先调接口，成功后再调此方法
+        [[SmsButtonHandle sharedSmsBHandle] startTimer];
+        
+        NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@'}",_account.textField.text];
+        //这边要对发短信
+        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        }];
+    }
+}
+
+
+//FIXME:是否同意需要隐私按键
+- (void)choiceAction:(UIButton *)choiceBtn{
+    choiceBtn.selected = !choiceBtn.selected;
+}
+
+
+//FIXME:跳转到登录界面
+- (void)jumpLoginAction:(UIButton *)jumpLoginBtn{
+    RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
+    [self.navigationController pushViewController:loginVc animated:YES];
+}
+
+
+//FIXME:注册方法
+- (void)registerAction:(UIButton *)registerBtn{
+    
+    //电话号码验证
+    if (![self isTrueMobile:_account.textField.text]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
+        return;
+    }
+    
+    if (_password.textField.text.length < 6 || _password.textField.text.length > 6) {
+        [SVProgressHUD showErrorWithStatus:@"请输入正确验证码"];
+        return;
+    }
+    
+    if (_choiceBtn.selected != YES) {
+        [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
+        return;
+    }
+    
+    NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@',verificationCode:'%@'}",_account.textField.text,_password.textField.text];
+    //这边要对发短信
+    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_CHECK_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_CHECK_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+       RSPasswordViewController * passwordVc = [[RSPasswordViewController alloc]init];
+       passwordVc.phoneStr = self.account.textField.text;
+       passwordVc.codeStr = self.password.textField.text;
+       [self.navigationController pushViewController:passwordVc animated:YES];
+    }];
+    
+    
+    
+//    [self showNetwordURL:URL_CODE_CHECK_IOS Parameters:phoneNumber andType:@"GET" andBackBlock:^(id responseObject) {
+//        RSPasswordViewController * passwordVc = [[RSPasswordViewController alloc]init];
+//        passwordVc.phoneStr = self.account.textField.text;
+//        passwordVc.codeStr = self.password.textField.text;
+//        [self.navigationController pushViewController:passwordVc animated:YES];
+//    }];
 }
 
 

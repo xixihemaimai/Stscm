@@ -25,9 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithHexColorStr:@"#ffffff"];
+//    self.view.backgroundColor = [UIColor colorWithHexColorStr:@"#ffffff"];
     self.emptyView.hidden = YES;
-    
+    self.pageNum = 1;
     self.title = @"角色管理";
     
     
@@ -40,10 +40,22 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 
     
+   
+    self.customBlock = ^(NSInteger pageNum) {
+        
+        NSLog(@"------------------%ld",pageNum);
+        
+        
+    };
+   
     
     
     
 }
+
+
+
+
 
 
 - (void)addAction:(UIButton *)addBtn{

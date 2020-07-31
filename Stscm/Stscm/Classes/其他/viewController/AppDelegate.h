@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+//#import <CoreData/CoreData.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -15,7 +15,7 @@
 
 @property(nonatomic,assign)BOOL allowRotation;//是否允许转向
 
-@property (readonly, strong) NSPersistentContainer *persistentContainer;
+//@property (readonly, strong) NSPersistentContainer *persistentContainer;
 
 - (void)saveContext;
 

@@ -21,11 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^AFNetworkingBlock)(id responseObject,BOOL success);
 
 
+//验证码和获取UUID的请求方式
++ (void)netWorkToolWebServiceDataUrl:(NSString *)url andType:(NSString *)type withParameters:(NSString *)parameters andURLName:(NSString *)urlName withBlock:(AFNetworkingBlock)block;
 
-//网路请求
-
-
-
+//获取登录的请求方式
++ (void)loginUserUrl:(NSString *)url requestType:(NSString *)request SopaStrPasswordAndCodeType:(NSString *)type andPasswordAndCode:(NSString *)code andPhoneNumber:(NSString *)phoneNumber andPKey:(NSString *)pKey andBlock:(AFNetworkingBlock)block;
 
 @end
 

@@ -223,7 +223,17 @@
         } completion:nil];
     }
     self.lengthLabel.text = [NSString stringWithFormat:@"%zd/%zd",sender.text.length,self.maxLength];
+    
+//    NSLog(@"-----------------------%@",sender.text);
+//    if (self.InputBlock) {
+//        self.InputBlock(sender.text,sender.text.length);
+//    }
+    
 }
+
+
+
+
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     [self setPlaceHolderLabelHidden:NO];
