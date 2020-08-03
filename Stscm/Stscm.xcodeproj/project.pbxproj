@@ -459,6 +459,68 @@
 			path = MyMD5;
 			sourceTree = "<group>";
 		};
+		04C92B0D24D3B80D00834B11 /* 大板 */ = {
+			isa = PBXGroup;
+			children = (
+				04C92B0E24D3B80D00834B11 /* model */,
+				04C92B0F24D3B80D00834B11 /* view */,
+				04C92B1024D3B80D00834B11 /* viewController */,
+			);
+			path = "大板";
+			sourceTree = "<group>";
+		};
+		04C92B0E24D3B80D00834B11 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		04C92B0F24D3B80D00834B11 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04C92B1024D3B80D00834B11 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
+		04C92B1124D3B81A00834B11 /* 荒料 */ = {
+			isa = PBXGroup;
+			children = (
+				04C92B1224D3B81A00834B11 /* model */,
+				04C92B1324D3B81A00834B11 /* view */,
+				04C92B1424D3B81A00834B11 /* viewController */,
+			);
+			path = "荒料";
+			sourceTree = "<group>";
+		};
+		04C92B1224D3B81A00834B11 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		04C92B1324D3B81A00834B11 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		04C92B1424D3B81A00834B11 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewController;
+			sourceTree = "<group>";
+		};
 		04D6E7F9248DDEFF00BABB6F = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +623,8 @@
 		04F7D8B724C005E5008CE45D /* 工作台 */ = {
 			isa = PBXGroup;
 			children = (
+				04C92B1124D3B81A00834B11 /* 荒料 */,
+				04C92B0D24D3B80D00834B11 /* 大板 */,
 				04F7D8B824C005E5008CE45D /* model */,
 				04F7D8B924C005E5008CE45D /* view */,
 				04F7D8BA24C005E5008CE45D /* viewController */,
@@ -1065,7 +1129,10 @@
 				GCC_PREFIX_HEADER = "Stscm/Classes/其他/工具类/StscmDemo.pch";
 				INFOPLIST_FILE = Stscm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruishi.Stscm;
 				PRODUCT_NAME = "石材进销存";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1084,7 +1151,10 @@
 				GCC_PREFIX_HEADER = "Stscm/Classes/其他/工具类/StscmDemo.pch";
 				INFOPLIST_FILE = Stscm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruishi.Stscm;
 				PRODUCT_NAME = "石材进销存";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1099,7 +1169,11 @@
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1115,7 +1189,11 @@
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1129,7 +1207,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1143,7 +1225,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CVKEU8NXR;
 				INFOPLIST_FILE = StscmUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = xxxx.StscmUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

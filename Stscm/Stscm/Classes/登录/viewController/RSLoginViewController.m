@@ -41,7 +41,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setRegisterUIView:self.view andTitle:@"登录"];
     self.emptyView.hidden = YES;
     self.PublickKeyTemp = @"";
@@ -114,7 +113,7 @@
     account.placeholder = @"请输入手机号";
     account.maxLength = 11;
     account.errorStr = @"超出字数限制";
-    account.type = @"phone";
+    account.type = @"vcode";
     account.textField.keyboardType = UIKeyboardTypePhonePad;
     [self.view addSubview:account];
     _account = account;
@@ -133,23 +132,22 @@
     password.placeholder = @"请输入密码";
     password.maxLength = 18;
     password.errorStr = @"超出字数限制";
-    password.type = @"password";
+    password.type = @"pwd";
     password.textField.keyboardType = UIKeyboardTypeASCIICapable;
     password.textField.secureTextEntry = YES;
     [self.view addSubview:password];
     _password = password;
     
     
-    
-    
-    
-    UIButton * button = [[SmsButtonHandle sharedSmsBHandle]buttonWithTitle:@"获取验证码" action:@selector(buttonAction:) superVC:self];
-    [button setTitle:@"" forState:UIControlStateNormal];
-    
-    
+
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    button.userInteractionEnabled = YES;
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
+    [button setTitleColor:[UIColor colorWithHexColorStr:@"#9B9B9B"] forState:UIControlStateNormal];
     if (_passwordBtn.selected == YES) {
         [button setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal];
-        
+        [button setTitle:@"" forState:UIControlStateNormal];
     }
     
     [self.view addSubview:button];
@@ -317,11 +315,15 @@
            
         }else{
             //此处可以先调接口，成功后再调此方法
-            [[SmsButtonHandle sharedSmsBHandle] startTimer];
+//            [[SmsButtonHandle sharedSmsBHandle] startTimer];
             
-            NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@'}",_account.textField.text];
+            [self messageTimeUbutton:btn];
+            
+//            NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@'}",_account.textField.text];
+            NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",_account.textField.text];
             //这边要对发短信
-            [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+            [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+                NSLog(@"---------------%@",responseObject);
             }];
         }
     }
@@ -344,7 +346,7 @@
     _password.placeholder = @"请输入密码";
     _password.maxLength = 18;
     _password.errorStr = @"超出字数限制";
-    _password.type = @"passwork";
+    _password.type = @"pwd";
     _password.textField.secureTextEntry = YES;
     [_button setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal];
     [_button setTitle:@"" forState:UIControlStateNormal];
@@ -361,7 +363,7 @@
     _password.placeholder = @"请输入验证码";
     _password.maxLength = 6;
     _password.errorStr = @"超出字数限制";
-    _password.type = @"phone";
+    _password.type = @"vcode";
     [_button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_button setTitle:@"获取验证码" forState:UIControlStateNormal];
 
@@ -402,7 +404,7 @@
             [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
             return;
         }
-        type = @"password";
+        type = @"pwd";
     }else{
         //验证码登录
         //手机号
@@ -422,14 +424,23 @@
         }
         type = @"vcode";
     }
+    
+     NSString * code = [NSString string];
+     NSString * pwd = [NSString string];
+    if ([type isEqualToString:@"pwd"]) {
+        pwd = _password.textField.text;
+        code = @"";
+    }else{
+        pwd = @"";
+        code = _password.textField.text;
+    }
     [self reloadUdid:^(BOOL isValue) {
         if (isValue) {
             jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:weakSelf.password.textField.text andPhoneNumber:weakSelf.account.textField.text andPKey:weakSelf.PublickKeyTemp andBlock:^(id  _Nonnull responseObject, BOOL success) {
-                     //改变主页
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.account.textField.text andPasswordStr:pwd andPKey:weakSelf.PublickKeyTemp andContentType:@"JSON" andBlock:^(id  _Nonnull responseObject, BOOL success) {
                     jxt_dismissHUD();
-                    NSLog(@"-----11111--------------%@",responseObject);
+                     NSLog(@"-----11111--------------%@",responseObject);
                 }];
             });
         }
@@ -439,9 +450,11 @@
 - (void)reloadUdid:(void(^)(BOOL isValue))Obtain{
     //设备的唯一标识号
     NSString *udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString * ukey = [NSString stringWithFormat:@"{ukey:'%@'}",udid];
-    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:ukey andURLName:URL_KEY_GET_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+    NSString * uKey = [NSString stringWithFormat:@"uKey=%@",udid];
+    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:uKey andURLName:URL_KEY_GET_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        NSLog(@"============323232==================%@",responseObject);
         self.PublickKeyTemp = responseObject[@"data"][@"pKey"];
+        NSLog(@"==============================%@",self.PublickKeyTemp);
         Obtain(true);
     }];
 }

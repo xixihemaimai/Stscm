@@ -20,7 +20,7 @@
     static dispatch_once_t onceToken;
     static SmsButtonHandle * handle;
     dispatch_once(&onceToken, ^{
-        handle = [[SmsButtonHandle alloc]init];
+     handle = [[SmsButtonHandle alloc]init];
     });
     return handle;
 }
@@ -78,6 +78,7 @@
 - (NSTimer *)timer{
     if (!timer) {
         timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+//        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         [timer setFireDate:[NSDate distantFuture]];
     }
     return timer;
@@ -85,7 +86,10 @@
 
 #pragma mark - Timer Action
 - (void)timerAction{
-    if (timeInterval >= 1) {
+    NSLog(@"=============================");
+    if (self.timeInterval >= 1) {
+         NSLog(@"==============3232===============");
+        NSLog(@"======-------%@",@(timeInterval--));
         [smsButton setTitle:[NSString stringWithFormat:@"%@",@(timeInterval--)] forState:UIControlStateNormal];
 //        smsButton.backgroundColor = [UIColor lightGrayColor];
         smsButton.userInteractionEnabled = NO;

@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     [self setRegisterUIView:self.view andTitle:@"注册"];
     self.emptyView.hidden = YES;
     //    self.tableview.hidden = YES;
@@ -302,29 +303,45 @@
     }
     
     //这边是密码获取
-    [self registerNetWorkType:@"password"];
+    [self registerNetWorkType:@"pwd"];
 
 }
 
 
 - (void)registerNetWorkType:(NSString *)type{
-    NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@',verificationCode:'%@',password:'%@'}",self.phoneStr,self.codeStr,[MyMD5 md5:_account.textField.text]];
-//    RSWeakself
-    NSString * code = [NSString string];
+    NSDictionary * phoneNumber = [NSDictionary dictionary];
     if ([type isEqualToString:@"password"]) {
-        code = _account.textField.text;
+        //phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&verificationCode=%@&password=%@",self.phoneStr,self.codeStr,[MyMD5 md5:_account.textField.text]];
+        phoneNumber = @{@"phoneNumber":self.phoneStr,
+        @"verificationCode":self.codeStr,
+        @"password":[MyMD5 md5:_account.textField.text]
+        };
+        
     }else{
+//       phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&verificationCode=%@",self.phoneStr,self.codeStr];
+        phoneNumber = @{@"phoneNumber":self.phoneStr,
+        @"verificationCode":self.codeStr
+        };
+    }
+    RSWeakself
+    NSString * code = [NSString string];
+    NSString * pwd = [NSString string];
+    if ([type isEqualToString:@"pwd"]) {
+        pwd = _account.textField.text;
+        code = self.codeStr;
+    }else{
+        pwd = @"";
         code = self.codeStr;
     }
-    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_SUBMIT_IOS andType:@"POST" withParameters:phoneNumber andURLName:URL_SUBMIT_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_SUBMIT_IOS andType:@"POST" withParameters:phoneNumber andURLName:URL_SUBMIT_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
            //设备的唯一标识号
            NSString * udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-           NSString * ukey = [NSString stringWithFormat:@"{ukey:'%@'}",udid];
-           [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:ukey andURLName:URL_KEY_GET_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+           NSString * ukey = [NSString stringWithFormat:@"uKey=%@",udid];
+           [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:ukey andURLName:URL_KEY_GET_IOS  andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
                 jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:phoneNumber andPKey:responseObject[@"data"][@"pKey"] andBlock:^(id  _Nonnull responseObject, BOOL success) {
+                    [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.phoneStr andPasswordStr:pwd andPKey:responseObject[@"data"][@"pKey"] andContentType:@"JSON" andBlock:^(id  _Nonnull responseObject, BOOL success) {
                         NSLog(@"----33333---------------%@",responseObject);
                         jxt_dismissHUD();
                     }];

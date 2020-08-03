@@ -234,9 +234,9 @@ xsi:type=\"q0:Array\">" \
 
 
 
-+ (void)netWorkToolWebServiceDataUrl:(NSString *)url andType:(NSString *)type withParameters:(NSString *)parameters andURLName:(NSString *)urlName withBlock:(AFNetworkingBlock)block{
++ (void)netWorkToolWebServiceDataUrl:(NSString *)url andType:(NSString *)type withParameters:(id)parameters andURLName:(NSString *)urlName andContentType:(NSString *)contentType withBlock:(AFNetworkingBlock)block{
     RSNetworkTool * networktool = [[RSNetworkTool alloc]init];
-    [networktool newReloadWebServiceNetDataUrl:url andType:type withParameters:parameters andURLName:url withBlock:^(id  _Nonnull responseObject, BOOL success) {
+    [networktool newReloadWebServiceNetDataUrl:url andType:type withParameters:parameters andURLName:url andContentType:contentType withBlock:^(id  _Nonnull responseObject, BOOL success) {
         if (block) {
             block(responseObject,YES);
         }
@@ -245,7 +245,7 @@ xsi:type=\"q0:Array\">" \
 
 
 
-+ (void)loginUserUrl:(NSString *)url requestType:(NSString *)request SopaStrPasswordAndCodeType:(NSString *)type andPasswordAndCode:(NSString *)code andPhoneNumber:(NSString *)phoneNumber andPKey:(NSString *)pKey andBlock:(AFNetworkingBlock)block{
++ (void)loginUserUrl:(NSString *)url requestType:(NSString *)request SopaStrPasswordAndCodeType:(NSString *)type andPasswordAndCode:(NSString *)code andPhoneNumber:(NSString *)phoneNumber andPasswordStr:(nonnull NSString *)password andPKey:(NSString *)pKey andContentType:(NSString *)contentType andBlock:(AFNetworkingBlock)block{
     RSNetworkTool * network = [[RSNetworkTool alloc]init];
     //获取当前的时间戳
     NSInteger timeInt = [network getNowTimestamp];
@@ -260,22 +260,34 @@ xsi:type=\"q0:Array\">" \
     [user setObject:aes2 forKey:@"AES"];
     [user synchronize];
     NSString * loginType = [NSString string];
-    NSString * passwordStr = [NSString string];
-    NSString * codeStr = [NSString string];
-    if ([type isEqualToString:@"password"]) {
+//    NSString * passwordStr = [NSString string];
+//    NSString * codeStr = [NSString string];
+    if ([type isEqualToString:@"pwd"]) {
         loginType = @"pwd";
-        passwordStr = [MyMD5 md5:code];
-        codeStr = @"";
     }else{
         loginType = @"vcode";
-        passwordStr = @"";
-        codeStr = code;
     }
-    NSString * data = [NSString stringWithFormat:@"{userPhone:'%@',loginType:'%@',password:'%@',verificationCode:'%@',aesKey:'%@'}",phoneNumber,loginType,passwordStr,codeStr,aes2];
-    //RSA加密
-    NSString * rsaEncryptor = [RSAEncryptor encryptString:data publicKey:pKey];
     
-    [network newReloadWebServiceNetDataUrl:url andType:request withParameters:rsaEncryptor andURLName:url withBlock:^(id  _Nonnull responseObject, BOOL success) {
+    NSLog(@"=======================%@",phoneNumber);
+//    NSString * data = [NSString stringWithFormat:@"userPhone=%@&loginType=%@&password=%@&verificationCode=%@&aesKey=%@",phoneNumber,loginType,passwordStr,codeStr,aes2];
+//    NSLog(@"----------------------%@",data);
+    //RSA加密
+//    NSString * rsaEncryptor = [RSAEncryptor encryptString:data publicKey:pKey];
+    
+    NSDictionary * dict = [NSDictionary dictionary];
+    dict = @{@"userPhone":phoneNumber,
+           @"loginType":loginType,
+             @"aesKey":aes2,
+             @"password":password,
+             @"verificationCode":code
+           };
+//    NSDictionary * ukey = [NSDictionary dictionary];
+//    ukey = @{@"uKey":uKey};
+    
+    NSDictionary * rsaEncryptor = @{@"data":dict,@"uKey":pKey};
+    
+    
+    [network newReloadWebServiceNetDataUrl:url andType:request withParameters:rsaEncryptor andURLName:url andContentType:contentType withBlock:^(id  _Nonnull responseObject, BOOL success) {
         if (block) {
             block(responseObject,YES);
         }
@@ -304,54 +316,83 @@ xsi:type=\"q0:Array\">" \
 
 
 //新的请求方式
-- (void)newReloadWebServiceNetDataUrl:(NSString *)url andType:(NSString *)type withParameters:(NSString *)parameters andURLName:(NSString *)urlName withBlock:(AFNetworkingBlock)block{
+- (void)newReloadWebServiceNetDataUrl:(NSString *)url andType:(NSString *)type withParameters:(id)parameters andURLName:(NSString *)urlName andContentType:(NSString *)contentType withBlock:(AFNetworkingBlock)block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
 //    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes =[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css", nil];
-    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    manager.responseSerializer.acceptableContentTypes =[NSSet setWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/html",@"text/css", nil];
+    if ([contentType isEqualToString:@"JSON"]) {
+        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    }
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
     securityPolicy.validatesDomainName = NO;
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     manager.requestSerializer.timeoutInterval = 30.0f;
+    NSLog(@"----------------------%@",url);
+    NSLog(@"===================%@",parameters);
+    if ([type isEqualToString:@"GET"]) {
+     url = [NSString stringWithFormat:@"%@?%@",url,parameters];
+    }
     if ([type isEqualToString:@"POST"]) {
-        [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-           } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-               //请求成功
-//               NSLog(@"-======================%@",responseObject);
-               if ([responseObject[@"success"] boolValue]) {
-                   block(responseObject,YES);
-               }else{
-                   NSLog(@"-======================%@",responseObject[@"errmsg"]);
-                   jxt_showToastTitle(responseObject[@"errmsg"], 0.75);
-               }
-           } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-               //请求失败
-               //block(error,NO);
-               jxt_showToastTitle(@"请求失败", 0.75);
-           }];
-        
+        NSURL * newUrl = [NSURL URLWithString:url];
+        //创建请求request
+        NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:newUrl cachePolicy:0 timeoutInterval:30];
+        //设置请求方式为POST
+        request.HTTPMethod = @"POST";
+        //设置请求内容格式
+        [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        //这是设置请求体，把参数放进请求体(这部分的参数也叫请求参数)
+        NSString *paramJsonStr = [self dictionaryToJson:parameters];
+        NSData * data = [paramJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+        request.HTTPBody = [paramJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+        [[manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
+            
+        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            if ([responseObject[@"success"] boolValue]) {
+                block(responseObject,YES);
+                NSLog(@"++++++++++++++++++++++++++++++%@",responseObject);
+            }else{
+//                NSLog(@"-===========3333===========%@",responseObject[@"errmsg"]);
+               jxt_showToastTitle(responseObject[@"msg"], 0.75);
+            }
+            if (error) {
+                jxt_showToastTitle(@"请求失败", 0.75);
+                return;
+            }
+        }] resume];
+//        NSString *send= [self dealWithParam:parameters];
+//        NSLog(@"===================%@",send);
+//        // 3、设置body
+//        NSData *bodyData = [send dataUsingEncoding:NSUTF8StringEncoding];
+//
+//        [manager POST:url parameters:bodyData progress:^(NSProgress * _Nonnull uploadProgress) {
+//           } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//               //请求成功
+////               NSLog(@"-======================%@",responseObject);
+//               if ([responseObject[@"success"] boolValue]) {
+//                   block(responseObject,YES);
+//               }else{
+//                   NSLog(@"-===========3333===========%@",responseObject[@"errmsg"]);
+//                   jxt_showToastTitle(responseObject[@"errmsg"], 0.75);
+//               }
+//           } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//               //请求失败
+//               //block(error,NO);
+//               jxt_showToastTitle(@"请求失败", 0.75);
+//           }];
     }else{
-        [manager GET:url parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+        [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//            NSLog(@"---------------------------%@",responseObject);
-//            block(responseObject,YES);
-//            if (success) {
-//                NSLog(@"-======================%@",responseObject);
                 if ([responseObject[@"success"] boolValue]) {
                     block(responseObject,YES);
                 }else{
                     NSLog(@"-======================%@",responseObject[@"errmsg"]);
                     jxt_showToastTitle(responseObject[@"errmsg"], 0.75);
                 }
-//            }else{
-               //NSLog(@"+++++++++++++++++++++++%@",responseObject);
-                  //block(responseObject,NO);
-//                jxt_showToastTitle(responseObject[@"msg"], 0.75);
-//            }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            NSLog(@"=====2=33==================%@",error);
-//            block(error,NO);
+            NSLog(@"=====2=33==================%@",error);
             jxt_showToastTitle(@"请求失败", 0.75);
         }];
     }
@@ -452,6 +493,24 @@ xsi:type=\"q0:Array\">" \
     }
     return dic;
 }
+
+
+
+//这是我的一个工具类里面的方法，大家可以改成对象方法直接替换调用即可
+- (NSString*)dictionaryToJson:(NSDictionary *)dic
+{
+    if (dic.allKeys.count == 0){
+#ifdef DSDUBUG
+        NSLog(@"%@---%s",self.class,__FUNCTION__);
+        NSLog(@"您传入的字典为空，无法转换，请确保字典不为空！！！");
+#endif
+        return nil;
+    }
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
 
 
 @end

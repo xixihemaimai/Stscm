@@ -116,8 +116,8 @@ typedef void(^CustomBlock)(NSInteger pageNum);
 //自适应字体
 -(CGSize)sizeWithString:(NSString*)string font:(UIFont*)font width:(float)width;
 
-
-
+/**短信按键*/
+- (void)messageTimeUbutton:(UIButton *)sender;
 
 
 @end

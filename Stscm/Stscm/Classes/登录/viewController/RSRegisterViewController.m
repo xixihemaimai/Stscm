@@ -21,6 +21,7 @@
 
 @property (nonatomic,strong) UIButton * choiceBtn;
 
+@property(strong,nonatomic)UIButton * againBtn;
 
 @end
 
@@ -33,32 +34,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
     [self setRegisterUIView:self.view andTitle:@"注册"];
     self.emptyView.hidden = YES;
-//    self.tableview.hidden = YES;
-    
     [self setUi];
-    
 }
 
-
-
 - (void)setUi{
-    
     UILabel * name = [[UILabel alloc]init];
     name.text = @"手机号";
     name.textAlignment = NSTextAlignmentLeft;
     name.textColor = [UIColor colorWithHexColorStr:@"#393939"];
     name.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:name];
-       
-       
+    
     RJTextField * account = [[RJTextField alloc]init];
     account.maxLength = 11;
     [self.view addSubview:account];
-
+    
     
     UILabel * codeName = [[UILabel alloc]init];
     codeName.text = @"验证码";
@@ -67,33 +59,39 @@
     codeName.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:codeName];
     _account = account;
-       
+    
     RJTextField * password = [[RJTextField alloc]init];
     password.maxLength = 6;
     [self.view addSubview:password];
-
-
+    
+    
     
     account.textField.keyboardType = UIKeyboardTypePhonePad;
     
     password.textField.keyboardType = UIKeyboardTypePhonePad;
     _password = password;
     
-     
+    
     account.placeholder = @"请输入手机号";
     password.placeholder = @"请输入验证码";
-        
+    
     account.maxLength = 11;
     account.errorStr = @"超出字数限制";
     account.type = @"phone";
-         
+    
     password.maxLength = 6;
     password.errorStr = @"超出字数限制";
     password.type = @"phone";
-     
-
-    UIButton * button = [[SmsButtonHandle sharedSmsBHandle]buttonWithTitle:@"获取验证码" action:@selector(buttonAction) superVC:self];
-    [self.view addSubview:button];
+    
+    
+    UIButton * againBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [againBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    againBtn.userInteractionEnabled = YES;
+    [againBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
+    againBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [againBtn setTitleColor:[UIColor colorWithHexColorStr:@"#9B9B9B"] forState:UIControlStateNormal];
+    [self.view addSubview:againBtn];
+    _againBtn = againBtn;
     
     UIButton * registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
@@ -102,7 +100,7 @@
     registerBtn.titleLabel.font = [UIFont systemFontOfSize:17];
     [registerBtn addTarget:self action:@selector(registerAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerBtn];
-
+    
     
     NSDictionary * underAttribtDic  = @{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle],NSForegroundColorAttributeName:[UIColor colorWithRed:252/255.0 green:200/255.0 blue:40/255.0 alpha:1.0]};
     NSMutableAttributedString * underAttr = [[NSMutableAttributedString alloc] initWithString:@"已有账号，去登录" attributes:underAttribtDic];
@@ -177,7 +175,7 @@
     registerBtn.layer.cornerRadius = 27;
     registerBtn.layer.masksToBounds = YES;
     
-    button.sd_layout
+    againBtn.sd_layout
     .rightSpaceToView(self.view, 35)
     .topSpaceToView(codeName, 20)
     .widthIs(70)
@@ -222,25 +220,27 @@
     
     name.text = @"手机号";
     codeName.text = @"验证码";
-    button.hidden = NO;
+    againBtn.hidden = NO;
 }
 
 //FIXME:获取验证码的按键
-- (void)buttonAction{
+- (void)buttonAction:(UIButton *)sender{
     NSLog(@"----------------%@",_account.textField.text);
     NSLog(@"按钮事件");
     if (![self isTrueMobile:_account.textField.text]) {
         [SVProgressHUD setMinimumDismissTimeInterval:0.3];
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
-       
+        
     }else{
         //此处可以先调接口，成功后再调此方法
-        [[SmsButtonHandle sharedSmsBHandle] startTimer];
+//        [[SmsButtonHandle sharedSmsBHandle] startTimer];
+        [self messageTimeUbutton:sender];
         
-        NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@'}",_account.textField.text];
+        NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",_account.textField.text];
         //这边要对发短信
-        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+            NSLog(@"---------------%@",responseObject);
         }];
     }
 }
@@ -254,9 +254,15 @@
 
 //FIXME:跳转到登录界面
 - (void)jumpLoginAction:(UIButton *)jumpLoginBtn{
-    RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
-    [self.navigationController pushViewController:loginVc animated:YES];
+//    if ([_button.currentTitle isEqualToString:@"获取验证码"] || [_button.currentTitle isEqualToString:@"重新发送"]) {
+        RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVc animated:YES];
+//    }else{
+//        jxt_showToastTitle(@"已经在执行获取验证码的工作中", 0.75);
+//    }
 }
+
+
 
 
 //FIXME:注册方法
@@ -277,24 +283,14 @@
         [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
         return;
     }
-    
-    NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@',verificationCode:'%@'}",_account.textField.text,_password.textField.text];
+    NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&verificationCode=%@",_account.textField.text,_password.textField.text];
     //这边要对发短信
-    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_CHECK_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_CHECK_IOS withBlock:^(id  _Nonnull responseObject, BOOL success) {
-       RSPasswordViewController * passwordVc = [[RSPasswordViewController alloc]init];
-       passwordVc.phoneStr = self.account.textField.text;
-       passwordVc.codeStr = self.password.textField.text;
-       [self.navigationController pushViewController:passwordVc animated:YES];
+    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_CHECK_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_CHECK_IOS  andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        RSPasswordViewController * passwordVc = [[RSPasswordViewController alloc]init];
+        passwordVc.phoneStr = self.account.textField.text;
+        passwordVc.codeStr = self.password.textField.text;
+        [self.navigationController pushViewController:passwordVc animated:YES];
     }];
-    
-    
-    
-//    [self showNetwordURL:URL_CODE_CHECK_IOS Parameters:phoneNumber andType:@"GET" andBackBlock:^(id responseObject) {
-//        RSPasswordViewController * passwordVc = [[RSPasswordViewController alloc]init];
-//        passwordVc.phoneStr = self.account.textField.text;
-//        passwordVc.codeStr = self.password.textField.text;
-//        [self.navigationController pushViewController:passwordVc animated:YES];
-//    }];
 }
 
 

@@ -84,21 +84,21 @@
 
 //FIXME:网址
 
-#define URL_IOS_TEXT @"http://192.168.1.119:3000/mock/6"
+#define URL_IOS_TEXT @"http://117.29.162.206:8098/api/"
 //测试
-#define URL_TEST @""URL_IOS_TEXT"test"
+//#define URL_TEST @""URL_IOS_TEXT"test"
 //手机号注册验证码发送
-#define URL_CODE_SEND_IOS @""URL_IOS_TEXT"/api/v1/register/verification-code/send"
+#define URL_CODE_SEND_IOS @""URL_IOS_TEXT"register/verification-code/send"
 //手机号注册验证码校验
-#define URL_CODE_CHECK_IOS @""URL_IOS_TEXT"/api/v1/register/verification-code/check"
+#define URL_CODE_CHECK_IOS @""URL_IOS_TEXT"register/verification-code/check"
 //手机号注册提交
-#define URL_SUBMIT_IOS @""URL_IOS_TEXT"/api/v1/register/submit"
+#define URL_SUBMIT_IOS @""URL_IOS_TEXT"register/submit"
 //手机号登录验证码发送
-#define URL_LOGIN_CODE_SEND_IOS @""URL_IOS_TEXT"/api/v1/login/verification-code/send"
+#define URL_LOGIN_CODE_SEND_IOS @""URL_IOS_TEXT"login/verification-code/send"
 //登录
-#define URL_LOGIN_IOS @""URL_IOS_TEXT"/api/v1/login"
+#define URL_LOGIN_IOS @""URL_IOS_TEXT"login"
 //加密公钥获取
-#define URL_KEY_GET_IOS @""URL_IOS_TEXT"/api/v1/login/encryption/key/get"
+#define URL_KEY_GET_IOS @""URL_IOS_TEXT"login/encryption/key/get"
 
 
 
