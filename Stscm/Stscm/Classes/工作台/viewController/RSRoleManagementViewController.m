@@ -17,10 +17,10 @@
 
 @implementation RSRoleManagementViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = NO;
+//}
 
 
 - (void)viewDidLoad {
@@ -33,7 +33,7 @@
     
     UIButton * addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,0, 60, 60)];
     [addBtn setTitle:@"添加" forState:UIControlStateNormal];
-    [addBtn setTitleColor:[UIColor colorWithHexColorStr:@"#666666"] forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor colorWithDyColorChangObject:addBtn andHexLightColorStr:@"#666666" andHexDarkColorStr:@"#ffffff"] forState:UIControlStateNormal];
     addBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [addBtn addTarget:self action:@selector(addAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithCustomView:addBtn];
@@ -85,12 +85,37 @@
     if (!cell) {
         cell = [[RSRoleManementCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ROLEMAMEMENTCELLID];
     }
+    cell.modifyBtn.tag = indexPath.row;
+    cell.deleteBtn.tag = indexPath.row;
+    [cell.modifyBtn addTarget:self action:@selector(modifyBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.deleteBtn addTarget:self action:@selector(deleteBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 
+//修改
+- (void)modifyBtnAction:(UIButton *)modifyBtn{
+    
+    
+}
 
+//删除
+- (void)deleteBtnAction:(UIButton *)deleteBtn{
+    [JHSysAlertUtil presentAlertViewWithTitle:@"是否确定删除该角色" message:nil cancelTitle:@"取消" defaultTitle:@"确定" distinct:NO cancel:^{
+        //取消
+    } confirm:^{
+        //确定
+    }];
+}
+
+
+
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 
 

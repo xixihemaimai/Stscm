@@ -13,23 +13,24 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
       
-        self.contentView.backgroundColor = [UIColor colorWithHexColorStr:@"#ffffff"];
+        self.contentView.backgroundColor = [UIColor colorWithDyColorChangObject:self.contentView andHexLightColorStr:@"#ffffff" andHexDarkColorStr:@"#000000"];
         UIView * roleUserView = [[UIView alloc]init];
-        roleUserView.backgroundColor = [UIColor colorWithHexColorStr:@"#F9F9F9"];
+        roleUserView.backgroundColor = [UIColor colorWithDyColorChangObject:roleUserView andHexLightColorStr:@"#f9f9f9" andHexDarkColorStr:@"#696969"];
         [self.contentView addSubview:roleUserView];
         
         UILabel * roleUserLabel = [[UILabel alloc]init];
         roleUserLabel.text = @"用户一";
         roleUserLabel.textAlignment = NSTextAlignmentLeft;
         roleUserLabel.font = [UIFont systemFontOfSize:16];
-        roleUserLabel.textColor = [UIColor colorWithHexColorStr:@"#333333"];
+        roleUserLabel.textColor = [UIColor colorWithDyColorChangObject:roleUserLabel andHexLightColorStr:@"#333333" andHexDarkColorStr:@"#ffffff"];
         [roleUserView addSubview:roleUserLabel];
         
         UIButton * deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
-        [deleteBtn setTitleColor:[UIColor colorWithHexColorStr:@"#333333"] forState:UIControlStateNormal];
+        [deleteBtn setTitleColor:[UIColor colorWithDyColorChangObject:roleUserLabel andHexLightColorStr:@"#333333" andHexDarkColorStr:@"#ffffff"] forState:UIControlStateNormal];
         deleteBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [roleUserView addSubview:deleteBtn];
+        _deleteBtn = deleteBtn;
         
         roleUserView.sd_layout
         .leftSpaceToView(self.contentView, 12)

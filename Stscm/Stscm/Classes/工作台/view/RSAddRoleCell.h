@@ -7,14 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RSTextView.h"
+//#import "RSCustomTextView.h"
+@class RSAddRoleCell;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RSAddRoleCell : UITableViewCell
+@protocol RSAddRoleCellDelegate <NSObject>
 
-@property (nonatomic,strong)UILabel * roleLabel;
+- (void)textViewCell:(RSAddRoleCell *)cell didChangeText:(UITextView *)textView;
 
-@property (nonatomic,strong)UITextView *textView;
+
+@end
+
+
+@interface RSAddRoleCell : UITableViewCell<UITextViewDelegate>
+
+@property (nonatomic,strong) UILabel * roleLabel;
+ 
+@property (nonatomic,strong) UITextView * textview;
+
+@property (nonatomic,assign) CGFloat cellHeight;
+
+@property (nonatomic,weak) id<RSAddRoleCellDelegate> delegate;
 
 @end
 

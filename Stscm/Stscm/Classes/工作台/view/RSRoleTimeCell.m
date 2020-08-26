@@ -14,7 +14,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         UILabel * timeLabel = [[UILabel alloc]init];
         timeLabel.text = @"角色名称";
-        timeLabel.textColor = [UIColor colorWithHexColorStr:@"#333333"];
+        timeLabel.textColor = [UIColor colorWithDyColorChangObject:timeLabel andHexLightColorStr:@"#333333" andHexDarkColorStr:@"#ffffff"];
         timeLabel.font = [UIFont systemFontOfSize:16];
         timeLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:timeLabel];

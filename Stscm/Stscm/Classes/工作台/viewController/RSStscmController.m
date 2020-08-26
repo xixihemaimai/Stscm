@@ -7,12 +7,16 @@
 //
 
 #import "RSStscmController.h"
+
 #import "RSStscmHeaderView.h"
+
 #import "RSPersonalEditionCell.h"
 //角色
 #import "RSRoleManagementViewController.h"
 
 #import "RSStscmAlertView.h"
+
+#import "RSFuntionViewController.h"
 
 @interface RSStscmController ()<RSPersonalEditionCellDelegate>
 
@@ -43,10 +47,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"---------------------------");
     self.emptyView.hidden = YES;
     self.tableview.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
     [self setUi];
+    
+    
 }
 
 
@@ -143,8 +148,8 @@
             maskLayer.frame = oldRect;
             btn.layer.mask = maskLayer;
             [btn setTitle:@"总库存数量" forState:UIControlStateNormal];
-            //            [btn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
-            //            [btn setTitleColor:[UIColor colorWithHexColorStr:@"#323232"] forState:UIControlStateSelected];
+            //[btn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
+            //[btn setTitleColor:[UIColor colorWithHexColorStr:@"#323232"] forState:UIControlStateSelected];
             [btn setBackgroundColor:[UIColor colorWhiteShow]];
         }else if (i == 1){
             
@@ -558,190 +563,37 @@
 
 
 - (void)selectPublishCurrentImage:(UIImage *)CurrentImage{
-//    if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版荒料入库"]]) {
-//        //HLGL_HLRK荒料入库
-//        //HLGL_HLRK_CGRK 荒料采购入库
-//        //HLGL_HLRK_JGRK 荒料加工入库
-//        //HLGL_HLRK_PYRK荒料盘盈入库
-//        if (self.usermodel.pwmsUser.HLGL_HLRK == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"huangliaoruku";
-//            variousFunctionsVc.title = @"荒料入库";
-//            variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//            [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版荒料出库"]]){
-//        //HLGL_HLCK 荒料出库
-//        //HLGL_HLCK_XSCK荒料销售出库
-//        //HLGL_HLCK_JGCK荒料加工出库
-//        //HLGL_HLCK_PKCK荒料盘亏出库
-//        if (self.usermodel.pwmsUser.HLGL_HLCK == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"huangliaochuku";
-//            variousFunctionsVc.title = @"荒料出库";
-//             variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//             [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版库存管理"]]){
-//        //HLGL_KCGL 库存管理
-//        //HLGL_KCGL_YCCL荒料异常处理
-//        //HLGL_KCGL_DB荒料调拨
-//        if (self.usermodel.pwmsUser.HLGL_KCGL == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"kucunguanli";
-//            variousFunctionsVc.title = @"库存管理";
-//             variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//           [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版报表中心"]]){
-//        //HLGL_BBZX报表中心
-//        //HLGL_BBZX_KCYE荒料库存余额
-//        //HLGL_BBZX_KCLS荒料库存流水
-//        //HLGL_BBZX_RKMX荒料入库明细
-//        //HLGL_BBZX_CKMX 荒料出库明细
-//        if (self.usermodel.pwmsUser.HLGL_BBZX == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"baobiaozhongxin";
-//            variousFunctionsVc.title = @"报表中心";
-//             variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//             [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版大板入库"]]){
-//        //DBGL_DBRK大板入库
-//        //DBGL_DBRK_CGRK大板采购入库
-//        //DBGL_DBRK_JGRK大板加工入库
-//        //DBGL_DBRK_PYRK大板盘盈入库
-//        if (self.usermodel.pwmsUser.DBGL_DBRK == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"dabanruku";
-//            variousFunctionsVc.title = @"大板入库";
-//             variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//            [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版大板出库"]]){
-//        //DBGL大板管理
-//        //DBGL_DBCK大板出库
-//        //DBGL_DBCK_XSCK大板销售出库
-//        //DBGL_DBCK_JGCK大板加工出库
-//        //DBGL_DBCK_PKCK大板盘亏出库
-//        if (self.usermodel.pwmsUser.DBGL_DBCK == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"dabanchuku";
-//            variousFunctionsVc.title = @"大板出库";
-//             variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//             [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版库存管理(1)"]]){
-//        //DBGL_KCGL大板库存管理
-//        //DBGL_KCGL_YCCL大板异常处理
-//        //DBGL_KCGL_DB大板调拨
-//        if (self.usermodel.pwmsUser.DBGL_KCGL == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"kucunguanli1";
-//            variousFunctionsVc.title = @"库存管理";
-//             variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//            [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版报表中心(1)"]]){
-//        //DBGL_BBZX 大板报表中心
-//        //DBGL_BBZX_KCYE大板库存余额
-//        //DBGL_BBZX_KCLS大板库存流水
-//        //DBGL_BBZX_RKMX大板入库明细
-//        //DBGL_BBZX_CKMX大板出库明细
-//        if (self.usermodel.pwmsUser.DBGL_BBZX == 1) {
-//            RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//            variousFunctionsVc.selectType = @"baobiaozhongxin1";
-//            variousFunctionsVc.title = @"报表中心";
-//             variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//            [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版数据字典"]]){
-//        RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//        variousFunctionsVc.selectType = @"shujuzidian";
-//         variousFunctionsVc.title = @"数据字典";
-//         [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版物料字典"]]){
-//        //JCSJ_CKGL仓库管理
-//        //JCSJ_WLZD物料字典
-//        //TYQX通用权利
-//        if (self.usermodel.pwmsUser.JCSJ_WLZD == 1) {
-//            //物料字典
-//            RSMaterialManagementViewController * materialManagementVc = [[RSMaterialManagementViewController alloc]init];
-//            materialManagementVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:materialManagementVc animated:YES];
-//        }else{
-//            [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版用户管理"]]){
-//        //XTGL系统管理
-//        //XTGL_JSGL角色管理
-//        //XTGL_YHGL用户管理
-//        if (self.usermodel.pwmsUser.XTGL_YHGL == 1) {
-//            RSUserManagementViewController * variousFunctionsVc = [[RSUserManagementViewController alloc]init];
-//            variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//             [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版角色管理"]]){
-//        if (self.usermodel.pwmsUser.XTGL_JSGL == 1) {
-//            RSMaterialDetailsViewController * variousFunctionsVc = [[RSMaterialDetailsViewController alloc]init];
-//            variousFunctionsVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//        }else{
-//             [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版码单模版"]]){
-//        if (self.usermodel.pwmsUser.XTGL_MBGL == 1) {
-//            RSTemplateViewController * templateVc = [[RSTemplateViewController alloc]init];
-//            templateVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:templateVc animated:YES];
-//        }else{
-//            [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版权限管理"]]){
-//        RSVariousFunctionsViewController * variousFunctionsVc = [[RSVariousFunctionsViewController alloc]init];
-//        variousFunctionsVc.selectType = @"quanxianguli";
-//        variousFunctionsVc.title = @"权限管理";
-//        variousFunctionsVc.usermodel = self.usermodel;
-//         [self.navigationController pushViewController:variousFunctionsVc animated:YES];
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"个人版仓库管理"]]){
-//        //JCSJ_CKGL仓库管理
-//        //JCSJ_WLZD物料字典
-//        //TYQX通用权利
-//        if (self.usermodel.pwmsUser.JCSJ_CKGL == 1) {
-//            RSWarehouseManagementViewController * warehouseManagementVc = [[RSWarehouseManagementViewController alloc]init];
-//            warehouseManagementVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:warehouseManagementVc animated:YES];
-//        }else{
-//            [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"加工厂"]]){
-//        if (self.usermodel.pwmsUser.JCSJ_JGC == 1) {
-//            RSProcessingFactoryViewController * processingFactoryVc = [[RSProcessingFactoryViewController alloc]init];
-//            processingFactoryVc.usermodel = self.usermodel;
-//            [self.navigationController pushViewController:processingFactoryVc animated:YES];
-//        }else{
-//             [SVProgressHUD showInfoWithStatus:@"没有开通这个权限"];
-//        }
-//    }
+    RSFuntionViewController * funtionVc = [[RSFuntionViewController alloc]init];
+    if ([CurrentImage isEqual:[UIImage imageNamed:@"荒料入库"]]) {
+        funtionVc.funtionType = blockInType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"荒料出库"]]){
+        funtionVc.funtionType = blockOutType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"库存管理"]]){
+        funtionVc.funtionType = blockStockType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"报表中心"]]){
+        funtionVc.funtionType = blockReportFormType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"大板入库"]]){
+        funtionVc.funtionType = bigBoardInType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"大板出库"]]){
+        funtionVc.funtionType = bigBoardOutType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"库存管理(1)"]]){
+        funtionVc.funtionType = bigBoardStockType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"报表中心(1)"]]){
+        funtionVc.funtionType = bigBoardReportFormType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"物料字典"]]){
+        funtionVc.funtionType = materialDictionaryType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"仓库管理"]]){
+        funtionVc.funtionType = warehouseManagememtType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"加工厂"]]){
+        funtionVc.funtionType = processingFactoryType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"角色管理"]]){
+        funtionVc.funtionType = roleManagementType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"用户管理"]]){
+        funtionVc.funtionType = userManagementType;
+    }else if ([CurrentImage isEqual:[UIImage imageNamed:@"码单模版"]]){
+        funtionVc.funtionType = codeSheetTemplateType;
+    }
+    [self.navigationController pushViewController:funtionVc animated:YES];
 }
 
 

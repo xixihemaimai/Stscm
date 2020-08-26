@@ -13,18 +13,18 @@
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        self.contentView.backgroundColor = [UIColor colorWithHexColorStr:@"#ffffff"];
+        self.contentView.backgroundColor = [UIColor colorWithDyColorChangObject:self.contentView andHexLightColorStr:@"#ffffff" andHexDarkColorStr:@"#000000"];
         
         UILabel * titleLabel = [[UILabel alloc]init];
         titleLabel.text = @"用户列表";
         titleLabel.font = [UIFont systemFontOfSize:16];
-        titleLabel.textColor = [UIColor colorWithHexColorStr:@"#333333"];
+        titleLabel.textColor = [UIColor colorWithDyColorChangObject:titleLabel andHexLightColorStr:@"#333333" andHexDarkColorStr:@"#ffffff"];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:titleLabel];
         
         UIButton * addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [addBtn setTitle:@"添加" forState:UIControlStateNormal];
-        [addBtn setTitleColor:[UIColor colorWithHexColorStr:@"#333333"] forState:UIControlStateNormal];
+        [addBtn setTitleColor:[UIColor colorWithDyColorChangObject:addBtn andHexLightColorStr:@"#333333" andHexDarkColorStr:@"#ffffff"] forState:UIControlStateNormal];
         [addBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
         addBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [self.contentView addSubview:addBtn];

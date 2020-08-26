@@ -19,6 +19,12 @@
 
     NSLog(@"==============================");
     
+    self.emptyView.hidden = YES;
+    
+    self.customBlock = ^(NSInteger pageNum) {
+        NSLog(@"+++++++++++++++++++++++++++++++%ld",pageNum);
+    };
+    
 }
 
 @end

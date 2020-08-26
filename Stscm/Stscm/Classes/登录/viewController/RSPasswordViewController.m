@@ -26,31 +26,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self setRegisterUIView:self.view andTitle:@"注册"];
     self.emptyView.hidden = YES;
-    //    self.tableview.hidden = YES;
     [self setUi];
 }
 
 - (void)setUi{
-    
     UILabel * name = [[UILabel alloc]init];
     name.text = @"手机号";
     name.textAlignment = NSTextAlignmentLeft;
-    name.textColor = [UIColor colorWithHexColorStr:@"#393939"];
+    name.textColor = [UIColor colorLabelWithDyColorChangObject];
     name.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:name];
-       
        
     RJTextField * account = [[RJTextField alloc]init];
     [self.view addSubview:account];
 
-    
     UILabel * codeName = [[UILabel alloc]init];
     codeName.text = @"验证码";
     codeName.textAlignment = NSTextAlignmentLeft;
-    codeName.textColor = [UIColor colorWithHexColorStr:@"#393939"];
+    codeName.textColor = [UIColor colorLabelWithDyColorChangObject];
     codeName.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:codeName];
     _account = account;
@@ -62,7 +57,6 @@
     password.textField.keyboardType = UIKeyboardTypePhonePad;
     _password = password;
     
-    
     account.placeholder = @"请输入密码";
     password.placeholder = @"请再次输入密码";
                 
@@ -71,19 +65,17 @@
                 
     password.maxLength = 18;
     password.errorStr = @"超出字数限制";
-     
+    
+    account.textColor = [UIColor colorLabelWithDyColorChangObject];
+    password.textColor = [UIColor colorLabelWithDyColorChangObject];
+    
 
-//    UIButton * button = [[SmsButtonHandle sharedSmsBHandle]buttonWithTitle:@"获取验证码" action:@selector(buttonAction) superVC:self];
-//    [self.view addSubview:button];
-    
-    
     UILabel * alertLabel = [[UILabel alloc]init];
     alertLabel.text = @"*为了您的数据安全,请设置密码";
-    alertLabel.textColor = [UIColor colorWithHexColorStr:@"#9B9B9B"];
+    alertLabel.textColor = [UIColor colorButtonNormalWithDyColorChangObject];
     alertLabel.font = [UIFont systemFontOfSize:14];
     alertLabel.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:alertLabel];
-    
     
     UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginBtn setTitle:@"注册" forState:UIControlStateNormal];
@@ -107,7 +99,6 @@
     accountBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [accountBtn addTarget:self action:@selector(jumpLoginAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:accountBtn];
-    
     
     UIButton * choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [choiceBtn setImage:[UIImage imageNamed:@"未选"] forState:UIControlStateNormal];
@@ -257,10 +248,8 @@
     [self.navigationController pushViewController:loginVc animated:YES];
 }
 
-
 //FIXME:注册方法
 - (void)loginAction:(UIButton *)loginBtn{
-    
     if(![self validatePassword:_account.textField.text])
     {
         jxt_showToastMessage(@"请设置注册密码", 0.75);
@@ -301,49 +290,49 @@
         [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
         return;
     }
-    
     //这边是密码获取
     [self registerNetWorkType:@"pwd"];
-
 }
-
 
 - (void)registerNetWorkType:(NSString *)type{
     NSDictionary * phoneNumber = [NSDictionary dictionary];
-    if ([type isEqualToString:@"password"]) {
-        //phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&verificationCode=%@&password=%@",self.phoneStr,self.codeStr,[MyMD5 md5:_account.textField.text]];
+    NSString * code = [NSString string];
+    NSString * pwd = [NSString string];
+    if ([type isEqualToString:@"pwd"]) {
         phoneNumber = @{@"phoneNumber":self.phoneStr,
         @"verificationCode":self.codeStr,
         @"password":[MyMD5 md5:_account.textField.text]
         };
-        
-    }else{
-//       phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&verificationCode=%@",self.phoneStr,self.codeStr];
-        phoneNumber = @{@"phoneNumber":self.phoneStr,
-        @"verificationCode":self.codeStr
-        };
-    }
-    RSWeakself
-    NSString * code = [NSString string];
-    NSString * pwd = [NSString string];
-    if ([type isEqualToString:@"pwd"]) {
         pwd = _account.textField.text;
         code = self.codeStr;
     }else{
+        phoneNumber = @{@"phoneNumber":self.phoneStr,
+        @"verificationCode":self.codeStr
+        };
         pwd = @"";
         code = self.codeStr;
     }
+    
+    NSString* deviceName = [self getDeviceName];
+    NSLog(@"设备名称: %@",deviceName );  
+    
+    NSLog(@"------------1111------------------------%@",self.placeMark);
+    if (self.placeMark == nil) {
+        self.placeMark = @"未知";
+    }
+    RSWeakself
     [RSNetworkTool netWorkToolWebServiceDataUrl:URL_SUBMIT_IOS andType:@"POST" withParameters:phoneNumber andURLName:URL_SUBMIT_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
-       dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"==================================================");
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
            //设备的唯一标识号
            NSString * udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
            NSString * ukey = [NSString stringWithFormat:@"uKey=%@",udid];
            [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:ukey andURLName:URL_KEY_GET_IOS  andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+               NSLog(@"=+++++++++++++++++++++++++++++++++++++++++++++++%@",responseObject);
                 jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.phoneStr andPasswordStr:pwd andPKey:responseObject[@"data"][@"pKey"] andContentType:@"JSON" andBlock:^(id  _Nonnull responseObject, BOOL success) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.phoneStr andPasswordStr:pwd andPKey:responseObject[@"data"][@"pKey"] andUkey:responseObject[@"data"][@"uKey"] andContentType:@"JSON" andLoginMode:@"0" andComputerName:deviceName  andLoginArea:self.placeMark andBlock:^(id  _Nonnull responseObject, BOOL success) {
                         NSLog(@"----33333---------------%@",responseObject);
-                        jxt_dismissHUD();
                     }];
                 });
            }];

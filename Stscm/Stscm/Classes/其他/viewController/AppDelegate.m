@@ -31,22 +31,38 @@
     // Override point for customization after application launch.
     
     
-//    RSMainViewController * mainVc = [[RSMainViewController alloc]init];
-//    self.window.rootViewController = mainVc;
     
-    
-//    RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
-//    self.window.rootViewController = loginVc;
-    
-    
-    RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
-    RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];
-    self.window.rootViewController = myNav;
-    
-//    RSStscmController * stscmVc = [[RSStscmController alloc]init];
-//    RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:stscmVc];
-//    self.window.rootViewController = myNav;
-    
+    UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo = [Usertilities GetNSUserDefaults];
+    if (userInfo.loginToken.length < 1) {
+        [Usertilities clearLocalUserModel];
+        RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
+        RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];
+        self.window.rootViewController = myNav;
+    }else{
+        
+        NSLog(@"====================%@",userInfo.loginToken);
+       //这边要进行网络请求来进行获取用户信息
+        NSString * parameter = [NSString string];
+//        NSString * content = @"e1fe219d0b2143d4ae9a41ea2c5c556";
+        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_USER_INFO_IOS andType:@"GET" withParameters:parameter andURLName:URL_USER_INFO_IOS andContentType:userInfo.loginToken withBlock:^(id  _Nonnull responseObject, BOOL success) {
+            if (success) {
+               [UserInfoContext sharedUserInfoContext].userInfo = [UserInfo mj_objectWithKeyValues:responseObject];
+                NSLog(@"====================%@",[UserInfoContext sharedUserInfoContext].userInfo.userName);
+                [Usertilities SetNSUserDefaults:[UserInfoContext sharedUserInfoContext].userInfo];
+              //重新获取用户信息成功
+                RSMainViewController * mainVc = [[RSMainViewController alloc]init];
+                self.window.rootViewController = mainVc;
+            }else{
+                NSLog(@"-----------------------------------");
+                //重新获取用户信息失败
+                RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
+                RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];
+                self.window.rootViewController = myNav;
+                [UserInfoContext clear];
+                [Usertilities clearLocalUserModel];
+            }
+        }];
+    }
     [self.window makeKeyAndVisible];
     //设置键盘
     [self settIQKeyMananger];

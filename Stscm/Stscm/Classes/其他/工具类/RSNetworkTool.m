@@ -18,225 +18,67 @@
 @implementation RSNetworkTool
 
 /*
-#define URL_YIGODATA_IOS(A,B,C) [NSString stringWithFormat:@ \
-\
-"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns0=\"http:// \
-\
-webservice.mid.myerp.bokesoft.com\" xmlns:q0=\"http://schemas.xmlsoap.org/soap/encoding/\" \
-\
-xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" \
-\
-"<soapenv:Body>" \
-\
-"<ns0:unsafeInvokeService>" \
-\
-"<sServiceName soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" \
-\
-xsi:type=\"xsd:string\">%@</sServiceName>" \
-\
-"<args q0:arrayType=\"xsd:anyType[2]\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" \
-\
-xsi:type=\"q0:Array\">" \
-\
-"<q0:string>%@</q0:string>" \
-\
-"<q0:string>%@</q0:string>" \
-\
-"</args>" \
-\
-"</ns0:unsafeInvokeService>" \
-\
-"</soapenv:Body>" \
-\
-"</soapenv:Envelope>",A,B,C] \
-\
-*/
-
-
-
-
-//网络请求的方法---包括上拉，下来，直接请求的部分，登录部分需要不一样的东西
-
-
-
-
-
-
-
-
-//加密
-- (NSString *)encryptAES:(NSString *)content key:(NSString *)key andKInItVector:(NSString * const)kInitVector{
-    size_t const kKeySize = kCCKeySizeAES128;
-    NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
-    //NSData * contentData = [self dataForHexString:content];
-    NSUInteger dataLength = contentData.length;
-    // 为结束符'\\0' +1
-    char keyPtr[kKeySize + 1];
-    memset(keyPtr, 0, sizeof(keyPtr));
-    [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
-    // 密文长度 <= 明文长度 + BlockSize
-    size_t encryptSize = dataLength + kCCBlockSizeAES128;
-    void *encryptedBytes = malloc(encryptSize);
-    size_t actualOutSize = 0;
-    NSData *initVector = [kInitVector dataUsingEncoding:NSUTF8StringEncoding];
-    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt,
-                                          kCCAlgorithmAES,
-                                          kCCOptionPKCS7Padding,  // 系统默认使用 CBC，然后指明使用 PKCS7Padding
-                                          keyPtr,
-                                          kKeySize,
-                                          initVector.bytes,
-                                          contentData.bytes,
-                                          dataLength,
-                                          encryptedBytes,
-                                          encryptSize,
-                                          &actualOutSize);
-    if (cryptStatus == kCCSuccess) {
-        // 对加密后的数据进行 base64 编码
-        
-       // return [[NSData dataWithBytesNoCopy:encryptedBytes length:actualOutSize] base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-        NSData * data = [NSData dataWithBytesNoCopy:encryptedBytes length:actualOutSize];
-        return [self hexStringFromData:data];
-       
-    }
-    free(encryptedBytes);
-    return nil;
-}
-
-
-
-//解密
-- (NSString *)decryptAES:(NSString *)content key:(NSString *)key andKInItVector:(NSString * const)kInitVector{
-    size_t const kKeySize = kCCKeySizeAES128;
-    // 把 base64 String 转换成 Data
-    //NSData *contentData = [[NSData alloc] initWithBase64EncodedString:content options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    NSData * contentData = [self dataForHexString:content];
-    NSUInteger dataLength = contentData.length;
-    char keyPtr[kKeySize + 1];
-    memset(keyPtr, 0, sizeof(keyPtr));
-    [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
-    size_t decryptSize = dataLength + kCCBlockSizeAES128;
-    void *decryptedBytes = malloc(decryptSize);
-    size_t actualOutSize = 0;
-    NSData *initVector = [kInitVector dataUsingEncoding:NSUTF8StringEncoding];
-    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt,
-                                          kCCAlgorithmAES,
-                                          kCCOptionPKCS7Padding,
-                                          keyPtr,
-                                          kKeySize,
-                                          initVector.bytes,
-                                          contentData.bytes,
-                                          dataLength,
-                                          decryptedBytes,
-                                          decryptSize,
-                                          &actualOutSize);
-    if (cryptStatus == kCCSuccess) {
-        return [[NSString alloc] initWithData:[NSData dataWithBytesNoCopy:decryptedBytes length:actualOutSize] encoding:NSUTF8StringEncoding];
-            }
-    free(decryptedBytes);
-    return nil;
-}
-
-
-// 普通字符串转换为十六进
-- (NSString *)hexStringFromData:(NSData *)data {
-    Byte *bytes = (Byte *)[data bytes];
-    // 下面是Byte 转换为16进制。
-    NSString *hexStr = @"";
-    for(int i=0; i<[data length]; i++) {
-        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i] & 0xff]; //16进制数
-        newHexStr = [newHexStr uppercaseString];
-
-        if([newHexStr length] == 1) {
-            newHexStr = [NSString stringWithFormat:@"0%@",newHexStr];
-        }
-
-        hexStr = [hexStr stringByAppendingString:newHexStr];
-
-    }
-    return hexStr;
-}
-//
-//
-//
-////十六进制转Data
-////十六进制转Data
-- (NSData*)dataForHexString:(NSString*)hexString
-{
-    if (hexString == nil) {
-        return nil;
-    }
-    const char* ch = [[hexString lowercaseString] cStringUsingEncoding:NSUTF8StringEncoding];
-    NSMutableData* data = [NSMutableData data];
-    while (*ch) {
-        if (*ch == ' ') {
-            continue;
-        }
-        char byte = 0;
-        if ('0' <= *ch && *ch <= '9') {
-            byte = *ch - '0';
-        }else if ('a' <= *ch && *ch <= 'f') {
-            byte = *ch - 'a' + 10;
-        }else if ('A' <= *ch && *ch <= 'F') {
-            byte = *ch - 'A' + 10;
-        }
-        ch++;
-        byte = byte << 4;
-        if (*ch) {
-            if ('0' <= *ch && *ch <= '9') {
-                byte += *ch - '0';
-            } else if ('a' <= *ch && *ch <= 'f') {
-                byte += *ch - 'a' + 10;
-            }else if('A' <= *ch && *ch <= 'F'){
-                byte += *ch - 'A' + 10;
-            }
-            ch++;
-        }
-        [data appendBytes:&byte length:1];
-    }
-    return data;
-}
-
-
+ #define URL_YIGODATA_IOS(A,B,C) [NSString stringWithFormat:@ \
+ \
+ "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns0=\"http:// \
+ \
+ webservice.mid.myerp.bokesoft.com\" xmlns:q0=\"http://schemas.xmlsoap.org/soap/encoding/\" \
+ \
+ xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" \
+ \
+ "<soapenv:Body>" \
+ \
+ "<ns0:unsafeInvokeService>" \
+ \
+ "<sServiceName soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" \
+ \
+ xsi:type=\"xsd:string\">%@</sServiceName>" \
+ \
+ "<args q0:arrayType=\"xsd:anyType[2]\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" \
+ \
+ xsi:type=\"q0:Array\">" \
+ \
+ "<q0:string>%@</q0:string>" \
+ \
+ "<q0:string>%@</q0:string>" \
+ \
+ "</args>" \
+ \
+ "</ns0:unsafeInvokeService>" \
+ \
+ "</soapenv:Body>" \
+ \
+ "</soapenv:Envelope>",A,B,C] \
+ \
+ */
 
 //MARK: - 这边是请求的部分
-//这边是获取单页的UITableview的数据
-- (void)reloadWebServiceNetDataUrl:(NSString *)URLStr  andType:(NSString *)type andParameters:(NSString *)soapStr withBlock:(AFNetworkingBlock)block{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-    // 设置请求超时时间
-    manager.requestSerializer.timeoutInterval = 30.f;
-    // 返回NSData
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    // 设置请求头，也可以不设置
-    [manager.requestSerializer setValue:@"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"SOAPAction"];
-    [manager.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error)
-    {
-             return soapStr;
-    }];
-    if ([type isEqualToString:@"POST"]) {
-        [manager POST:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull uploadProgress) {
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            block(responseObject,YES);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            block(error,NO);
-        }];
-    }else{
-        [manager GET:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull downloadProgress) {
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"-------------------%@",responseObject);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"---------32323----------%@",error);
-        }];
-    }
-}
-
-
-
-
 + (void)netWorkToolWebServiceDataUrl:(NSString *)url andType:(NSString *)type withParameters:(id)parameters andURLName:(NSString *)urlName andContentType:(NSString *)contentType withBlock:(AFNetworkingBlock)block{
     RSNetworkTool * networktool = [[RSNetworkTool alloc]init];
     [networktool newReloadWebServiceNetDataUrl:url andType:type withParameters:parameters andURLName:url andContentType:contentType withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        if ([urlName isEqualToString:URL_IMAGE_CHECK_IOS] || [urlName isEqualToString:URL_USER_INFO_IOS]) {
+            NSLog(@"=------=00000000000000000000000000000000000000000000000000000000");
+            if (success) {
+                if ([urlName isEqualToString:URL_USER_INFO_IOS]) {
+                    NSDictionary * dict = [networktool decryptMethodWithDictionary:responseObject];
+                    responseObject = dict;
+                }
+                block(responseObject,YES);
+            }else{
+                block(responseObject,false);
+            }
+        }else{
+            if (block) {
+                block(responseObject,YES);
+            }
+        }
+    }];
+}
+
+//这边要新创建新的一种请求方式，而且可以上传图片和文件，视频，多张图片上传多种方式集合成一种
++ (void)getDifferentTypeWithDataUrlString:(NSString *)url andLogin_token:(nonnull NSString *)Login_token withParameters:(NSDictionary *)parameters andRequest:(NSString *)request andURLName:(NSString *)urlName andVideoUrl:(NSURL *)videoUrl andType:(NSString *)type andArray:(NSMutableArray *)array andImage:(UIImage *)image withBlock:(AFNetworkingBlock)block{
+    RSNetworkTool * networktool = [[RSNetworkTool alloc]init];
+    [networktool getDifferentTypeWithDataUrlString:url andLogin_token:Login_token withParameters:parameters andRequest:request andURLName:urlName andVideoUrl:videoUrl andType:type andArray:array andImage:image withBlock:^(id  _Nonnull responseObject, BOOL success) {
         if (block) {
             block(responseObject,YES);
         }
@@ -245,7 +87,8 @@ xsi:type=\"q0:Array\">" \
 
 
 
-+ (void)loginUserUrl:(NSString *)url requestType:(NSString *)request SopaStrPasswordAndCodeType:(NSString *)type andPasswordAndCode:(NSString *)code andPhoneNumber:(NSString *)phoneNumber andPasswordStr:(nonnull NSString *)password andPKey:(NSString *)pKey andContentType:(NSString *)contentType andBlock:(AFNetworkingBlock)block{
+//登录的方式需要单独设置一个
++ (void)loginUserUrl:(NSString *)url requestType:(NSString *)request SopaStrPasswordAndCodeType:(NSString *)type andPasswordAndCode:(NSString *)code andPhoneNumber:(NSString *)phoneNumber andPasswordStr:(nonnull NSString *)password andPKey:(NSString *)pKey andUkey:(NSString *)ukey andContentType:(NSString *)contentType andLoginMode:(nonnull NSString *)loginMode andComputerName:(nonnull NSString *)computerName andLoginArea:(nonnull NSString *)loginArea andBlock:(AFNetworkingBlock)block{
     RSNetworkTool * network = [[RSNetworkTool alloc]init];
     //获取当前的时间戳
     NSInteger timeInt = [network getNowTimestamp];
@@ -260,40 +103,90 @@ xsi:type=\"q0:Array\">" \
     [user setObject:aes2 forKey:@"AES"];
     [user synchronize];
     NSString * loginType = [NSString string];
-//    NSString * passwordStr = [NSString string];
-//    NSString * codeStr = [NSString string];
+    //    NSString * passwordStr = [NSString string];
+    //    NSString * codeStr = [NSString string];
     if ([type isEqualToString:@"pwd"]) {
         loginType = @"pwd";
     }else{
         loginType = @"vcode";
     }
-    
-    NSLog(@"=======================%@",phoneNumber);
-//    NSString * data = [NSString stringWithFormat:@"userPhone=%@&loginType=%@&password=%@&verificationCode=%@&aesKey=%@",phoneNumber,loginType,passwordStr,codeStr,aes2];
-//    NSLog(@"----------------------%@",data);
+    NSString * data = [NSString stringWithFormat:@"{userPhone:'%@',loginType:'%@',aesKey:'%@',password:'%@',verificationCode:'%@',loginMode:'%@',computerName:'%@',loginArea:'%@'}",phoneNumber,loginType,aes2,password,code,loginMode,computerName,loginArea];
     //RSA加密
-//    NSString * rsaEncryptor = [RSAEncryptor encryptString:data publicKey:pKey];
-    
-    NSDictionary * dict = [NSDictionary dictionary];
-    dict = @{@"userPhone":phoneNumber,
-           @"loginType":loginType,
-             @"aesKey":aes2,
-             @"password":password,
-             @"verificationCode":code
-           };
-//    NSDictionary * ukey = [NSDictionary dictionary];
-//    ukey = @{@"uKey":uKey};
-    
-    NSDictionary * rsaEncryptor = @{@"data":dict,@"uKey":pKey};
-    
-    
+    NSString * dict = [RSAEncryptor encryptString:data publicKey:pKey];
+    NSDictionary * rsaEncryptor = @{@"data":dict,@"uKey":ukey};
     [network newReloadWebServiceNetDataUrl:url andType:request withParameters:rsaEncryptor andURLName:url andContentType:contentType withBlock:^(id  _Nonnull responseObject, BOOL success) {
         if (block) {
+            NSDictionary * dict = [network decryptMethodWithDictionary:responseObject];
+            NSLog(@"-----------------------%@",dict);
+            UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo;
+            //这边是登录接口的获取用户信息
+//            if (responseObject[@"data"][@"loggedAccount"][@"currentRole"] != nil) {
+//
+//                //UserInfo * userInfo = [UserInfo mj_objectWithKeyValues:responseObject[@"data"]];
+//                RSCurrentRole * currentRole = [RSCurrentRole mj_objectWithKeyValues:responseObject[@"data"][@"loggedAccount"][@"currentRole"]];
+//
+//                RSLoggedAccount * loggedAcount = [[RSLoggedAccount alloc]init];
+//
+//                loggedAcount.currentRole = currentRole;
+//                loggedAcount.accountId = [responseObject[@"data"][@"loggedAccount"][@"accountId"] integerValue];
+//                loggedAcount.accountType = responseObject[@"data"][@"loggedAccount"][@"accountType"];
+//                loggedAcount.accountName = responseObject[@"data"][@"loggedAccount"][@"accountName"];
+//                loggedAcount.relationType = responseObject[@"data"][@"loggedAccount"][@"relationType"];
+//                loggedAcount.relationPhone = responseObject[@"data"][@"loggedAccount"][@"relationPhone"];
+//                loggedAcount.accountUserId = [responseObject[@"data"][@"loggedAccount"][@"accountUserId"] integerValue];
+//                loggedAcount.accountUserName = responseObject[@"data"][@"loggedAccount"][@"accountUserName"];
+//
+//                userInfo.aesKey = responseObject[@"data"][@"aesKey"];
+//                userInfo.loginArea = responseObject[@"data"][@"loginArea"];
+//                userInfo.loginMode = responseObject[@"data"][@"loginMode"];
+//                userInfo.loginTime = responseObject[@"data"][@"loginTime"];
+//                userInfo.loginToken = responseObject[@"data"][@"loginToken"];
+//                userInfo.uid = responseObject[@"data"][@"uid"];
+//                userInfo.userHeadImageUrl = responseObject[@"data"][@"userHeadImageUrl"];
+//                userInfo.userName = responseObject[@"data"][@"userName"];
+//                userInfo.userPhone = responseObject[@"data"][@"userPhone"];
+//                userInfo.visitor = [responseObject[@"data"][@"visitor"] boolValue];
+//                userInfo.passwordSet = [responseObject[@"data"][@"passwordSet"] boolValue];
+//                userInfo.loggedAccount = loggedAcount;
+//
+//                NSLog(@"===========333333333==================================");
+//
+//            }else if (responseObject[@"data"][@"loggedAccount"] != NULL){
+//                //UserInfo * userInfo = [UserInfo mj_objectWithKeyValues:responseObject[@"data"]];
+//                RSLoggedAccount * loggedAcount = [[RSLoggedAccount alloc]init];
+//                loggedAcount.accountId = [responseObject[@"data"][@"loggedAccount"][@"accountId"] integerValue];
+//                loggedAcount.accountType = responseObject[@"data"][@"loggedAccount"][@"accountType"];
+//                loggedAcount.accountName = responseObject[@"data"][@"loggedAccount"][@"accountName"];
+//                loggedAcount.relationType = responseObject[@"data"][@"loggedAccount"][@"relationType"];
+//                loggedAcount.relationPhone = responseObject[@"data"][@"loggedAccount"][@"relationPhone"];
+//                loggedAcount.accountUserId = [responseObject[@"data"][@"loggedAccount"][@"accountUserId"] integerValue];
+//                loggedAcount.accountUserName = responseObject[@"data"][@"loggedAccount"][@"accountUserName"];
+//
+//                userInfo.aesKey = responseObject[@"data"][@"aesKey"];
+//                userInfo.loginArea = responseObject[@"data"][@"loginArea"];
+//                userInfo.loginMode = responseObject[@"data"][@"loginMode"];
+//                userInfo.loginTime = responseObject[@"data"][@"loginTime"];
+//                userInfo.loginToken = responseObject[@"data"][@"loginToken"];
+//                userInfo.uid = responseObject[@"data"][@"uid"];
+//                userInfo.userHeadImageUrl = responseObject[@"data"][@"userHeadImageUrl"];
+//                userInfo.userName = responseObject[@"data"][@"userName"];
+//                userInfo.userPhone = responseObject[@"data"][@"userPhone"];
+//                userInfo.visitor = [responseObject[@"data"][@"visitor"] boolValue];
+//                userInfo.passwordSet = [responseObject[@"data"][@"passwordSet"] boolValue];
+//                userInfo.loggedAccount = loggedAcount;
+//                NSLog(@"=============232323232================================");
+//            }else{
+//                 NSLog(@"=============111111111================================");
+                userInfo = [UserInfo mj_objectWithKeyValues:dict];
+//            }
+            [Usertilities SetNSUserDefaults:userInfo];
+            
+            NSLog(@"==============================%@",userInfo.loginToken);
+            
             block(responseObject,YES);
         }
     }];
 }
-
 //获取当前系统时间的时间戳
 #pragma mark - 获取当前时间的 时间戳
 - (NSInteger)getNowTimestamp{
@@ -312,26 +205,255 @@ xsi:type=\"q0:Array\">" \
     return timeSp;
 }
 
+- (void)getDifferentTypeWithDataUrlString:(NSString *)url andLogin_token:(NSString *)Login_token withParameters:(NSDictionary *)parameters andRequest:(NSString *)request andURLName:(NSString *)urlName  andVideoUrl:(NSURL *)videoUrl andType:(NSString *)type andArray:(NSMutableArray *)array andImage:(UIImage *)image withBlock:(AFNetworkingBlock)block{
+    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes =[NSSet setWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/html",@"text/css", nil];
+    [manager.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:Login_token forHTTPHeaderField:@"LOGIN_TOKEN"];
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+    securityPolicy.validatesDomainName = NO;
+    securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy = securityPolicy;
+    manager.requestSerializer.timeoutInterval = 30.0f;
+    if ([type isEqualToString:@"image"] || [type isEqualToString:@"imageArray"] || [type isEqualToString:@"file"] || [type isEqualToString:@"video"]) {
+        [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            if ([type isEqualToString:@"image"]) {
+                NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+                // 要解决此问题，
+                // 可以在上传时使用当前的系统事件作为文件名
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                [formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString  stringWithFormat:@"%@.png", dateString];
+                /*
+                 *该方法的参数
+                 *1. appendPartWithFileData：要上传的照片[二进制流]
+                 *2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+                 *3. fileName：要保存在服务器上的文件名
+                 *4. mimeType：上传的文件的类型
+                 */
+                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+            }else if ([type isEqualToString:@"imageArray"]){
+                for (int i = 0; i < array.count; i++) {
+                    UIImage *image = array[i];
+                    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                    // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+                    // 要解决此问题，
+                    // 可以在上传时使用当前的系统事件作为文件名
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    // 设置时间格式
+                    [formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                    NSString *fileName = [NSString  stringWithFormat:@"%@.png", dateString];
+                    /*
+                     *该方法的参数
+                     1. appendPartWithFileData：要上传的照片[二进制流]
+                     2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+                     3. fileName：要保存在服务器上的文件名
+                     4. mimeType：上传的文件的类型
+                     */
+                    [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+                }
+            }else if ([type isEqualToString:@"file"]){
+                NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+                // 要解决此问题，
+                // 可以在上传时使用当前的系统事件作为文件名
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                [formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString  stringWithFormat:@"%@.png", dateString];
+                /*
+                *该方法的参数
+                *1. appendPartWithFileData：要上传的照片[二进制流]
+                *2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+                *3. fileName：要保存在服务器上的文件名
+                *4. mimeType：上传的文件的类型
+                */
+                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/png"];
+            }else if ([type isEqualToString:@"video"] && array.count < 1 && ![videoUrl isEqual:@""]){
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                [formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                NSData *videoData = [NSData dataWithContentsOfURL:videoUrl];
+                // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+                // 要解决此问题，
+                // 可以在上传时使用当前的系统事件作为文件名
+                //NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                // [formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                // NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                NSString *fileName = [NSString  stringWithFormat:@"%@.png", dateString];
+                /*
+                 *该方法的参数
+                 *1. appendPartWithFileData：要上传的照片[二进制流]
+                 *2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+                 *3. fileName：要保存在服务器上的文件名
+                 *4. mimeType：上传的文件的类型
+                 */
+                //图片
+                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+                //视频
+                [formData appendPartWithFileData:videoData name:@"file" fileName:@"video.mp4"  mimeType:@"video/mp4"];
+                //UIImage *image = dataArray[i];
+                //NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+                // 要解决此问题，
+                // 可以在上传时使用当前的系统事件作为文件名
+                //NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                // 设置时间格式
+                //[formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                //NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                // NSString *fileName = [NSString  stringWithFormat:@"%@.png", dateString];
+                // /*
+                // *该方法的参数
+                // 1. appendPartWithFileData：要上传的照片[二进制流]
+                // 2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+                // 3. fileName：要保存在服务器上的文件名
+                // 4. mimeType：上传的文件的类型
+                // */
+                //[formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+                
+                
+            }else if ([type isEqualToString:@"video"] && array.count > 0 && [videoUrl isEqual:@""]){
+                for (int i = 0; i < array.count; i++) {
+                    NSURL *url = array[i];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    // 设置时间格式
+                    [formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                    NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                    NSData *videoData = [NSData dataWithContentsOfURL:url];
+                    // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+                    // 要解决此问题，
+                    // 可以在上传时使用当前的系统事件作为文件名
+                    //NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    // 设置时间格式
+                    // [formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                    // NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                    NSString *fileName = [NSString  stringWithFormat:@"%@.png", dateString];
+                    /*
+                     *该方法的参数
+                     *1. appendPartWithFileData：要上传的照片[二进制流]
+                     *2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+                     *3. fileName：要保存在服务器上的文件名
+                     *4. mimeType：上传的文件的类型
+                     */
+                    //图片
+                    [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+                    //视频
+                    [formData appendPartWithFileData:videoData name:@"file" fileName:@"video.mp4"  mimeType:@"video/mp4"];
+                    //UIImage *image = dataArray[i];
+                    //NSData *imageData = UIImageJPEGRepresentation(image, 1);
+                    // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
+                    // 要解决此问题，
+                    // 可以在上传时使用当前的系统事件作为文件名
+                    //NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    // 设置时间格式
+                    //[formatter setDateFormat:@"yyyyMMddHHmmss.SSS"];
+                    //NSString *dateString = [formatter stringFromDate:[NSDate date]];
+                    // NSString *fileName = [NSString  stringWithFormat:@"%@.png", dateString];
+                    // /*
+                    // *该方法的参数
+                    // 1. appendPartWithFileData：要上传的照片[二进制流]
+                    // 2. name：对应网站上[upload.php中]处理文件的字段（比如upload）
+                    // 3. fileName：要保存在服务器上的文件名
+                    // 4. mimeType：上传的文件的类型
+                    // */
+                    //[formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpg/png/jpeg"];
+                }
+            }
+        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"success"] boolValue]) {
+                NSDictionary * dict = [self decryptMethodWithDictionary:responseObject];
+                NSLog(@"========================%@",dict);
+                //解密
+                responseObject = dict[@"headImageUrl"];
+                NSLog(@"++++++++++++++++232323+++++++++++++%@",responseObject);
+                block(responseObject,YES);
+                jxt_dismissHUD();
+            }else{
+                NSLog(@"-======================%@",responseObject[@"msg"]);
+                jxt_showToastTitle(responseObject[@"msg"], 0.75);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"=====2=33==================%@",error);
+            jxt_showToastTitle(@"请求失败", 0.75);
+        }];
+    }else{
+        [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if ([responseObject[@"success"] boolValue]) {
+                block(responseObject,YES);
+                jxt_dismissHUD();
+            }else{
+                NSLog(@"-======================%@",responseObject[@"msg"]);
+                jxt_showToastTitle(responseObject[@"msg"], 0.75);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"=====2=33==================%@",error);
+            jxt_showToastTitle(@"请求失败", 0.75);
+        }];
+    }
+}
 
-
-
+- (void)reloadWebServiceNetDataUrl:(NSString *)URLStr  andType:(NSString *)type andParameters:(NSString *)soapStr withBlock:(AFNetworkingBlock)block{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    // 设置请求超时时间
+    manager.requestSerializer.timeoutInterval = 30.f;
+    // 返回NSData
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    // 设置请求头，也可以不设置
+    [manager.requestSerializer setValue:@"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"SOAPAction"];
+    [manager.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error)
+     {
+        return soapStr;
+    }];
+    if ([type isEqualToString:@"POST"]) {
+        [manager POST:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull uploadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            block(responseObject,YES);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            block(error,NO);
+        }];
+    }else{
+        [manager GET:URLStr parameters:soapStr progress:^(NSProgress * _Nonnull downloadProgress) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"-------------------%@",responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"---------32323----------%@",error);
+        }];
+    }
+}
 //新的请求方式
 - (void)newReloadWebServiceNetDataUrl:(NSString *)url andType:(NSString *)type withParameters:(id)parameters andURLName:(NSString *)urlName andContentType:(NSString *)contentType withBlock:(AFNetworkingBlock)block{
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes =[NSSet setWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/html",@"text/css", nil];
-    if ([contentType isEqualToString:@"JSON"]) {
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    if ([type isEqualToString:@"GET"]) {
+       [manager.requestSerializer setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        if (![contentType isEqualToString:@"JSON"]) {
+            [manager.requestSerializer setValue:contentType forHTTPHeaderField:@"LOGIN_TOKEN"];
+        }
     }
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
     securityPolicy.validatesDomainName = NO;
     securityPolicy.allowInvalidCertificates = YES;
     manager.securityPolicy = securityPolicy;
     manager.requestSerializer.timeoutInterval = 30.0f;
-    NSLog(@"----------------------%@",url);
-    NSLog(@"===================%@",parameters);
+    //    NSLog(@"----------------------%@",url);
+    //    NSLog(@"===================%@",parameters);
     if ([type isEqualToString:@"GET"]) {
-     url = [NSString stringWithFormat:@"%@?%@",url,parameters];
+        url = [NSString stringWithFormat:@"%@?%@",url,parameters];
+        NSLog(@"-===========================%@",url);
     }
     if ([type isEqualToString:@"POST"]) {
         NSURL * newUrl = [NSURL URLWithString:url];
@@ -340,77 +462,73 @@ xsi:type=\"q0:Array\">" \
         //设置请求方式为POST
         request.HTTPMethod = @"POST";
         //设置请求内容格式
-        [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        if (![URL_LOGOUT_IOS isEqualToString:urlName]) {
+            [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        }else{
+            //登出接口需要的地方
+            [request setValue:@"application/x-www-form-urlencoded;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        }
+        if (![contentType isEqualToString:@"JSON"]) {
+            [request setValue:contentType forHTTPHeaderField:@"LOGIN_TOKEN"];
+        }
+        NSLog(@"=================================%@",parameters);
         //这是设置请求体，把参数放进请求体(这部分的参数也叫请求参数)
         NSString *paramJsonStr = [self dictionaryToJson:parameters];
-        NSData * data = [paramJsonStr dataUsingEncoding:NSUTF8StringEncoding];
+        //NSData * data = [paramJsonStr dataUsingEncoding:NSUTF8StringEncoding];
         request.HTTPBody = [paramJsonStr dataUsingEncoding:NSUTF8StringEncoding];
         [[manager dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
-            
         } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        }completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             if ([responseObject[@"success"] boolValue]) {
-                block(responseObject,YES);
                 NSLog(@"++++++++++++++++++++++++++++++%@",responseObject);
+                block(responseObject,YES);
+                jxt_dismissHUD();
             }else{
-//                NSLog(@"-===========3333===========%@",responseObject[@"errmsg"]);
-               jxt_showToastTitle(responseObject[@"msg"], 0.75);
+                if ([urlName isEqualToString:URL_IMAGE_CHECK_IOS]) {
+                    block(responseObject,false);
+                }
+                jxt_showToastTitle(responseObject[@"msg"], 0.75);
             }
             if (error) {
+                 NSLog(@"+++++++++++3232++++++++++++");
                 jxt_showToastTitle(@"请求失败", 0.75);
                 return;
             }
         }] resume];
-//        NSString *send= [self dealWithParam:parameters];
-//        NSLog(@"===================%@",send);
-//        // 3、设置body
-//        NSData *bodyData = [send dataUsingEncoding:NSUTF8StringEncoding];
-//
-//        [manager POST:url parameters:bodyData progress:^(NSProgress * _Nonnull uploadProgress) {
-//           } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//               //请求成功
-////               NSLog(@"-======================%@",responseObject);
-//               if ([responseObject[@"success"] boolValue]) {
-//                   block(responseObject,YES);
-//               }else{
-//                   NSLog(@"-===========3333===========%@",responseObject[@"errmsg"]);
-//                   jxt_showToastTitle(responseObject[@"errmsg"], 0.75);
-//               }
-//           } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//               //请求失败
-//               //block(error,NO);
-//               jxt_showToastTitle(@"请求失败", 0.75);
-//           }];
     }else{
         [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                if ([responseObject[@"success"] boolValue]) {
-                    block(responseObject,YES);
-                }else{
-                    NSLog(@"-======================%@",responseObject[@"errmsg"]);
-                    jxt_showToastTitle(responseObject[@"errmsg"], 0.75);
+            NSLog(@"-======人===============%@",responseObject);
+            if ([responseObject[@"success"] boolValue]) {
+                block(responseObject,YES);
+                jxt_dismissHUD();
+            }else{
+                NSLog(@"-======================%@",responseObject[@"msg"]);
+                if ([urlName isEqualToString:URL_USER_INFO_IOS]) {
+                    block(responseObject,false);
                 }
+                jxt_showToastTitle(responseObject[@"msg"], 0.75);
+            }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"=====2=33==================%@",error);
             jxt_showToastTitle(@"请求失败", 0.75);
+            
+            if ([urlName isEqualToString:URL_USER_INFO_IOS]) {
+                NSString * responseObject = @"";
+                block(responseObject,false);
+            }
         }];
     }
 }
-
-
-
 //开始解析
 - (void)parserDidStartDocument:(NSXMLParser *)parser{
     
 }
-
 //正在解析
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict{
     if ([elementName isEqualToString:@"unsafeInvokeServiceReturn"]) {
         storingFlag = true;
     }
-    
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
@@ -426,25 +544,19 @@ xsi:type=\"q0:Array\">" \
 //解析完成
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
     if (storingFlag) {
-     NSString *trimmedString = [currentElementValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-      storingFlag = false;
-     //字符串转字典
-    NSDictionary * dict = [self dictionaryWithJsonString:trimmedString];
-    BOOL issuccess = [dict[@"result"] boolValue];
+        NSString *trimmedString = [currentElementValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        storingFlag = false;
+        //字符串转字典
+        NSDictionary * dict = [self dictionaryWithJsonString:trimmedString];
+        BOOL issuccess = [dict[@"result"] boolValue];
         if (issuccess) {
-            
         }
     }
 }
-
-    
-    
-    
 //结束解析
 - (void)parserDidEndDocument:(NSXMLParser *)parser{
     
 }
-
 
 //解密的方法
 - (NSDictionary *)decryptMethodWithDictionary:(NSDictionary *)dict{
@@ -452,27 +564,19 @@ xsi:type=\"q0:Array\">" \
     NSString * aes = [user objectForKey:@"AES"];
     NSString * const kInitVector = @"16-Bytes--String";
     NSString * data1 = [NSString stringWithFormat:@"%@",dict[@"data"]];
-//    NSString * userData = [FSAES128 decryptAES:data1 key:aes andKInItVector:kInitVector];
-    NSString * userData = [self decryptAES:data1 key:aes andKInItVector:kInitVector];
+    NSLog(@"=================%@",data1);
+    NSString * userData = [FSAES128 decryptAES:data1 key:aes andKInItVector:kInitVector];
+    NSLog(@"+++++++++++++++++%@",userData);
     if ([userData length] < 1) {
-//        [self userloginOut];
-//        [SVProgressHUD showErrorWithStatus:@"登录失效"];
-//        NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
-//        [user removeObjectForKey:@"OAUSERMODEL"];
-//        [user removeObjectForKey:@"AES"];
-//        [user synchronize];
-//        AppDelegate * appdelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//        RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
-//        appdelegate.window.rootViewController = loginVc;
+        //[self userloginOut];
         return nil;
     }else{
         NSData *jsonData = [userData dataUsingEncoding:NSUTF8StringEncoding];
+        NSLog(@"+++++++++++++++++%@",jsonData);
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
-         return dic;
+        return dic;
     }
 }
-
-
 
 //字符串转字典
 - (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
@@ -494,16 +598,14 @@ xsi:type=\"q0:Array\">" \
     return dic;
 }
 
-
-
 //这是我的一个工具类里面的方法，大家可以改成对象方法直接替换调用即可
 - (NSString*)dictionaryToJson:(NSDictionary *)dic
 {
     if (dic.allKeys.count == 0){
-#ifdef DSDUBUG
+        #ifdef DSDUBUG
         NSLog(@"%@---%s",self.class,__FUNCTION__);
         NSLog(@"您传入的字典为空，无法转换，请确保字典不为空！！！");
-#endif
+        #endif
         return nil;
     }
     NSError *parseError = nil;

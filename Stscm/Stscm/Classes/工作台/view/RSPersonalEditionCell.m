@@ -7,11 +7,9 @@
 //
 
 #import "RSPersonalEditionCell.h"
-#import "RSPublishButton.h"
+
 #define ECA 4
 #define MARGIN 25
-
-
 
 @interface RSPersonalEditionCell()
 
@@ -24,10 +22,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
-        
-       
-       
+        self.contentView.backgroundColor = [UIColor colorButtonBackgroundColorWithDyColorChangObject];
     }
     return self;
 }
@@ -71,7 +66,7 @@
             }
             
             //NSInteger row = i / ECA;
-            [publishBtn setBackgroundColor:[UIColor clearColor]];
+            [publishBtn setBackgroundColor:[UIColor colorButtonBackgroundColorWithDyColorChangObject]];
             NSInteger colom = i % ECA;
             CGFloat publishBtnX =  colom * (MARGIN + publishBtnW) + MARGIN;
             publishBtn.frame = CGRectMake(publishBtnX, 10, publishBtnW, publishBtnH);
@@ -112,7 +107,7 @@
                 publishBtn.titleLabel.font = [UIFont systemFontOfSize:14];
             }
             //NSInteger row = i / ECA;
-            [publishBtn setBackgroundColor:[UIColor clearColor]];
+            [publishBtn setBackgroundColor:[UIColor colorButtonBackgroundColorWithDyColorChangObject]];
             NSInteger colom = i % ECA;
             CGFloat publishBtnX =  colom * (MARGIN + publishBtnW) + MARGIN;
             publishBtn.frame = CGRectMake(publishBtnX, 10, publishBtnW, publishBtnH);
@@ -153,7 +148,7 @@
                 publishBtn.titleLabel.font = [UIFont systemFontOfSize:14];
             }
             //NSInteger row = i / ECA;
-            [publishBtn setBackgroundColor:[UIColor clearColor]];
+            [publishBtn setBackgroundColor:[UIColor colorButtonBackgroundColorWithDyColorChangObject]];
             NSInteger colom = i % ECA;
             CGFloat publishBtnX =  colom * (MARGIN + publishBtnW) + MARGIN;
             publishBtn.frame = CGRectMake(publishBtnX, 10, publishBtnW, publishBtnH);
@@ -193,7 +188,7 @@
             }
             
             //NSInteger row = i / ECA;
-            [publishBtn setBackgroundColor:[UIColor clearColor]];
+            [publishBtn setBackgroundColor:[UIColor colorButtonBackgroundColorWithDyColorChangObject]];
             NSInteger colom = i % ECA;
             CGFloat publishBtnX =  colom * (MARGIN + publishBtnW) + MARGIN;
             publishBtn.frame = CGRectMake(publishBtnX, 10, publishBtnW, publishBtnH);
@@ -210,6 +205,7 @@
 
 
 - (void)jumpPersonalWorkContent:(UIButton *)publishBtn{
+    NSLog(@"=======================%@",publishBtn.currentTitle);
     if ([self.delegate respondsToSelector:@selector(selectPublishCurrentImage:)]) {
         [self.delegate selectPublishCurrentImage:publishBtn.currentImage];
     }

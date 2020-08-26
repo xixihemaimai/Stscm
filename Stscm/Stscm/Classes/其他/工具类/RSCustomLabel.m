@@ -11,7 +11,7 @@
 @implementation RSCustomLabel
 
 + (instancetype)creatCustomLabelAndText:(NSString *)text andTextColor:(UIColor *)textColor andFont:(UIFont *)font andTextAlignment:(NSTextAlignment)textAlignment andBackgroundColor:(UIColor *)backgroundColor{
-    UILabel * label = [[UILabel alloc]init];
+    RSCustomLabel * label = [[RSCustomLabel alloc]init];
     label.text = text;
     label.textColor = textColor;
     label.font = font;

@@ -22,7 +22,8 @@
     // Do any additional setup after loading the view.
     self.popDelegate = self.interactivePopGestureRecognizer.delegate;
     self.delegate = self;
-    self.navigationBar.barTintColor = [UIColor colorWithHexColorStr:@"#ffffff"];
+    self.navigationBar.barTintColor = [UIColor colorWithDyColorChangObject:self.navigationBar andHexLightColorStr:@"#ffffff" andHexDarkColorStr:@"#000000"];
+    
 }
 
 //- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
@@ -49,7 +50,7 @@
     if (self.childViewControllers.count > 0) { // 非根控制器
         viewController.hidesBottomBarWhenPushed = YES;
         // 设置返回按钮,只有非根控制器
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithimage:[UIImage imageNamed:@"返回"] highImage:[UIImage imageNamed:@"返回"]  target:self action:@selector(back) title:nil];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem backItemWithimage:[UIImage imageNamed:@"system-backnew"] highImage:[UIImage imageNamed:@"system-backnew"]  target:self action:@selector(back) title:nil];
     }
     // 真正在跳转
     [super pushViewController:viewController animated:animated];

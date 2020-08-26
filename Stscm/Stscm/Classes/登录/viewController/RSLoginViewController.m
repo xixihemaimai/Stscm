@@ -7,6 +7,9 @@
 //
 
 #import "RSLoginViewController.h"
+/**主界面*/
+#import "RSMainViewController.h"
+
 
 @interface RSLoginViewController ()
 {
@@ -17,7 +20,6 @@
     UILabel * _codeName;
     
     UIButton * _button;
-    
 }
 
 @property (nonatomic,strong) RJTextField * account;
@@ -26,54 +28,42 @@
 
 @property (nonatomic,strong) UIButton * choiceBtn;
 
-/**这边是保存公钥的一个*/
-@property (nonatomic,strong)NSString * PublickKeyTemp;
-
 @end
 
 @implementation RSLoginViewController
 
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = YES;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setRegisterUIView:self.view andTitle:@"登录"];
     self.emptyView.hidden = YES;
-    self.PublickKeyTemp = @"";
     [self setUi];
-    
 }
 
-
-
-
-
 - (void)setUi{
-    
     UIButton * passwordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [passwordBtn setTitle:@"密码登录" forState:UIControlStateNormal];
-    [passwordBtn setTitleColor:[UIColor colorWithHexColorStr:@"#9B9B9B"] forState:UIControlStateNormal];
+    [passwordBtn setTitleColor:[UIColor colorButtonNormalWithDyColorChangObject] forState:UIControlStateNormal];
     passwordBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [passwordBtn setTitleColor:[UIColor colorWithHexColorStr:@"#2E2E2E"] forState:UIControlStateSelected];
+    [passwordBtn setTitleColor:[UIColor colorButtonSelectWithDyColorChangObject] forState:UIControlStateSelected];
     [self.view addSubview:passwordBtn];
     [passwordBtn addTarget:self action:@selector(changPassworkAction:) forControlEvents:UIControlEventTouchUpInside];
     passwordBtn.selected = YES;
     _passwordBtn = passwordBtn;
     
     UIView * midView = [[UIView alloc]init];
-    midView.backgroundColor = [UIColor colorWithHexColorStr:@"#9B9B9B"];
+    midView.backgroundColor = [UIColor colorButtonNormalWithDyColorChangObject];
     [self.view addSubview:midView];
-    
     
     UIButton * codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [codeBtn setTitle:@"验证码登录" forState:UIControlStateNormal];
-    [codeBtn setTitleColor:[UIColor colorWithHexColorStr:@"#9B9B9B"] forState:UIControlStateNormal];
+    [codeBtn setTitleColor:[UIColor colorButtonNormalWithDyColorChangObject] forState:UIControlStateNormal];
     codeBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [codeBtn setTitleColor:[UIColor colorWithHexColorStr:@"#2E2E2E"] forState:UIControlStateSelected];
+    [codeBtn setTitleColor:[UIColor colorButtonSelectWithDyColorChangObject] forState:UIControlStateSelected];
     [codeBtn addTarget:self action:@selector(changCodeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:codeBtn];
     codeBtn.selected = NO;
@@ -84,7 +74,6 @@
     .topSpaceToView(self.view, 166)
     .widthIs(50)
     .heightIs(16.5);
-    
     
     midView.sd_layout
     //    .topEqualToView(passwordBtn)
@@ -100,14 +89,12 @@
     .bottomEqualToView(passwordBtn)
     .widthIs(65);
     
-    
     UILabel * name = [[UILabel alloc]init];
     name.text = @"手机号";
     name.textAlignment = NSTextAlignmentLeft;
-    name.textColor = [UIColor colorWithHexColorStr:@"#393939"];
+    name.textColor = [UIColor colorLabelWithDyColorChangObject];
     name.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:name];
-    
     
     RJTextField * account = [[RJTextField alloc]init];
     account.placeholder = @"请输入手机号";
@@ -118,12 +105,10 @@
     [self.view addSubview:account];
     _account = account;
     
-    
-    
     UILabel * codeName = [[UILabel alloc]init];
     codeName.text = @"密码";
     codeName.textAlignment = NSTextAlignmentLeft;
-    codeName.textColor = [UIColor colorWithHexColorStr:@"#393939"];
+    codeName.textColor = [UIColor colorLabelWithDyColorChangObject];
     codeName.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:codeName];
     _codeName = codeName;
@@ -138,8 +123,10 @@
     [self.view addSubview:password];
     _password = password;
     
+    account.textColor = [UIColor colorLabelWithDyColorChangObject];
+    password.textColor = [UIColor colorLabelWithDyColorChangObject];
     
-
+    
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     button.userInteractionEnabled = YES;
@@ -152,10 +139,7 @@
     
     [self.view addSubview:button];
     _button = button;
-    
-    
-    
-    
+
     UIButton * loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [loginBtn setBackgroundColor:[UIColor colorWithHexColorStr:@"#FCC828"]];
@@ -164,16 +148,13 @@
     [loginBtn addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
     
-    
-    
     NSDictionary * underAttribtDic  = @{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle],NSForegroundColorAttributeName:[UIColor colorWithRed:252/255.0 green:200/255.0 blue:40/255.0 alpha:1.0]};
     NSMutableAttributedString * underAttr = [[NSMutableAttributedString alloc] initWithString:@"没有账号,去注册" attributes:underAttribtDic];
     UIButton * accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [accountBtn setAttributedTitle:underAttr forState:UIControlStateNormal];
     accountBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [accountBtn addTarget:self action:@selector(backRegisterAction:) forControlEvents:UIControlEventTouchUpInside];
+    [accountBtn addTarget:self action:@selector(jumpRegisterAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:accountBtn];
-    
     
     UIButton * choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [choiceBtn setImage:[UIImage imageNamed:@"未选"] forState:UIControlStateNormal];
@@ -181,7 +162,6 @@
     [choiceBtn addTarget:self action:@selector(choiceAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:choiceBtn];
     _choiceBtn = choiceBtn;
-    
     
     UILabel * choiceLabel = [[UILabel alloc]init];
     choiceLabel.text = @"登录和注册即同意";
@@ -206,9 +186,6 @@
     [privateBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
     privateBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [self.view addSubview:privateBtn];
-    
-    
-    
     
     name.sd_layout
     .leftSpaceToView(self.view, 35)
@@ -285,41 +262,29 @@
     .leftSpaceToView(andLabel, 0)
     .widthIs(50)
     .heightIs(16.5);
-    
-    
 }
 
-
 - (void)buttonAction:(UIButton *)btn{
-    
     if (_passwordBtn.selected == YES) {
         // 密码
         btn.selected = !btn.selected;
         if (btn.selected) {
             [btn setImage:[UIImage imageNamed:@"眼睛"] forState:UIControlStateNormal];
             _password.textField.secureTextEntry = NO;
-            
         }else{
             [btn setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal];
             _password.textField.secureTextEntry = YES;
         }
     }else{
         //验证码
-        
         [btn setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        
         if (![self isTrueMobile:_account.textField.text]) {
             [SVProgressHUD setMinimumDismissTimeInterval:0.3];
             [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
             [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
-           
         }else{
             //此处可以先调接口，成功后再调此方法
-//            [[SmsButtonHandle sharedSmsBHandle] startTimer];
-            
             [self messageTimeUbutton:btn];
-            
-//            NSString * phoneNumber = [NSString stringWithFormat:@"{phoneNumber:'%@'}",_account.textField.text];
             NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",_account.textField.text];
             //这边要对发短信
             [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
@@ -328,21 +293,18 @@
         }
     }
 }
-
-
 //FIXME:是否同意需要隐私按键
 - (void)choiceAction:(UIButton *)choiceBtn{
     choiceBtn.selected = !choiceBtn.selected;
 }
 
-
-
 - (void)changPassworkAction:(UIButton *)btn{
     btn.selected = YES;
     _codeBtn.selected = NO;
     _codeName.text = @"密码";
-    _account.textField.text = @"";
+//    _account.textField.text = @"";
     _password.textField.text = @"";
+    _password.textField.keyboardType = UIKeyboardTypeDefault;
     _password.placeholder = @"请输入密码";
     _password.maxLength = 18;
     _password.errorStr = @"超出字数限制";
@@ -350,30 +312,24 @@
     _password.textField.secureTextEntry = YES;
     [_button setImage:[UIImage imageNamed:@"关眼睛"] forState:UIControlStateNormal];
     [_button setTitle:@"" forState:UIControlStateNormal];
-    
 }
-
 
 - (void)changCodeAction:(UIButton *)btn{
     btn.selected = YES;
     _passwordBtn.selected = NO;
     _codeName.text = @"验证码";
-    _account.textField.text = @"";
+//    _account.textField.text = @"";
     _password.textField.text = @"";
     _password.placeholder = @"请输入验证码";
     _password.maxLength = 6;
     _password.errorStr = @"超出字数限制";
+    _password.textField.keyboardType = UIKeyboardTypePhonePad;
     _password.type = @"vcode";
     [_button setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_button setTitle:@"获取验证码" forState:UIControlStateNormal];
-
 }
-
-
 //MARK:登录的
 - (void)loginAction:(UIButton *)loginBtn{
-    
-    
     RSWeakself
     NSString * type = [NSString string];
     if (_passwordBtn.selected == YES) {
@@ -434,33 +390,51 @@
         pwd = @"";
         code = _password.textField.text;
     }
-    [self reloadUdid:^(BOOL isValue) {
-        if (isValue) {
+    
+    NSString* deviceName = [self getDeviceName];
+    NSLog(@"设备名称: %@",deviceName );
+    
+    NSLog(@"------------111143434------------------------%@",self.placeMark);
+    if (self.placeMark == nil) {
+        self.placeMark = @"未知";
+    }
+    [self reloadUdid:^(BOOL isValue,NSString * PublickKeyTemp,NSString * Ukey) {
+        if (isValue && PublickKeyTemp.length > 0) {
             jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.account.textField.text andPasswordStr:pwd andPKey:weakSelf.PublickKeyTemp andContentType:@"JSON" andBlock:^(id  _Nonnull responseObject, BOOL success) {
-                    jxt_dismissHUD();
+            NSLog(@"-----------------------%@",PublickKeyTemp);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.account.textField.text andPasswordStr:pwd andPKey:PublickKeyTemp andUkey:Ukey andContentType:@"JSON" andLoginMode:@"0" andComputerName:deviceName andLoginArea:self.placeMark andBlock:^(id  _Nonnull responseObject, BOOL success) {
                      NSLog(@"-----11111--------------%@",responseObject);
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        jxt_dismissHUD();
+                        //登录之后要获取用户信息，然后在跳转到下面的界面
+                        //改变根控制器
+                        RSMainViewController * mainVc = [[RSMainViewController alloc]init];
+                        AppDelegate * appdelegate =(AppDelegate *)[UIApplication sharedApplication].delegate;
+                        appdelegate.window.rootViewController = mainVc;
+                    });
                 }];
             });
+        }else{
+            jxt_showToastTitle(@"登录失败", 0.75);
         }
     }];
 }
 
-- (void)reloadUdid:(void(^)(BOOL isValue))Obtain{
+- (void)reloadUdid:(void(^)(BOOL isValue,NSString * PublickKeyTemp,NSString * Ukey))Obtain{
     //设备的唯一标识号
     NSString *udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSString * uKey = [NSString stringWithFormat:@"uKey=%@",udid];
     [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:uKey andURLName:URL_KEY_GET_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
         NSLog(@"============323232==================%@",responseObject);
-        self.PublickKeyTemp = responseObject[@"data"][@"pKey"];
-        NSLog(@"==============================%@",self.PublickKeyTemp);
-        Obtain(true);
+//        NSLog(@"==============================%@",self.PublickKeyTemp);
+        if (Obtain) {
+          Obtain(true,responseObject[@"data"][@"pKey"],responseObject[@"data"][@"uKey"]);
+        }
     }];
 }
-
 //FIXME:返回到注册界面
-- (void)backRegisterAction:(UIButton *)backBtn{
+- (void)jumpRegisterAction:(UIButton *)backBtn{
     [self.navigationController popViewControllerAnimated:YES];
 }
 

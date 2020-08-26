@@ -21,7 +21,7 @@
 		0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447591C248F8BBF003BBBCF /* RSCustomLabel.m */; };
 		04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04475920249077A8003BBBCF /* ZZQEmptyView.m */; };
 		0447592424908FAB003BBBCF /* Nonetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0447592224908FAA003BBBCF /* Nonetwork.m */; };
-		0453CC4624C5745C006ECA95 /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC4524C5745C006ECA95 /* UITextView+WZB.m */; };
+		044F33E724DCEF6A0058E8EC /* RSFuntionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 044F33E624DCEF6A0058E8EC /* RSFuntionViewController.m */; };
 		0453CC5424C580BA006ECA95 /* RJTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5224C580B9006ECA95 /* RJTextField.m */; };
 		0453CC5724C5871E006ECA95 /* RSAddRoleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5624C5871E006ECA95 /* RSAddRoleHeaderView.m */; };
 		0453CC5A24C58944006ECA95 /* RSRoleUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC5924C58944006ECA95 /* RSRoleUserCell.m */; };
@@ -39,13 +39,34 @@
 		0453CC7E24C833EF006ECA95 /* RSPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC7D24C833EF006ECA95 /* RSPasswordViewController.m */; };
 		0453CC8224C83917006ECA95 /* MyMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC8024C83916006ECA95 /* MyMD5.m */; };
 		0453CC8524CEC6E3006ECA95 /* UIView+LLXAlertPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0453CC8324CEC6E2006ECA95 /* UIView+LLXAlertPop.m */; };
+		046079CA24D93FBA00D9F450 /* NSString+DecimalsCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = 046079C924D93FBA00D9F450 /* NSString+DecimalsCalculation.m */; };
 		0466135D24C140E2004B570D /* RSPersonSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466135B24C140E1004B570D /* RSPersonSecondCell.m */; };
 		0466135E24C140E2004B570D /* RSPersonFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466135C24C140E1004B570D /* RSPersonFirstCell.m */; };
 		0466136124C14771004B570D /* RSRoleManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136024C14771004B570D /* RSRoleManagementViewController.m */; };
 		0466136424C14823004B570D /* RSRoleManementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136324C14823004B570D /* RSRoleManementCell.m */; };
 		0466136724C1567B004B570D /* RSAddRoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136624C1567B004B570D /* RSAddRoleViewController.m */; };
 		0466136A24C18A07004B570D /* RSAddRoleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136924C18A07004B570D /* RSAddRoleCell.m */; };
-		0466136D24C18CBF004B570D /* RSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136C24C18CBF004B570D /* RSTextView.m */; };
+		047EE9C924F603370025A6B7 /* JPImageresizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9B924F603370025A6B7 /* JPImageresizerView.m */; };
+		047EE9CA24F603370025A6B7 /* JPImageresizerSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9BB24F603370025A6B7 /* JPImageresizerSlider.m */; };
+		047EE9CB24F603370025A6B7 /* JPImageresizerFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9BD24F603370025A6B7 /* JPImageresizerFrameView.m */; };
+		047EE9CC24F603370025A6B7 /* JPImageresizerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C224F603370025A6B7 /* JPImageresizerConfigure.m */; };
+		047EE9CD24F603370025A6B7 /* JPImageresizerBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C424F603370025A6B7 /* JPImageresizerBlurView.m */; };
+		047EE9CE24F603370025A6B7 /* CALayer+JPImageresizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C624F603370025A6B7 /* CALayer+JPImageresizer.m */; };
+		047EE9CF24F603370025A6B7 /* JPImageresizerVideoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C724F603370025A6B7 /* JPImageresizerVideoObject.m */; };
+		047EE9D024F603370025A6B7 /* JPImageresizerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C824F603370025A6B7 /* JPImageresizerTool.m */; };
+		047EE9D324F60A170025A6B7 /* MockVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9D224F60A170025A6B7 /* MockVerifyView.m */; };
+		0486AFCD24DE35A1002FB95C /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486AFCC24DE35A0002FB95C /* UITextView+WZB.m */; };
+		0486AFD124E0EB9F002FB95C /* JHSysAlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486AFD024E0EB9F002FB95C /* JHSysAlertUtil.m */; };
+		0486AFD424E12167002FB95C /* RSTypeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486AFD324E12167002FB95C /* RSTypeListViewController.m */; };
+		0486AFD724E13495002FB95C /* RSTypeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486AFD624E13495002FB95C /* RSTypeListCell.m */; };
+		0488285B24EE6D6B00359508 /* RSLoggedAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 0488285A24EE6D6B00359508 /* RSLoggedAccount.m */; };
+		0488285E24EE78D400359508 /* RSCurrentRole.m in Sources */ = {isa = PBXBuildFile; fileRef = 0488285D24EE78D400359508 /* RSCurrentRole.m */; };
+		048CBF8C24EB71180059E6F9 /* LSXAlertInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBF8824EB71170059E6F9 /* LSXAlertInputView.m */; };
+		048CBF8D24EB71180059E6F9 /* LSXPlacehoderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBF8924EB71170059E6F9 /* LSXPlacehoderTextView.m */; };
+		048CBF9124EB711E0059E6F9 /* UIColor+YMHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBF9024EB711D0059E6F9 /* UIColor+YMHex.m */; };
+		048CBFE624EBB7400059E6F9 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBFE024EBB7400059E6F9 /* UserInfo.m */; };
+		048CBFE824EBB7400059E6F9 /* UserInfoContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBFE424EBB7400059E6F9 /* UserInfoContext.m */; };
+		048CBFEB24EBB9EE0059E6F9 /* Usertilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBFEA24EBB9EE0059E6F9 /* Usertilities.m */; };
 		04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E806248DDEFF00BABB6F /* AppDelegate.m */; };
 		04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E809248DDEFF00BABB6F /* SceneDelegate.m */; };
 		04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E80C248DDEFF00BABB6F /* ViewController.m */; };
@@ -62,8 +83,13 @@
 		04F7D8CC24C043EB008CE45D /* RSCustomMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8C824C043E9008CE45D /* RSCustomMenuCell.m */; };
 		04F7D8CD24C043EB008CE45D /* RSMenuHeaderFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8CB24C043EB008CE45D /* RSMenuHeaderFootView.m */; };
 		04F7D8D024C04A4A008CE45D /* RSMineInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7D8CF24C04A4A008CE45D /* RSMineInformationViewController.m */; };
-		04FB05A424BEA546007DB579 /* SmsButtonHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB05A224BEA546007DB579 /* SmsButtonHandle.m */; };
 		04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FB05A624BEE680007DB579 /* RSLoginViewController.m */; };
+		04FEEF0824E27E190063532C /* RSChagePhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEEF0724E27E190063532C /* RSChagePhoneNumberViewController.m */; };
+		04FEEF0E24E298300063532C /* sortedNameEN.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04FEEF0B24E298300063532C /* sortedNameEN.plist */; };
+		04FEEF0F24E298300063532C /* sortedNameCH.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04FEEF0C24E298300063532C /* sortedNameCH.plist */; };
+		04FEEF1024E298300063532C /* XWCountryCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEEF0D24E298300063532C /* XWCountryCodeController.m */; };
+		04FEEF1624E4ED410063532C /* AmendCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEEF1424E4ED400063532C /* AmendCoordinate.m */; };
+		04FEEF1924E4F3A40063532C /* FSAES128.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEEF1724E4F3A30063532C /* FSAES128.m */; };
 		67D0F4C2D0AF66F1769B6A90 /* libPods-Stscm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 282B9D671207E40785441153 /* libPods-Stscm.a */; };
 /* End PBXBuildFile section */
 
@@ -114,8 +140,8 @@
 		04475920249077A8003BBBCF /* ZZQEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZQEmptyView.m; sourceTree = "<group>"; };
 		0447592224908FAA003BBBCF /* Nonetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Nonetwork.m; sourceTree = "<group>"; };
 		0447592324908FAB003BBBCF /* Nonetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Nonetwork.h; sourceTree = "<group>"; };
-		0453CC4424C5745B006ECA95 /* UITextView+WZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WZB.h"; sourceTree = "<group>"; };
-		0453CC4524C5745C006ECA95 /* UITextView+WZB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WZB.m"; sourceTree = "<group>"; };
+		044F33E524DCEF6A0058E8EC /* RSFuntionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSFuntionViewController.h; sourceTree = "<group>"; };
+		044F33E624DCEF6A0058E8EC /* RSFuntionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSFuntionViewController.m; sourceTree = "<group>"; };
 		0453CC5224C580B9006ECA95 /* RJTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTextField.m; sourceTree = "<group>"; };
 		0453CC5324C580BA006ECA95 /* RJTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTextField.h; sourceTree = "<group>"; };
 		0453CC5524C5871E006ECA95 /* RSAddRoleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAddRoleHeaderView.h; sourceTree = "<group>"; };
@@ -147,6 +173,8 @@
 		0453CC8124C83916006ECA95 /* MyMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMD5.h; sourceTree = "<group>"; };
 		0453CC8324CEC6E2006ECA95 /* UIView+LLXAlertPop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LLXAlertPop.m"; sourceTree = "<group>"; };
 		0453CC8424CEC6E3006ECA95 /* UIView+LLXAlertPop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LLXAlertPop.h"; sourceTree = "<group>"; };
+		046079C824D93FBA00D9F450 /* NSString+DecimalsCalculation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DecimalsCalculation.h"; sourceTree = "<group>"; };
+		046079C924D93FBA00D9F450 /* NSString+DecimalsCalculation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DecimalsCalculation.m"; sourceTree = "<group>"; };
 		0466135924C140E0004B570D /* RSPersonFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPersonFirstCell.h; sourceTree = "<group>"; };
 		0466135A24C140E0004B570D /* RSPersonSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSPersonSecondCell.h; sourceTree = "<group>"; };
 		0466135B24C140E1004B570D /* RSPersonSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSPersonSecondCell.m; sourceTree = "<group>"; };
@@ -159,8 +187,49 @@
 		0466136624C1567B004B570D /* RSAddRoleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAddRoleViewController.m; sourceTree = "<group>"; };
 		0466136824C18A07004B570D /* RSAddRoleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAddRoleCell.h; sourceTree = "<group>"; };
 		0466136924C18A07004B570D /* RSAddRoleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAddRoleCell.m; sourceTree = "<group>"; };
-		0466136B24C18CBF004B570D /* RSTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSTextView.h; sourceTree = "<group>"; };
-		0466136C24C18CBF004B570D /* RSTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSTextView.m; sourceTree = "<group>"; };
+		047EE9B824F603370025A6B7 /* JPImageresizerConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerConfigure.h; sourceTree = "<group>"; };
+		047EE9B924F603370025A6B7 /* JPImageresizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerView.m; sourceTree = "<group>"; };
+		047EE9BA24F603370025A6B7 /* CALayer+JPImageresizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+JPImageresizer.h"; sourceTree = "<group>"; };
+		047EE9BB24F603370025A6B7 /* JPImageresizerSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerSlider.m; sourceTree = "<group>"; };
+		047EE9BC24F603370025A6B7 /* JPImageresizerBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerBlurView.h; sourceTree = "<group>"; };
+		047EE9BD24F603370025A6B7 /* JPImageresizerFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerFrameView.m; sourceTree = "<group>"; };
+		047EE9BE24F603370025A6B7 /* JPImageresizerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerTool.h; sourceTree = "<group>"; };
+		047EE9BF24F603370025A6B7 /* JPImageresizerVideoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerVideoObject.h; sourceTree = "<group>"; };
+		047EE9C024F603370025A6B7 /* JPImageresizerTypedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerTypedef.h; sourceTree = "<group>"; };
+		047EE9C124F603370025A6B7 /* JPImageresizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerView.h; sourceTree = "<group>"; };
+		047EE9C224F603370025A6B7 /* JPImageresizerConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerConfigure.m; sourceTree = "<group>"; };
+		047EE9C324F603370025A6B7 /* JPImageresizerFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerFrameView.h; sourceTree = "<group>"; };
+		047EE9C424F603370025A6B7 /* JPImageresizerBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerBlurView.m; sourceTree = "<group>"; };
+		047EE9C524F603370025A6B7 /* JPImageresizerSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerSlider.h; sourceTree = "<group>"; };
+		047EE9C624F603370025A6B7 /* CALayer+JPImageresizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+JPImageresizer.m"; sourceTree = "<group>"; };
+		047EE9C724F603370025A6B7 /* JPImageresizerVideoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerVideoObject.m; sourceTree = "<group>"; };
+		047EE9C824F603370025A6B7 /* JPImageresizerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerTool.m; sourceTree = "<group>"; };
+		047EE9D124F60A170025A6B7 /* MockVerifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockVerifyView.h; sourceTree = "<group>"; };
+		047EE9D224F60A170025A6B7 /* MockVerifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockVerifyView.m; sourceTree = "<group>"; };
+		0486AFCB24DE35A0002FB95C /* UITextView+WZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WZB.h"; sourceTree = "<group>"; };
+		0486AFCC24DE35A0002FB95C /* UITextView+WZB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WZB.m"; sourceTree = "<group>"; };
+		0486AFCF24E0EB9F002FB95C /* JHSysAlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHSysAlertUtil.h; sourceTree = "<group>"; };
+		0486AFD024E0EB9F002FB95C /* JHSysAlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHSysAlertUtil.m; sourceTree = "<group>"; };
+		0486AFD224E12167002FB95C /* RSTypeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSTypeListViewController.h; sourceTree = "<group>"; };
+		0486AFD324E12167002FB95C /* RSTypeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSTypeListViewController.m; sourceTree = "<group>"; };
+		0486AFD524E13495002FB95C /* RSTypeListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSTypeListCell.h; sourceTree = "<group>"; };
+		0486AFD624E13495002FB95C /* RSTypeListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSTypeListCell.m; sourceTree = "<group>"; };
+		0488285924EE6D6B00359508 /* RSLoggedAccount.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSLoggedAccount.h; sourceTree = "<group>"; };
+		0488285A24EE6D6B00359508 /* RSLoggedAccount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSLoggedAccount.m; sourceTree = "<group>"; };
+		0488285C24EE78D400359508 /* RSCurrentRole.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSCurrentRole.h; sourceTree = "<group>"; };
+		0488285D24EE78D400359508 /* RSCurrentRole.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSCurrentRole.m; sourceTree = "<group>"; };
+		048CBF8824EB71170059E6F9 /* LSXAlertInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSXAlertInputView.m; sourceTree = "<group>"; };
+		048CBF8924EB71170059E6F9 /* LSXPlacehoderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSXPlacehoderTextView.m; sourceTree = "<group>"; };
+		048CBF8A24EB71170059E6F9 /* LSXAlertInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSXAlertInputView.h; sourceTree = "<group>"; };
+		048CBF8B24EB71170059E6F9 /* LSXPlacehoderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSXPlacehoderTextView.h; sourceTree = "<group>"; };
+		048CBF8F24EB711D0059E6F9 /* UIColor+YMHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YMHex.h"; sourceTree = "<group>"; };
+		048CBF9024EB711D0059E6F9 /* UIColor+YMHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YMHex.m"; sourceTree = "<group>"; };
+		048CBFE024EBB7400059E6F9 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		048CBFE224EBB7400059E6F9 /* UserInfoContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoContext.h; sourceTree = "<group>"; };
+		048CBFE424EBB7400059E6F9 /* UserInfoContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoContext.m; sourceTree = "<group>"; };
+		048CBFE524EBB7400059E6F9 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		048CBFE924EBB9EE0059E6F9 /* Usertilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Usertilities.h; sourceTree = "<group>"; };
+		048CBFEA24EBB9EE0059E6F9 /* Usertilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Usertilities.m; sourceTree = "<group>"; };
 		04D6E802248DDEFF00BABB6F /* 石材进销存.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "石材进销存.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E805248DDEFF00BABB6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04D6E806248DDEFF00BABB6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -192,10 +261,18 @@
 		04F7D8CB24C043EB008CE45D /* RSMenuHeaderFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSMenuHeaderFootView.m; sourceTree = "<group>"; };
 		04F7D8CE24C04A4A008CE45D /* RSMineInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSMineInformationViewController.h; sourceTree = "<group>"; };
 		04F7D8CF24C04A4A008CE45D /* RSMineInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSMineInformationViewController.m; sourceTree = "<group>"; };
-		04FB05A124BEA545007DB579 /* SmsButtonHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmsButtonHandle.h; sourceTree = "<group>"; };
-		04FB05A224BEA546007DB579 /* SmsButtonHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmsButtonHandle.m; sourceTree = "<group>"; };
 		04FB05A524BEE680007DB579 /* RSLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSLoginViewController.h; sourceTree = "<group>"; };
 		04FB05A624BEE680007DB579 /* RSLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSLoginViewController.m; sourceTree = "<group>"; };
+		04FEEF0624E27E190063532C /* RSChagePhoneNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSChagePhoneNumberViewController.h; sourceTree = "<group>"; };
+		04FEEF0724E27E190063532C /* RSChagePhoneNumberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSChagePhoneNumberViewController.m; sourceTree = "<group>"; };
+		04FEEF0A24E298300063532C /* XWCountryCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWCountryCodeController.h; sourceTree = "<group>"; };
+		04FEEF0B24E298300063532C /* sortedNameEN.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = sortedNameEN.plist; sourceTree = "<group>"; };
+		04FEEF0C24E298300063532C /* sortedNameCH.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = sortedNameCH.plist; sourceTree = "<group>"; };
+		04FEEF0D24E298300063532C /* XWCountryCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWCountryCodeController.m; sourceTree = "<group>"; };
+		04FEEF1424E4ED400063532C /* AmendCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmendCoordinate.m; sourceTree = "<group>"; };
+		04FEEF1524E4ED410063532C /* AmendCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmendCoordinate.h; sourceTree = "<group>"; };
+		04FEEF1724E4F3A30063532C /* FSAES128.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAES128.m; sourceTree = "<group>"; };
+		04FEEF1824E4F3A30063532C /* FSAES128.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAES128.h; sourceTree = "<group>"; };
 		282B9D671207E40785441153 /* libPods-Stscm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stscm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A49FB9F47AC6F5F752AA21E /* Pods-Stscm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stscm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stscm/Pods-Stscm.debug.xcconfig"; sourceTree = "<group>"; };
 		41ADC3F8BDEB8A551D875254 /* Pods-Stscm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stscm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stscm/Pods-Stscm.release.xcconfig"; sourceTree = "<group>"; };
@@ -256,8 +333,6 @@
 		044758D7248DE6DC003BBBCF /* 分类 */ = {
 			isa = PBXGroup;
 			children = (
-				0453CC4424C5745B006ECA95 /* UITextView+WZB.h */,
-				0453CC4524C5745C006ECA95 /* UITextView+WZB.m */,
 				044758F0248DECB1003BBBCF /* UIColor+HexColor.h */,
 				044758F1248DECB2003BBBCF /* UIColor+HexColor.m */,
 				044758FE248DEE09003BBBCF /* UIBarButtonItem+Item.h */,
@@ -268,6 +343,8 @@
 				044758FB248DECC2003BBBCF /* UIView+Frame.m */,
 				0447592324908FAB003BBBCF /* Nonetwork.h */,
 				0447592224908FAA003BBBCF /* Nonetwork.m */,
+				046079C824D93FBA00D9F450 /* NSString+DecimalsCalculation.h */,
+				046079C924D93FBA00D9F450 /* NSString+DecimalsCalculation.m */,
 			);
 			path = "分类";
 			sourceTree = "<group>";
@@ -289,6 +366,13 @@
 		044758DA248DE6DC003BBBCF /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				047EE9B724F603370025A6B7 /* JPImageresizerView */,
+				047EE9B324F6026A0025A6B7 /* PuzzleVerify */,
+				048CBFDF24EBB7400059E6F9 /* UserInfoTool */,
+				048CBF8E24EB711D0059E6F9 /* UIColor+YMHex */,
+				048CBF8724EB71170059E6F9 /*  LSXInputAlertView */,
+				04FEEF0924E298300063532C /* XWCountryCode */,
+				0486AFCE24E0EB9F002FB95C /* JHAlertUtil */,
 				0453CC7F24C83916006ECA95 /* MyMD5 */,
 				0453CC7824C7D8B5006ECA95 /* RSA */,
 				0453CC7024C69D22006ECA95 /* JJOptionView */,
@@ -301,14 +385,18 @@
 		044758DB248DE6DC003BBBCF /* 工具类 */ = {
 			isa = PBXGroup;
 			children = (
+				04FEEF1824E4F3A30063532C /* FSAES128.h */,
+				04FEEF1724E4F3A30063532C /* FSAES128.m */,
+				04FEEF1524E4ED410063532C /* AmendCoordinate.h */,
+				04FEEF1424E4ED400063532C /* AmendCoordinate.m */,
+				0486AFCB24DE35A0002FB95C /* UITextView+WZB.h */,
+				0486AFCC24DE35A0002FB95C /* UITextView+WZB.m */,
 				0453CC8424CEC6E3006ECA95 /* UIView+LLXAlertPop.h */,
 				0453CC8324CEC6E2006ECA95 /* UIView+LLXAlertPop.m */,
 				0453CC6A24C69575006ECA95 /* SPDateTimePickerView.h */,
 				0453CC6B24C69576006ECA95 /* SPDateTimePickerView.m */,
 				0453CC5324C580BA006ECA95 /* RJTextField.h */,
 				0453CC5224C580B9006ECA95 /* RJTextField.m */,
-				04FB05A124BEA545007DB579 /* SmsButtonHandle.h */,
-				04FB05A224BEA546007DB579 /* SmsButtonHandle.m */,
 				04475918248F80C8003BBBCF /* RSPublishButton.h */,
 				04475919248F80C9003BBBCF /* RSPublishButton.m */,
 				044758EE248DE901003BBBCF /* StscmDemo.pch */,
@@ -316,8 +404,6 @@
 				0447591C248F8BBF003BBBCF /* RSCustomLabel.m */,
 				0419255E24B70907002B794F /* RSNetworkTool.h */,
 				0419255F24B70907002B794F /* RSNetworkTool.m */,
-				0466136B24C18CBF004B570D /* RSTextView.h */,
-				0466136C24C18CBF004B570D /* RSTextView.m */,
 				0453CC6D24C69CBF006ECA95 /* RSStscmAlertView.h */,
 				0453CC6E24C69CBF006ECA95 /* RSStscmAlertView.m */,
 			);
@@ -457,6 +543,86 @@
 				0453CC8124C83916006ECA95 /* MyMD5.h */,
 			);
 			path = MyMD5;
+			sourceTree = "<group>";
+		};
+		047EE9B324F6026A0025A6B7 /* PuzzleVerify */ = {
+			isa = PBXGroup;
+			children = (
+				047EE9D124F60A170025A6B7 /* MockVerifyView.h */,
+				047EE9D224F60A170025A6B7 /* MockVerifyView.m */,
+			);
+			name = PuzzleVerify;
+			path = ../../../../../../../PuzzleVerify;
+			sourceTree = "<group>";
+		};
+		047EE9B724F603370025A6B7 /* JPImageresizerView */ = {
+			isa = PBXGroup;
+			children = (
+				047EE9B824F603370025A6B7 /* JPImageresizerConfigure.h */,
+				047EE9B924F603370025A6B7 /* JPImageresizerView.m */,
+				047EE9BA24F603370025A6B7 /* CALayer+JPImageresizer.h */,
+				047EE9BB24F603370025A6B7 /* JPImageresizerSlider.m */,
+				047EE9BC24F603370025A6B7 /* JPImageresizerBlurView.h */,
+				047EE9BD24F603370025A6B7 /* JPImageresizerFrameView.m */,
+				047EE9BE24F603370025A6B7 /* JPImageresizerTool.h */,
+				047EE9BF24F603370025A6B7 /* JPImageresizerVideoObject.h */,
+				047EE9C024F603370025A6B7 /* JPImageresizerTypedef.h */,
+				047EE9C124F603370025A6B7 /* JPImageresizerView.h */,
+				047EE9C224F603370025A6B7 /* JPImageresizerConfigure.m */,
+				047EE9C324F603370025A6B7 /* JPImageresizerFrameView.h */,
+				047EE9C424F603370025A6B7 /* JPImageresizerBlurView.m */,
+				047EE9C524F603370025A6B7 /* JPImageresizerSlider.h */,
+				047EE9C624F603370025A6B7 /* CALayer+JPImageresizer.m */,
+				047EE9C724F603370025A6B7 /* JPImageresizerVideoObject.m */,
+				047EE9C824F603370025A6B7 /* JPImageresizerTool.m */,
+			);
+			path = JPImageresizerView;
+			sourceTree = "<group>";
+		};
+		0486AFCE24E0EB9F002FB95C /* JHAlertUtil */ = {
+			isa = PBXGroup;
+			children = (
+				0486AFCF24E0EB9F002FB95C /* JHSysAlertUtil.h */,
+				0486AFD024E0EB9F002FB95C /* JHSysAlertUtil.m */,
+			);
+			path = JHAlertUtil;
+			sourceTree = "<group>";
+		};
+		048CBF8724EB71170059E6F9 /*  LSXInputAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				048CBF8824EB71170059E6F9 /* LSXAlertInputView.m */,
+				048CBF8924EB71170059E6F9 /* LSXPlacehoderTextView.m */,
+				048CBF8A24EB71170059E6F9 /* LSXAlertInputView.h */,
+				048CBF8B24EB71170059E6F9 /* LSXPlacehoderTextView.h */,
+			);
+			path = " LSXInputAlertView";
+			sourceTree = "<group>";
+		};
+		048CBF8E24EB711D0059E6F9 /* UIColor+YMHex */ = {
+			isa = PBXGroup;
+			children = (
+				048CBF8F24EB711D0059E6F9 /* UIColor+YMHex.h */,
+				048CBF9024EB711D0059E6F9 /* UIColor+YMHex.m */,
+			);
+			path = "UIColor+YMHex";
+			sourceTree = "<group>";
+		};
+		048CBFDF24EBB7400059E6F9 /* UserInfoTool */ = {
+			isa = PBXGroup;
+			children = (
+				048CBFE524EBB7400059E6F9 /* UserInfo.h */,
+				048CBFE024EBB7400059E6F9 /* UserInfo.m */,
+				048CBFE224EBB7400059E6F9 /* UserInfoContext.h */,
+				048CBFE424EBB7400059E6F9 /* UserInfoContext.m */,
+				048CBFE924EBB9EE0059E6F9 /* Usertilities.h */,
+				048CBFEA24EBB9EE0059E6F9 /* Usertilities.m */,
+				0488285924EE6D6B00359508 /* RSLoggedAccount.h */,
+				0488285A24EE6D6B00359508 /* RSLoggedAccount.m */,
+				0488285C24EE78D400359508 /* RSCurrentRole.h */,
+				0488285D24EE78D400359508 /* RSCurrentRole.m */,
+			);
+			path = UserInfoTool;
 			sourceTree = "<group>";
 		};
 		04C92B0D24D3B80D00834B11 /* 大板 */ = {
@@ -616,6 +782,8 @@
 				04F7D8C624C02A77008CE45D /* RSMineViewController.m */,
 				04F7D8CE24C04A4A008CE45D /* RSMineInformationViewController.h */,
 				04F7D8CF24C04A4A008CE45D /* RSMineInformationViewController.m */,
+				04FEEF0624E27E190063532C /* RSChagePhoneNumberViewController.h */,
+				04FEEF0724E27E190063532C /* RSChagePhoneNumberViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -656,6 +824,8 @@
 				0453CC5924C58944006ECA95 /* RSRoleUserCell.m */,
 				0453CC5B24C58D30006ECA95 /* RSRoleTimeCell.h */,
 				0453CC5C24C58D30006ECA95 /* RSRoleTimeCell.m */,
+				0486AFD524E13495002FB95C /* RSTypeListCell.h */,
+				0486AFD624E13495002FB95C /* RSTypeListCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -669,6 +839,10 @@
 				0466136024C14771004B570D /* RSRoleManagementViewController.m */,
 				0466136524C1567B004B570D /* RSAddRoleViewController.h */,
 				0466136624C1567B004B570D /* RSAddRoleViewController.m */,
+				044F33E524DCEF6A0058E8EC /* RSFuntionViewController.h */,
+				044F33E624DCEF6A0058E8EC /* RSFuntionViewController.m */,
+				0486AFD224E12167002FB95C /* RSTypeListViewController.h */,
+				0486AFD324E12167002FB95C /* RSTypeListViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -704,6 +878,17 @@
 				04F7D8C324C02A57008CE45D /* RSMessageViewController.m */,
 			);
 			path = viewController;
+			sourceTree = "<group>";
+		};
+		04FEEF0924E298300063532C /* XWCountryCode */ = {
+			isa = PBXGroup;
+			children = (
+				04FEEF0A24E298300063532C /* XWCountryCodeController.h */,
+				04FEEF0B24E298300063532C /* sortedNameEN.plist */,
+				04FEEF0C24E298300063532C /* sortedNameCH.plist */,
+				04FEEF0D24E298300063532C /* XWCountryCodeController.m */,
+			);
+			path = XWCountryCode;
 			sourceTree = "<group>";
 		};
 		9C3C7A017BB885BB0647B7F0 /* Frameworks */ = {
@@ -830,9 +1015,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D6E818248DDF0700BABB6F /* LaunchScreen.storyboard in Resources */,
+				04FEEF0F24E298300063532C /* sortedNameCH.plist in Resources */,
 				0453CC7624C69D23006ECA95 /* list_icon_drfault@3x.png in Resources */,
 				0453CC7724C69D23006ECA95 /* list_icon_drfault@2x.png in Resources */,
 				04D6E815248DDF0700BABB6F /* Assets.xcassets in Resources */,
+				04FEEF0E24E298300063532C /* sortedNameEN.plist in Resources */,
 				0453CC6624C59559006ECA95 /* WSDatePickerView.xib in Resources */,
 				04D6E810248DDEFF00BABB6F /* Main.storyboard in Resources */,
 			);
@@ -907,10 +1094,12 @@
 				0447592424908FAB003BBBCF /* Nonetwork.m in Sources */,
 				044758F6248DECB2003BBBCF /* UIColor+HexColor.m in Sources */,
 				04D6E81B248DDF0700BABB6F /* main.m in Sources */,
+				044F33E724DCEF6A0058E8EC /* RSFuntionViewController.m in Sources */,
 				04F7D8CD24C043EB008CE45D /* RSMenuHeaderFootView.m in Sources */,
 				0466136724C1567B004B570D /* RSAddRoleViewController.m in Sources */,
 				0453CC5D24C58D30006ECA95 /* RSRoleTimeCell.m in Sources */,
 				04D6E813248DDEFF00BABB6F /* Stscm.xcdatamodeld in Sources */,
+				047EE9CA24F603370025A6B7 /* JPImageresizerSlider.m in Sources */,
 				04F7D8CC24C043EB008CE45D /* RSCustomMenuCell.m in Sources */,
 				04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */,
 				0466135E24C140E2004B570D /* RSPersonFirstCell.m in Sources */,
@@ -919,40 +1108,62 @@
 				04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */,
 				04F7D8C124C007F4008CE45D /* RSMainViewController.m in Sources */,
 				0453CC7524C69D23006ECA95 /* JJOptionView.m in Sources */,
-				0466136D24C18CBF004B570D /* RSTextView.m in Sources */,
+				0486AFD424E12167002FB95C /* RSTypeListViewController.m in Sources */,
+				048CBF8C24EB71180059E6F9 /* LSXAlertInputView.m in Sources */,
 				0453CC6724C59559006ECA95 /* WSDatePickerView.m in Sources */,
+				0486AFD724E13495002FB95C /* RSTypeListCell.m in Sources */,
 				04F7D8C724C02A77008CE45D /* RSMineViewController.m in Sources */,
+				047EE9CC24F603370025A6B7 /* JPImageresizerConfigure.m in Sources */,
 				0453CC8524CEC6E3006ECA95 /* UIView+LLXAlertPop.m in Sources */,
+				047EE9CB24F603370025A6B7 /* JPImageresizerFrameView.m in Sources */,
+				048CBFE624EBB7400059E6F9 /* UserInfo.m in Sources */,
 				0453CC7E24C833EF006ECA95 /* RSPasswordViewController.m in Sources */,
 				04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */,
 				04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */,
 				0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */,
 				04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */,
+				047EE9D024F603370025A6B7 /* JPImageresizerTool.m in Sources */,
 				04F7D8C424C02A57008CE45D /* RSMessageViewController.m in Sources */,
+				048CBF9124EB711E0059E6F9 /* UIColor+YMHex.m in Sources */,
+				047EE9CE24F603370025A6B7 /* CALayer+JPImageresizer.m in Sources */,
 				0453CC7B24C7D8B5006ECA95 /* RSAEncryptor.m in Sources */,
+				047EE9D324F60A170025A6B7 /* MockVerifyView.m in Sources */,
+				04FEEF1624E4ED410063532C /* AmendCoordinate.m in Sources */,
 				04F7D8D024C04A4A008CE45D /* RSMineInformationViewController.m in Sources */,
 				04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */,
+				04FEEF1024E298300063532C /* XWCountryCodeController.m in Sources */,
 				0453CC6924C59559006ECA95 /* UIView+Extension.m in Sources */,
+				0488285E24EE78D400359508 /* RSCurrentRole.m in Sources */,
 				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
 				04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */,
+				0486AFCD24DE35A1002FB95C /* UITextView+WZB.m in Sources */,
+				047EE9CF24F603370025A6B7 /* JPImageresizerVideoObject.m in Sources */,
 				0453CC8224C83917006ECA95 /* MyMD5.m in Sources */,
 				0453CC6F24C69CBF006ECA95 /* RSStscmAlertView.m in Sources */,
 				0453CC5A24C58944006ECA95 /* RSRoleUserCell.m in Sources */,
 				0466135D24C140E2004B570D /* RSPersonSecondCell.m in Sources */,
+				047EE9CD24F603370025A6B7 /* JPImageresizerBlurView.m in Sources */,
+				048CBFE824EBB7400059E6F9 /* UserInfoContext.m in Sources */,
+				048CBF8D24EB71180059E6F9 /* LSXPlacehoderTextView.m in Sources */,
 				0466136124C14771004B570D /* RSRoleManagementViewController.m in Sources */,
 				04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */,
+				0488285B24EE6D6B00359508 /* RSLoggedAccount.m in Sources */,
 				044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */,
+				04FEEF0824E27E190063532C /* RSChagePhoneNumberViewController.m in Sources */,
 				0447591A248F80C9003BBBCF /* RSPublishButton.m in Sources */,
 				0466136A24C18A07004B570D /* RSAddRoleCell.m in Sources */,
 				0453CC6C24C69576006ECA95 /* SPDateTimePickerView.m in Sources */,
+				048CBFEB24EBB9EE0059E6F9 /* Usertilities.m in Sources */,
+				046079CA24D93FBA00D9F450 /* NSString+DecimalsCalculation.m in Sources */,
 				0453CC5424C580BA006ECA95 /* RJTextField.m in Sources */,
 				0466136424C14823004B570D /* RSRoleManementCell.m in Sources */,
-				0453CC4624C5745C006ECA95 /* UITextView+WZB.m in Sources */,
+				04FEEF1924E4F3A40063532C /* FSAES128.m in Sources */,
 				0453CC5724C5871E006ECA95 /* RSAddRoleHeaderView.m in Sources */,
+				0486AFD124E0EB9F002FB95C /* JHSysAlertUtil.m in Sources */,
 				04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */,
 				041925AD24BDA248002B794F /* RSRegisterViewController.m in Sources */,
-				04FB05A424BEA546007DB579 /* SmsButtonHandle.m in Sources */,
 				0419256024B70907002B794F /* RSNetworkTool.m in Sources */,
+				047EE9C924F603370025A6B7 /* JPImageresizerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,52 +8,37 @@
 
 #import "RSAddRoleViewController.h"
 #import "RSAddRoleCell.h"
-
 #import "RSRoleTimeCell.h"
-
 #import "RSAddRoleHeaderView.h"
 #import "RSRoleUserCell.h"
 
-
-
-
-
-
-@interface RSAddRoleViewController ()<UITextViewDelegate>
-
-
-@property(nonatomic,strong)NSMutableDictionary *dicHeight;//高度
-
-
+@interface RSAddRoleViewController ()<RSAddRoleCellDelegate>
+/**用来保存第一组前4个cell要显示的内容，这边需要考虑修改和新增的问题*/
+@property (nonatomic,strong) NSMutableArray *data;
+/**用来记录选择哪个cell进行编辑的位置的步骤*/
+@property (nonatomic,assign)NSInteger selectIndex;
 
 @end
 
 @implementation RSAddRoleViewController
-
--(NSMutableDictionary *)dicHeight{
-    if (!_dicHeight) {
-        _dicHeight = [NSMutableDictionary dictionary];
-    }
-    return _dicHeight;
-}
-
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.emptyView.hidden = YES;
     self.title = @"添加角色";
+    self.selectIndex = 100000000000000;
     
     UIButton * addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0,0, 60, 60)];
     [addBtn setTitle:@"保存" forState:UIControlStateNormal];
-    [addBtn setTitleColor:[UIColor colorWithHexColorStr:@"#666666"] forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor colorWithDyColorChangObject:addBtn andHexLightColorStr:@"#666666" andHexDarkColorStr:@"#ffffff"] forState:UIControlStateNormal];
     addBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [addBtn addTarget:self action:@selector(saveAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc]initWithCustomView:addBtn];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    self.data = [NSMutableArray arrayWithObjects:@"",@"",@"",@"", nil];
+    
 }
 
 //保存
@@ -76,14 +61,26 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        NSString *key = [NSString stringWithFormat:@"%@",indexPath];
-        if(self.dicHeight[key]){
-            NSNumber *number = self.dicHeight[key];
-            if (number.floatValue > 50) {
-                return number.floatValue;
+        if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3) {
+            RSAddRoleCell * cell = (RSAddRoleCell *)[tableView cellForRowAtIndexPath:indexPath];
+            if (cell.textview.tag == self.selectIndex) {
+                if (cell.textview.frame.size.height <= 50) {
+                    cell.cellHeight = 50;
+                    return 50;
+                }else{
+                    cell.cellHeight = cell.textview.frame.size.height + 6;
+                    return cell.textview.frame.size.height + 6;
+                }
+            }else{
+                if (cell.cellHeight < 50) {
+                    return 50;
+                }else{
+                    return cell.cellHeight;
+                }
             }
+        }else{
+            return 50;
         }
-        return 50;
     }else{
         return 45;
     }
@@ -115,24 +112,25 @@
             if (!cell) {
                 cell = [[RSAddRoleCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ADDROLECELLID];
             }
-            cell.contentView.tag = 1000 + indexPath.row;
-            cell.textView.tag = 1000 + indexPath.row;
-            cell.textView.delegate = self;
+            cell.delegate = self;
+            cell.textview.text = self.data[indexPath.row];
+            cell.textview.tag = indexPath.row;
             if (indexPath.row == 0) {
-                cell.textView.text = @"0032";
                 cell.roleLabel.text = @"角色代码";
-                cell.textView.editable = false;
+                cell.textview.text = @"0320";
+                cell.textview.editable = false;
             }else if (indexPath.row == 1){
                 cell.roleLabel.text = @"角色名称";
-                cell.textView.editable = true;
+                cell.textview.editable = true;
             }else if (indexPath.row == 2){
                 cell.roleLabel.text = @"创建人";
-                cell.textView.editable = true;
+                cell.textview.editable = true;
             }else{
                 cell.roleLabel.text = @"修改人";
-                cell.textView.editable = true;
+                cell.textview.editable = true;
             }
-            [self tableViewCellAutoHeight:indexPath cell:cell];
+            cell.selected = NO;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else{
             RSRoleTimeCell * cell = [tableView dequeueReusableCellWithIdentifier:ADDROLECELLID];
@@ -144,7 +142,7 @@
             }else{
                 cell.timeLabel.text = @"修改时间";
             }
-            cell.timeBtn.tag = 100000 + indexPath.row;
+            cell.timeBtn.tag = indexPath.row + 100000000000;
             [cell.timeBtn addTarget:self action:@selector(choiceTimeAction:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
@@ -152,18 +150,45 @@
         RSRoleUserCell * cell = [tableView dequeueReusableCellWithIdentifier:ADDROLECELLID];
         if (!cell) {
             cell = [[RSRoleUserCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ADDROLECELLID];
-            
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.deleteBtn.tag = indexPath.row;
+        [cell.deleteBtn addTarget:self action:@selector(deleteBtnAction:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
 }
 
+
+- (void)deleteBtnAction:(UIButton *)deleteBtn{
+    [JHSysAlertUtil presentAlertViewWithTitle:@"是否确定删除该用户" message:nil cancelTitle:@"取消" defaultTitle:@"确定" distinct:NO cancel:^{
+        //取消
+    } confirm:^{
+        //确定
+    }];
+}
+
+
+
+- (void)textViewCell:(RSAddRoleCell *)cell didChangeText:(UITextView *)textView
+{
+    NSIndexPath *indexPath = [self.tableview indexPathForCell:cell];
+    NSMutableArray * data = [self.data mutableCopy];
+    data[indexPath.row] = textView.text;
+    self.selectIndex = textView.tag;
+    self.data = [data copy];
+}
+
+
 - (void)choiceTimeAction:(UIButton *)timeBtn{
     NSLog(@"----------------------%ld",timeBtn.tag);
     SPDateTimePickerView *pickerView = [[SPDateTimePickerView alloc]init];
+    if (timeBtn.tag == 100000000000) {
+        RSRoleTimeCell * cell = (RSRoleTimeCell *)[self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]];
+        NSLog(@"==================%@",cell.timeBtn.currentTitle);
+        pickerView.timeStr = cell.timeBtn.currentTitle;
+    }
     pickerView.pickerViewMode = 5;
-//       pickerView.delegate = self;
+    //pickerView.delegate = self;
     pickerView.title = @"时间选择器";
     [self.view addSubview:pickerView];
     [pickerView showDateTimePickerView];
@@ -175,60 +200,8 @@
         }
         [WeakPickView removeFromSuperview];
     };
-    
-    
-//    WSDatePickerView * datepicker = [[WSDatePickerView alloc]initWithDateStyle:DateStyleShowYearMonthDayHourMinute scrollToDate:[self nsstringConversionNSDate:timeBtn.currentTitle] CompleteBlock:^(NSDate *selectDate) {
-//        NSString *date = [selectDate stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-//        [timeBtn setTitle:date forState:UIControlStateNormal];
-//    }];
-//    [datepicker show];
 }
 
-
-//模拟数据刷新
--(void)textViewDidChange:(UITextView *)textView{
-  NSLog(@"======---------------%ld=============%@",textView.tag,textView.text);
-}
-
-#pragma mark -自动改变行高
-- (void)tableViewCellAutoHeight:(NSIndexPath *)indexPath cell:(UITableViewCell *)cell{
-//    UITextView * textView = [cell.contentView viewWithTag:1000 + indexPath.row];
-    NSLog(@"----------%@",[cell.contentView viewWithTag:1000 + indexPath.row]);
-    UITextView * textView = nil;
-    for (UIView * view in cell.contentView.subviews) {
-        if ([view isKindOfClass:[UITextView class]]) {
-            textView = (UITextView *)view;
-        }
-    }
-    __weak typeof (self)WeakSelf = self;
-    __weak typeof (textView)WeakTextView = textView;
-    // 最大高度为300 改变高度的 block
-    [textView wzb_autoHeightWithMaxHeight:300 textViewHeightDidChanged:^(CGFloat currentTextViewHeight) {
-        CGRect frame = WeakTextView.frame;
-        frame.size.height = currentTextViewHeight;
-        if (frame.size.height < 50) {
-            frame.size.height = 50;
-        }
-        WeakTextView.frame = frame;
-//        [UIView animateWithDuration:0.2 animations:^{
-//            WeakTextView.frame = frame;
-//        } completion:^(BOOL finished) {
-//        }];
-        NSString *key = [NSString stringWithFormat:@"%@",indexPath];
-        NSNumber *height = [NSNumber numberWithFloat:currentTextViewHeight];
-        if (self.dicHeight[key]) {
-            NSNumber *oldHeight = self.dicHeight[key];
-            if (oldHeight.floatValue != height.floatValue) {
-                [self.dicHeight setObject:height forKey:key];
-            }
-        }
-        else{
-            [self.dicHeight setObject:height forKey:key];
-        }
-        [WeakSelf.tableview beginUpdates];
-        [WeakSelf.tableview endUpdates];
-    }];
-}
 
 
 

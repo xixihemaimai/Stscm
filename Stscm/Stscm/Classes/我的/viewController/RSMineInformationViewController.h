@@ -8,9 +8,14 @@
 
 #import "RSBaseViewController.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface RSMineInformationViewController : RSBaseViewController
+
+
+@property (nonatomic,strong)void(^backUp)(id responseObject,NSInteger type);
 
 @end
 

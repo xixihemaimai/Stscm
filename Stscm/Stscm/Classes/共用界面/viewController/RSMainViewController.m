@@ -48,27 +48,17 @@
     [item setTitleTextAttributes:attrNormal forState:UIControlStateNormal];
 }
 
-
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     [self addSubCtrls];
-    
-    
 }
 
-
-- (void)addSubCtrls {
-   
+- (void)addSubCtrls {   
         //消息
         RSMessageViewController * messageVc = [[RSMessageViewController alloc]init];
         messageVc.tabBarItem.tag = 0;
         messageVc.tabBarItem.title = @"消息";
-        messageVc.tabBarItem.image =  [UIImage imageNamed:@"图标"];
+        messageVc.tabBarItem.image =  [UIImage imageNamed:@"图标1"];
         UIImage * image0 = [UIImage imageNamed:@"图标备份"];
         UIImage * newImage0 = [image0 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         messageVc.tabBarItem.selectedImage = newImage0;

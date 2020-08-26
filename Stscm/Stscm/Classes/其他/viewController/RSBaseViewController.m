@@ -19,12 +19,41 @@
 #import "RSPasswordViewController.h"
 //登录
 #import "RSLoginViewController.h"
+//修改电话号码
+#import "RSChagePhoneNumberViewController.h"
 
-@interface RSBaseViewController ()
+#import <CoreLocation/CoreLocation.h>
+#import "AmendCoordinate.h"
+
+
+@interface RSBaseViewController ()<CLLocationManagerDelegate>
+
+@property (nonatomic,strong)CLLocationManager * locaationManager;
+
 
 @end
 
 @implementation RSBaseViewController
+
+- (UICollectionView *)collectionview{
+    if (_collectionview) {
+        
+//        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+//        //iteme的设置也可以使用UICollectionViewDelegateFlowLayout的代理,如下注释
+//        flowLayout.minimumInteritemSpacing = 0;
+//        flowLayout.minimumLineSpacing =0;
+//        flowLayout.itemSize = CGSizeMake(SCW/7, SCW/7); // cell的大小
+//        flowLayout.headerReferenceSize = CGSizeMake(ScreenWidth, SCW/7);
+//        [_collectionview setCollectionViewLayout:flowLayout];
+        
+        _collectionview = [[UICollectionView alloc]init];
+        [_collectionview registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"COLLECTIONVIEWID"];
+        _collectionview.delegate = self;
+    }
+    return _collectionview;
+}
+
+
 
 - (UITableView *)tableview{
     if (!_tableview) {
@@ -61,22 +90,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithHexColorStr:@"#ffffff"];
+    self.view.backgroundColor = [UIColor colorWithDyColorChangObject:self.view andHexLightColorStr:@"#ffffff" andHexDarkColorStr:@"#000000"];
     if (@available(iOS 11.0, *)) {
       self.tableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
       self.automaticallyAdjustsScrollViewInsets = NO;
     }
     [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
-//    if ([self isKindOfClass:[RSHomeViewController class]]) {
-//        self.frostedViewController.panGestureEnabled = YES;
-//    }else{
-//        self.frostedViewController.panGestureEnabled = NO;
-//    }
+
+    
+    //已经登录
+//    NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
+//    NSData * data = [user objectForKey:@"usermodel"];
+//    RSUserModel * usermodel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo = [Usertilities GetNSUserDefaults];
+    NSLog(@"============323===============%@",userInfo.userPhone);
+    if (![self isKindOfClass:[RSLoginViewController class]]) {
+        if (userInfo.loginToken.length > 0) {
+            
+        }else{
+            //没有登录中
+            [Usertilities clearLocalUserModel];
+        }
+    }
+    
     [self.view addSubview:self.tableview];
     
-    
-    if ([self isKindOfClass:[RSStscmController class]] || [self isKindOfClass:[RSMineViewController class]] || [self isKindOfClass:[RSMessageViewController class]] || [self isKindOfClass:[RSRegisterViewController class]] || [self isKindOfClass:[RSPasswordViewController class]] || [self isKindOfClass:[RSLoginViewController class]]) {
+    if ([self isKindOfClass:[RSStscmController class]] || [self isKindOfClass:[RSMineViewController class]] || [self isKindOfClass:[RSMessageViewController class]] || [self isKindOfClass:[RSRegisterViewController class]] || [self isKindOfClass:[RSPasswordViewController class]] || [self isKindOfClass:[RSLoginViewController class]] || [self isKindOfClass:[RSChagePhoneNumberViewController class]]) {
         
         self.tableview.sd_layout
         .leftSpaceToView(self.view, 0)
@@ -84,27 +125,26 @@
         .topSpaceToView(self.view, 0)
         .bottomSpaceToView(self.view, 0);
         
-       
     }else{
+        
        self.tableview.sd_layout
        .leftSpaceToView(self.view, 0)
        .rightSpaceToView(self.view, 0)
        .topSpaceToView(self.navigationController.navigationBar, 0)
        .bottomSpaceToView(self.view, 0);
+        
     }
     [self.view addSubview:self.emptyView];
     
-    
-    
-    if (![self isKindOfClass:[RSStscmController class]] || [self isKindOfClass:[RSMineViewController class]] || [self isKindOfClass:[RSMessageViewController class]] || [self isKindOfClass:[RSRegisterViewController class]] || [self isKindOfClass:[RSPasswordViewController class]] || [self isKindOfClass:[RSLoginViewController class]]) {
+    if ([self isKindOfClass:[RSPasswordViewController class]] || [self isKindOfClass:[RSMineViewController class]]  || [self isKindOfClass:[RSMessageViewController class]] ) {
         RSWeakself
         //下拉刷新
         self.tableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             weakSelf.pageNum = 1;
+            NSLog(@"--------------------%ld",weakSelf.pageNum);
             weakSelf.customBlock(weakSelf.pageNum);
             [weakSelf.tableview.mj_header endRefreshing];
         }];
-           
         //上拉刷新
         self.tableview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             weakSelf.pageNum++;
@@ -113,12 +153,204 @@
         }];
     }
     
+    if ([self isKindOfClass:[RSRegisterViewController class]] || [self isKindOfClass:[RSLoginViewController class]] || [self isKindOfClass:[RSPasswordViewController class]] || [self isKindOfClass:[RSStscmController class]]) {
+        self.navigationController.navigationBar.hidden = YES;
+    }else{
+        self.navigationController.navigationBar.hidden = NO;
+    }
     
     
+    
+    
+    
+    
+    if ([self isKindOfClass:[RSLoginViewController class]] || [self isKindOfClass:[RSPasswordViewController class]]) {
+        if ([self checkLocationServiceIsEnabled]) {
+            [self createCLManager];
+        }
+    }
 }
 
 
+- (BOOL)checkLocationServiceIsEnabled{
+    // 该方法是类方法，和我们创建的管理器没有关系
+    if ([CLLocationManager locationServicesEnabled]) {
+        return YES;
+    }
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"系统定位尚未打开，请到【设定-隐私】中手动打开" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * tipsAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
+    [alertVC addAction:tipsAction];
+    [self presentViewController:alertVC animated:YES completion:nil];
+    return NO;
+}
 
+- (void)createCLManager{
+    // 创建CoreLocation管理对象
+    self.locaationManager = [[CLLocationManager alloc]init];
+    // 设定定位精准度
+    [self.locaationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    // 设定DistanceFilter可以在用户移动指定距离之后触发更新事件（100米更新一次）
+    [self.locaationManager setDistanceFilter:5.0];
+    // 设置代理
+    self.locaationManager.delegate = self;
+    // 开始更新定位
+    [self.locaationManager startUpdatingLocation];
+}
+// 代理方法，定位权限检查
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:{
+            NSLog(@"用户还未决定授权");
+            // 主动获得授权
+            [self.locaationManager requestWhenInUseAuthorization];
+            break;
+        }
+        case kCLAuthorizationStatusRestricted:
+        {
+            NSLog(@"访问受限");
+            // 主动获得授权
+            [self.locaationManager requestWhenInUseAuthorization];
+            break;
+        }
+        case kCLAuthorizationStatusDenied:{
+            // 此时使用主动获取方法也不能申请定位权限
+            // 类方法，判断是否开启定位服务
+            if ([CLLocationManager locationServicesEnabled]) {
+                NSLog(@"定位服务开启，被拒绝");
+            } else {
+                NSLog(@"定位服务关闭，不可用");
+            }
+            break;
+        }
+        case kCLAuthorizationStatusAuthorizedAlways:{
+            NSLog(@"获得前后台授权");
+            break;
+        }
+        case kCLAuthorizationStatusAuthorizedWhenInUse:{
+            NSLog(@"获得前台授权");
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+-  (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    [self backlearningCLLocationLocations:locations];
+}
+
+//- (void)learningCLLocationLocations:(NSArray<CLLocation *> *)locations{
+//    // locations是一个数组提供了一连串的用户定位，所以在这里我们只取最后一个（当前最后的定位）
+//       CLLocation * newLocation = [locations lastObject];
+//       // 判空处理
+//       if (newLocation.horizontalAccuracy < 0) {
+//           UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"定位错误，请检查手机网络以及定位" preferredStyle:UIAlertControllerStyleAlert];
+//           UIAlertAction * tipsAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
+//           [alertVC addAction:tipsAction];
+//           [self presentViewController:alertVC animated:YES completion:nil];
+//           return;
+//       }
+//       // 获取定位经纬度
+//       CLLocationCoordinate2D coor2D = newLocation.coordinate;
+//       NSLog(@"纬度为:%f, 经度为:%f", coor2D.latitude, coor2D.longitude);
+//       // 获取定位海拔高度
+//       CLLocationDistance altitude = newLocation.altitude;
+//       NSLog(@"高度为:%f", altitude);
+//       // 获取定位水平精确度, 垂直精确度
+//       CLLocationAccuracy horizontalAcc = newLocation.horizontalAccuracy;
+//       CLLocationAccuracy verticalAcc = newLocation.verticalAccuracy;
+//       NSLog(@"%f, %f", horizontalAcc, verticalAcc);
+//       // 停止更新位置
+//       [self.locaationManager stopUpdatingLocation];
+//}
+
+- (void)backlearningCLLocationLocations:(NSArray<CLLocation *> *)locations{
+    /**
+     定位管理器返回的位置是用CLLoation实例表示的，里面包含了有关位置的重要信息
+     比如：
+     CLLocationCoordinate2D 用来表示经纬度坐标
+     使用方式:
+     CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude) 创建一个经纬度坐标
+     coordinate.latitude,coordinate.longitude 读取经纬度
+
+     CLLocationDistance  用来表示实际位置和返回坐标之间的距离（以米为单位）
+     使用方式：获取
+     location.altitude
+
+     CLLocationAccuracy 地理坐标的准确性
+     使用方式：获取
+     location.horizontalAccuracy; 指定坐标的水平精度(以米为单位)
+     location.verticalAccuracy; 高度值的精度(以米为单位)
+
+     timestamp 时间戳，指出何时在定位管理器获取的位置
+     使用方式：获取
+     location.timestamp
+
+     CLLocationSpeed 装置运动的速度(以米每秒为单位)
+     使用方式：获取
+     location.speed
+
+     CLLocationDirection 方位角以相对于真北的角度来测量的方位角
+     使用方式：获取
+     location.course
+     */
+    //已经很详细的表达出来啦，这些数据可能会有用，希望大家能记下来。虽然我们已经获取了定位的数据，但这些数据我们确实看着不懂，那我们该怎么办呢？苹果提供了一个CLGeocoder类，这个类是用于在地理坐标和地名之间转换的接口，也就是常说的逆地理编码（反地理编码）
+
+    // 反地理编码(根据当前的经纬度获取具体的位置信息)
+    CLLocation * newLocation = [locations lastObject];
+
+     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+//    NSLog(@"--------000000000-------------经度:%f-------------纬度:%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+//    if (![AmendCoordinate isLocationOutOfChina:[newLocation coordinate]]) {
+//        CLLocationCoordinate2D gcj02 = CLLocationCoordinate2DMake(newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+//        CLLocationCoordinate2D coord = [AmendCoordinate transformFromBDToGCJ:gcj02];
+//        NSLog(@"--------232323-------------经度:%f-------------纬度:%f",coord.latitude,coord.longitude);
+//        CLLocationCoordinate2D coord_bd9 = [AmendCoordinate transformFromGCJToBD:[newLocation coordinate]];
+//        NSLog(@"--------+++++++-------------经度:%f-------------纬度:%f",coord_bd9.latitude,coord_bd9.longitude);
+//        CLLocationCoordinate2D coord_bd8 = [AmendCoordinate transformFromGCJToBD:coord];
+//        NSLog(@"--------=======-------------经度:%f-------------纬度:%f",coord_bd8.latitude,coord_bd8.longitude);
+//        CLLocation * cl = [[CLLocation alloc] initWithLatitude:coord_bd8.latitude longitude:coord_bd8.longitude];
+//        [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+//                for (CLPlacemark *placeMark in placemarks) {
+//                    NSLog(@"------------位置:%@", placeMark.name);
+//                    NSLog(@"街道:%@", placeMark.thoroughfare);
+//                    NSLog(@"子街道:%@", placeMark.subThoroughfare);
+//                    NSLog(@"市:%@", placeMark.locality);
+//                    NSLog(@"区\\县:%@", placeMark.subLocality);
+//                    NSLog(@"行政区:%@", placeMark.administrativeArea);
+//                    NSLog(@"国家:%@", placeMark.country);
+//
+//                }
+//        }];
+//    }else{
+        [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+           CLPlacemark *placeMark = placemarks.firstObject;
+            self.placeMark = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",placeMark.country,placeMark.administrativeArea,placeMark.subLocality,placeMark.locality,placeMark.subThoroughfare, placeMark.thoroughfare,placeMark.name];
+//                   for (CLPlacemark *placeMark in placemarks) {
+//                       NSLog(@"++++++++位置:%@", placeMark.name);
+//                       NSLog(@"街道:%@", placeMark.thoroughfare);
+//                       NSLog(@"子街道:%@", placeMark.subThoroughfare);
+//                       NSLog(@"市:%@", placeMark.locality);
+//                       NSLog(@"区\\县:%@", placeMark.subLocality);
+//                       NSLog(@"行政区:%@", placeMark.administrativeArea);
+//                       NSLog(@"国家:%@", placeMark.country);
+//                   }
+            
+            if (self.placeMark == nil) {
+                self.placeMark = @"未知";
+            }
+        }];
+//    }
+    // 停止更新位置
+    [self.locaationManager stopUpdatingLocation];
+}
+// 代理方法，错误处理
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"%@",error);
+    // 如果管理器未能获取位置，可能是GPS或者网络信号不可用等情况，这时候不要再继续消耗性能
+    // 停止更新位置
+    [self.locaationManager stopUpdatingLocation];
+}
 
 
 
@@ -145,6 +377,8 @@
     label.alpha = 1.0;
 }
 
+
+//FIXME:UITableviewDatagete和UITablevieDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -170,6 +404,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 0;
 }
+
+//FIXME:UICollectionViewDelegate
+//有多少的分组
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 2;
+}
+
+//每个分组里有多少个item
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 100;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    //根据identifier从缓冲池里去出cell
+    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"COLLECTIONVIEWID" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor orangeColor];
+    return cell;
+}
+
 
 //FIXME:去掉空格
 - (NSString *)delSpaceAndNewline:(NSString *)string{
@@ -378,7 +631,7 @@
     BOOL B = [userNamePredicate evaluateWithObject:name];
     return B;
 }
-//用户名验证 失效
+
 - (BOOL)isValidWithMinLenth:(NSInteger)minLenth
                    maxLenth:(NSInteger)maxLenth
              containChinese:(BOOL)containChinese
@@ -732,8 +985,6 @@ return encodedImageStr;
     return datestr;
 }
 
-
-
  /**
   *  自适应字体
   */
@@ -776,5 +1027,87 @@ return encodedImageStr;
     });
     dispatch_resume(_timer);
 }
+
+- (UIViewController*)backViewController{
+    NSInteger myIndex = [self.navigationController.viewControllers indexOfObject:self];
+    if( myIndex !=0 && myIndex != NSNotFound) {
+        return [self.navigationController.viewControllers objectAtIndex:myIndex-1];
+    }else{
+        return nil;
+    }
+}
+
+
+- (NSString *)encryptAESDataKey:(NSString *)key{
+    NSUserDefaults * user = [NSUserDefaults standardUserDefaults];
+    NSString * aes = [user objectForKey:@"AES"];
+    NSString * const kInitVector = @"16-Bytes--String";
+    NSString * aes2 = [FSAES128 encryptAES:key key:aes andKInItVector:kInitVector];
+    return aes2;
+}
+
+
+- (NSString *)getDeviceName {
+    // 需要
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    if ([deviceString isEqualToString:@"iPhone3,1"])    return @"iPhone 4";
+    if ([deviceString isEqualToString:@"iPhone3,2"])    return @"iPhone 4";
+    if ([deviceString isEqualToString:@"iPhone3,3"])    return @"iPhone 4";
+    if ([deviceString isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
+    if ([deviceString isEqualToString:@"iPhone5,1"])    return @"iPhone 5";
+    if ([deviceString isEqualToString:@"iPhone5,2"])    return @"iPhone 5 (GSM+CDMA)";
+    if ([deviceString isEqualToString:@"iPhone5,3"])    return @"iPhone 5c (GSM)";
+    if ([deviceString isEqualToString:@"iPhone5,4"])    return @"iPhone 5c (GSM+CDMA)";
+    if ([deviceString isEqualToString:@"iPhone6,1"])    return @"iPhone 5s (GSM)";
+    if ([deviceString isEqualToString:@"iPhone6,2"])    return @"iPhone 5s (GSM+CDMA)";
+    if ([deviceString isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
+    if ([deviceString isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
+    if ([deviceString isEqualToString:@"iPhone8,1"])    return @"iPhone 6s";
+    if ([deviceString isEqualToString:@"iPhone8,2"])    return @"iPhone 6s Plus";
+    if ([deviceString isEqualToString:@"iPhone8,4"])    return @"iPhone SE";
+    if ([deviceString isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
+    if ([deviceString isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
+    if ([deviceString isEqualToString:@"iPod3,1"])      return @"iPod Touch 3G";
+    if ([deviceString isEqualToString:@"iPod4,1"])      return @"iPod Touch 4G";
+    if ([deviceString isEqualToString:@"iPod5,1"])      return @"iPod Touch (5 Gen)";
+    if ([deviceString isEqualToString:@"iPad1,1"])      return @"iPad";
+    if ([deviceString isEqualToString:@"iPad1,2"])      return @"iPad 3G";
+    if ([deviceString isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
+    if ([deviceString isEqualToString:@"iPad2,2"])      return @"iPad 2";
+    if ([deviceString isEqualToString:@"iPad2,3"])      return @"iPad 2 (CDMA)";
+    if ([deviceString isEqualToString:@"iPad2,4"])      return @"iPad 2";
+    if ([deviceString isEqualToString:@"iPad2,5"])      return @"iPad Mini (WiFi)";
+    if ([deviceString isEqualToString:@"iPad2,6"])      return @"iPad Mini";
+    if ([deviceString isEqualToString:@"iPad2,7"])      return @"iPad Mini (GSM+CDMA)";
+    if ([deviceString isEqualToString:@"iPad3,1"])      return @"iPad 3 (WiFi)";
+    if ([deviceString isEqualToString:@"iPad3,2"])      return @"iPad 3 (GSM+CDMA)";
+    if ([deviceString isEqualToString:@"iPad3,3"])      return @"iPad 3";
+    if ([deviceString isEqualToString:@"iPad3,4"])      return @"iPad 4 (WiFi)";
+    if ([deviceString isEqualToString:@"iPad3,5"])      return @"iPad 4";
+    if ([deviceString isEqualToString:@"iPad3,6"])      return @"iPad 4 (GSM+CDMA)";
+    if ([deviceString isEqualToString:@"iPad4,1"])      return @"iPad Air (WiFi)";
+    if ([deviceString isEqualToString:@"iPad4,2"])      return @"iPad Air (Cellular)";
+    if ([deviceString isEqualToString:@"iPad4,4"])      return @"iPad Mini 2 (WiFi)";
+    if ([deviceString isEqualToString:@"iPad4,5"])      return @"iPad Mini 2 (Cellular)";
+    if ([deviceString isEqualToString:@"iPad4,6"])      return @"iPad Mini 2";
+    if ([deviceString isEqualToString:@"iPad4,7"])      return @"iPad Mini 3";
+    if ([deviceString isEqualToString:@"iPad4,8"])      return @"iPad Mini 3";
+    if ([deviceString isEqualToString:@"iPad4,9"])      return @"iPad Mini 3";
+    if ([deviceString isEqualToString:@"iPad5,1"])      return @"iPad Mini 4 (WiFi)";
+    if ([deviceString isEqualToString:@"iPad5,2"])      return @"iPad Mini 4 (LTE)";
+    if ([deviceString isEqualToString:@"iPad5,3"])      return @"iPad Air 2";
+    if ([deviceString isEqualToString:@"iPad5,4"])      return @"iPad Air 2";
+    if ([deviceString isEqualToString:@"iPad6,3"])      return @"iPad Pro 9.7";
+    if ([deviceString isEqualToString:@"iPad6,4"])      return @"iPad Pro 9.7";
+    if ([deviceString isEqualToString:@"iPad6,7"])      return @"iPad Pro 12.9";
+    if ([deviceString isEqualToString:@"iPad6,8"])      return @"iPad Pro 12.9";
+    if ([deviceString isEqualToString:@"i386"])         return @"Simulator";
+    if ([deviceString isEqualToString:@"x86_64"])       return @"Simulator";
+    return deviceString;
+}
+
+
 
 @end

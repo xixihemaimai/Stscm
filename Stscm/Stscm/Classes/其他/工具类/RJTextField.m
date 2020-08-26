@@ -34,7 +34,7 @@
     if (self = [super initWithFrame:frame]) {
         self.textColor = SELECT_COLOR(85, 85, 85,1);
         self.textLengthLabelColor = SELECT_COLOR(92, 94, 102,1);
-        //    self.placeholder = SELECT_COLOR(1, 183, 164,1);
+        //self.placeholder = SELECT_COLOR(1, 183, 164,1);
         self.lineDefaultColor = SELECT_COLOR(220, 220, 220,1);
         self.lineSelectedColor = SELECT_COLOR(1, 183, 164,1);
         self.lineWarningColor = SELECT_COLOR(252, 57, 24,1);
@@ -138,7 +138,8 @@
     if(!_headerPlaceLabel){
         _headerPlaceLabel = [UILabel new];
         _headerPlaceLabel.backgroundColor = [UIColor clearColor];
-        _headerPlaceLabel.textColor = SELECT_COLOR(1, 183, 164, 1);
+//        _headerPlaceLabel.textColor = SELECT_COLOR(1, 183, 164, 1);
+        _headerPlaceLabel.textColor = [UIColor colorWithDyColorChangObject:self andHexLightColorStr:@"#FCC828" andHexDarkColorStr:@"#FCC828"];
         _headerPlaceLabel.textAlignment = NSTextAlignmentLeft;
         _headerPlaceLabel.font = [UIFont systemFontOfSize:CURRENT_SIZE(14)];
         _headerPlaceLabel.text = self.textField.placeholder;
@@ -216,9 +217,12 @@
     }else{
         [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.errorLabel.alpha = 0.0;
-            self.bottomLine.backgroundColor = self.lineSelectedColor;
+            self.bottomLine.backgroundColor = [UIColor colorWithDyColorChangObject:self andHexLightColorStr:@"#FCC828" andHexDarkColorStr:@"#FCC828"];
             self.lengthLabel.textColor = self.textLengthLabelColor;
+            
             self.textField.textColor = self.textColor;
+            
+            
             //self.placeHolderLabel.textColor = self.placeHolderLabelColor;
         } completion:nil];
     }
@@ -266,7 +270,8 @@
             self.headerPlaceLabel.alpha = 1.0f;
             self.headerPlaceLabel.text = self.placeholder;
             self.textField.placeholder = @"";
-            self.bottomLine.backgroundColor = self.lineSelectedColor;
+//            self.bottomLine.backgroundColor = self.lineSelectedColor;
+            self.bottomLine.backgroundColor = [UIColor colorWithDyColorChangObject:self andHexLightColorStr:@"#FCC828" andHexDarkColorStr:@"#FCC828"];
         } completion:nil];
     }
 }

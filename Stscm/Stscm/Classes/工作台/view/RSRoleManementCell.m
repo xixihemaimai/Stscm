@@ -15,7 +15,7 @@
         
         UILabel * roleLabel = [[UILabel alloc]init];
         roleLabel.text = @"管理员";
-        roleLabel.textColor = [UIColor colorWithHexColorStr:@"#333333"];
+        roleLabel.textColor = [UIColor colorWithDyColorChangObject:roleLabel andHexLightColorStr:@"#333333" andHexDarkColorStr:@"#ffffff"];
         roleLabel.textAlignment = NSTextAlignmentLeft;
         roleLabel.font = [UIFont systemFontOfSize:17];
         [self.contentView addSubview:roleLabel];
@@ -25,6 +25,7 @@
         [modifyBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
         modifyBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:modifyBtn];
+        _modifyBtn = modifyBtn;
         
         
         UIView * midView = [[UIView alloc]init];
@@ -38,7 +39,7 @@
         [deleteBtn setTitleColor:[UIColor colorWithHexColorStr:@"#FCC828"] forState:UIControlStateNormal];
         deleteBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:deleteBtn];
-        
+        _deleteBtn = deleteBtn;
         
         UIView * bottomview = [[UIView alloc]init];
         bottomview.backgroundColor = [UIColor colorWithHexColorStr:@"#F2F2F2"];

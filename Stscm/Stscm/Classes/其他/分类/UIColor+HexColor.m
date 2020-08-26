@@ -105,7 +105,67 @@
 
 
 
++ (UIColor *)colorLabelWithDyColorChangObject{
+    if (@available(iOS 13.0, *)) {
+        UIColor * dyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
+                return [self colorWithHexColorStr:@"#393939"];
+            }else{
+                return [self colorWithHexColorStr:@"#ffffff"];
+            }
+        }];
+        return dyColor;
+    } else {
+        return [self colorWithHexColorStr:@"#393939"];
+    }
+}
 
++ (UIColor *)colorButtonNormalWithDyColorChangObject{
+    if (@available(iOS 13.0, *)) {
+        UIColor * dyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
+                return [self colorWithHexColorStr:@"#9B9B9B"];
+            }else{
+                return [self colorWithHexColorStr:@"#ffffff"];
+            }
+        }];
+        return dyColor;
+    } else {
+        return [self colorWithHexColorStr:@"#9B9B9B"];
+    }
+}
+
++ (UIColor *)colorButtonSelectWithDyColorChangObject{
+    if (@available(iOS 13.0, *)) {
+        UIColor * dyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
+                return [self colorWithHexColorStr:@"#2E2E2E"];
+            }else{
+                return [self colorWithHexColorStr:@"#FCC828"];
+            }
+        }];
+        return dyColor;
+    } else {
+        return [self colorWithHexColorStr:@"#2E2E2E"];
+    }
+}
+
+
+
++ (UIColor *)colorButtonBackgroundColorWithDyColorChangObject{
+    if (@available(iOS 13.0, *)) {
+        UIColor * dyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight) {
+                return [self colorWithHexColorStr:@"#ffffff"];
+            }else{
+                return [self colorWithHexColorStr:@"#ffffff"];
+            }
+        }];
+        return dyColor;
+    } else {
+        return [self colorWithHexColorStr:@"#ffffff"];
+    }
+}
 
 
 @end

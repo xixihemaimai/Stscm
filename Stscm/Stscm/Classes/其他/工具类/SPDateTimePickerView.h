@@ -52,6 +52,7 @@ typedef void(^TimeBlock)(BOOL isCancel,NSString * timeStr);
  */
 @property(nonatomic, copy)NSString *title;
 
+
 @property(nonatomic, strong)id<SPDateTimePickerViewDelegate>delegate;
 /**
  * 时间模式
@@ -60,6 +61,9 @@ typedef void(^TimeBlock)(BOOL isCancel,NSString * timeStr);
 
 
 @property (nonatomic,strong)TimeBlock timeBlock;
+
+/**控制时间选择*/
+@property (nonatomic,strong)NSString * timeStr;
 
 /**
  * 隐藏

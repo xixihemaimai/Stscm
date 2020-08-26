@@ -51,7 +51,8 @@
 - (UIPickerView *)pickerView {
     if (!_pickerView) {
         _pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, 180)];
-        _pickerView.backgroundColor = [UIColor whiteColor];
+//        _pickerView.backgroundColor = [UIColor whiteColor];
+        _pickerView.backgroundColor = [UIColor colorWithDyColorChangObject:_pickerView andHexLightColorStr:@"#ffffff" andHexDarkColorStr:@"#000000"];
         _pickerView.dataSource=self;
         _pickerView.delegate=self;
     }
@@ -784,6 +785,8 @@
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
+    
+    NSLog(@"===============111111111111================%@",self.timeStr);
     
     switch (self.pickerViewMode) {
         case 0:

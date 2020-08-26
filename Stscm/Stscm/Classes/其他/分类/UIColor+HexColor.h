@@ -30,4 +30,12 @@
 /**暗黑模式和白天模式要改变的颜色*/
 + (UIColor *)colorWithDyColorChangObject:(UIView *)object andHexLightColorStr:(NSString *)lightcolorStr andHexDarkColorStr:(NSString *)darkColorStr;
 
+/**文字的暗黑和白天模式的颜色*/
++ (UIColor *)colorLabelWithDyColorChangObject;
+/**按键正常模式的暗黑和白天模式的颜色*/
++ (UIColor *)colorButtonNormalWithDyColorChangObject;
+/**按键选中模式的暗黑和白天模式的颜色*/
++ (UIColor *)colorButtonSelectWithDyColorChangObject;
+/**按键正常模式的暗黑和白天模式的颜色*/
++ (UIColor *)colorButtonBackgroundColorWithDyColorChangObject;
 @end

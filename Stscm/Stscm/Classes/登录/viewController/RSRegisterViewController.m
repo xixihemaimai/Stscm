@@ -27,50 +27,45 @@
 
 @implementation RSRegisterViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = YES;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setRegisterUIView:self.view andTitle:@"注册"];
     self.emptyView.hidden = YES;
     [self setUi];
+//    NSString * number = @"123.4444";
+//    NSLog(@"=========================%@",[number yxy_stringByAdding:@"0.00000"]);
 }
-
+//创建界面
 - (void)setUi{
     UILabel * name = [[UILabel alloc]init];
     name.text = @"手机号";
     name.textAlignment = NSTextAlignmentLeft;
-    name.textColor = [UIColor colorWithHexColorStr:@"#393939"];
+    name.textColor = [UIColor colorLabelWithDyColorChangObject];
     name.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:name];
     
     RJTextField * account = [[RJTextField alloc]init];
     account.maxLength = 11;
-    [self.view addSubview:account];
     
+    [self.view addSubview:account];
+    _account = account;
     
     UILabel * codeName = [[UILabel alloc]init];
     codeName.text = @"验证码";
     codeName.textAlignment = NSTextAlignmentLeft;
-    codeName.textColor = [UIColor colorWithHexColorStr:@"#393939"];
+    codeName.textColor = [UIColor colorLabelWithDyColorChangObject];
     codeName.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:codeName];
-    _account = account;
     
     RJTextField * password = [[RJTextField alloc]init];
     password.maxLength = 6;
     [self.view addSubview:password];
-    
-    
-    
-    account.textField.keyboardType = UIKeyboardTypePhonePad;
-    
-    password.textField.keyboardType = UIKeyboardTypePhonePad;
     _password = password;
-    
     
     account.placeholder = @"请输入手机号";
     password.placeholder = @"请输入验证码";
@@ -83,13 +78,18 @@
     password.errorStr = @"超出字数限制";
     password.type = @"phone";
     
+    account.textField.keyboardType = UIKeyboardTypePhonePad;
+    password.textField.keyboardType = UIKeyboardTypePhonePad;
+    
+    account.textColor = [UIColor colorLabelWithDyColorChangObject];
+    password.textColor = [UIColor colorLabelWithDyColorChangObject];
     
     UIButton * againBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [againBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     againBtn.userInteractionEnabled = YES;
     [againBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
     againBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [againBtn setTitleColor:[UIColor colorWithHexColorStr:@"#9B9B9B"] forState:UIControlStateNormal];
+    [againBtn setTitleColor:[UIColor colorButtonNormalWithDyColorChangObject] forState:UIControlStateNormal];
     [self.view addSubview:againBtn];
     _againBtn = againBtn;
     
@@ -101,7 +101,6 @@
     [registerBtn addTarget:self action:@selector(registerAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registerBtn];
     
-    
     NSDictionary * underAttribtDic  = @{NSUnderlineStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle],NSForegroundColorAttributeName:[UIColor colorWithRed:252/255.0 green:200/255.0 blue:40/255.0 alpha:1.0]};
     NSMutableAttributedString * underAttr = [[NSMutableAttributedString alloc] initWithString:@"已有账号，去登录" attributes:underAttribtDic];
     UIButton * accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -109,7 +108,6 @@
     accountBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [accountBtn addTarget:self action:@selector(jumpLoginAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:accountBtn];
-    
     
     UIButton * choiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [choiceBtn setImage:[UIImage imageNamed:@"未选"] forState:UIControlStateNormal];
@@ -222,7 +220,6 @@
     codeName.text = @"验证码";
     againBtn.hidden = NO;
 }
-
 //FIXME:获取验证码的按键
 - (void)buttonAction:(UIButton *)sender{
     NSLog(@"----------------%@",_account.textField.text);
@@ -231,12 +228,9 @@
         [SVProgressHUD setMinimumDismissTimeInterval:0.3];
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
         [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
-        
     }else{
         //此处可以先调接口，成功后再调此方法
-//        [[SmsButtonHandle sharedSmsBHandle] startTimer];
         [self messageTimeUbutton:sender];
-        
         NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",_account.textField.text];
         //这边要对发短信
         [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
@@ -244,8 +238,6 @@
         }];
     }
 }
-
-
 //FIXME:是否同意需要隐私按键
 - (void)choiceAction:(UIButton *)choiceBtn{
     choiceBtn.selected = !choiceBtn.selected;
@@ -254,31 +246,30 @@
 
 //FIXME:跳转到登录界面
 - (void)jumpLoginAction:(UIButton *)jumpLoginBtn{
-//    if ([_button.currentTitle isEqualToString:@"获取验证码"] || [_button.currentTitle isEqualToString:@"重新发送"]) {
-        RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
-        [self.navigationController pushViewController:loginVc animated:YES];
-//    }else{
-//        jxt_showToastTitle(@"已经在执行获取验证码的工作中", 0.75);
-//    }
+//    if ([[self backViewController]isKindOfClass:[RSLoginViewController class]]){
+//          //上一个控制器为注册页面
+//          NSLog(@"++++++++++++++++++++++++++++++++++");
+//          [self.navigationController popViewControllerAnimated:YES];
+//      }else{
+//          NSLog(@"-----------------------------------------");
+          RSLoginViewController * loginVc = [[RSLoginViewController alloc]init];
+          [self.navigationController pushViewController:loginVc animated:YES];
+//      }
 }
-
 
 
 
 //FIXME:注册方法
 - (void)registerAction:(UIButton *)registerBtn{
-    
     //电话号码验证
     if (![self isTrueMobile:_account.textField.text]) {
         [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
         return;
     }
-    
     if (_password.textField.text.length < 6 || _password.textField.text.length > 6) {
         [SVProgressHUD showErrorWithStatus:@"请输入正确验证码"];
         return;
     }
-    
     if (_choiceBtn.selected != YES) {
         [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
         return;
@@ -292,7 +283,4 @@
         [self.navigationController pushViewController:passwordVc animated:YES];
     }];
 }
-
-
-
 @end
