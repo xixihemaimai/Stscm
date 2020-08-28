@@ -41,7 +41,7 @@
 #import <UIImageView+WebCache.h>
 #import <Masonry.h>
 #import <KTVHTTPCache.h>
-#import <JXTAlertView.h>
+#import <JXTAlertManager/JXTAlertManagerHeader.h>
 #import <TZImagePickerController.h>
 #import <MJExtension/MJExtension.h>
 
@@ -49,6 +49,7 @@
 #import "RSMyNavigationViewController.h"
 #import "UIView+Frame.h"
 #import "UIColor+HexColor.h"
+#import "UIColor+ZZExtension.h"
 #import "RSCustomLabel.h"
 #import "ZZQEmptyView.h"
 #import "Nonetwork.h"
@@ -74,6 +75,11 @@
 #import "RSCurrentRole.h"
 //滑块验证码
 #import "MockVerifyView.h"
+//图片选择
+#import "ZZCustomCameraViewController.h"
+#import "UIButton+ZZExtension.h"
+#import "UILabel+ZZExtension.h"
+#import "UIView+ZZExtension.h"
 
 //文字大小适配
 #define Textadaptation(a) (NSInteger)a * (SCW / 375.0)

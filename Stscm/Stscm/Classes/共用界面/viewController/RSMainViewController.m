@@ -53,7 +53,9 @@
     [self addSubCtrls];
 }
 
-- (void)addSubCtrls {   
+- (void)addSubCtrls {
+    
+    self.tabBar.tintColor = [UIColor colorWithHexColorStr:@"#FC9C0A"];
         //消息
         RSMessageViewController * messageVc = [[RSMessageViewController alloc]init];
         messageVc.tabBarItem.tag = 0;

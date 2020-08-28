@@ -191,12 +191,12 @@
     
     choiceBtn.sd_layout
     .leftSpaceToView(self.view, 72)
-    .bottomSpaceToView(self.view, 37)
-    .widthIs(12)
+    .bottomSpaceToView(self.view, 33)
+    .widthIs(20)
     .heightEqualToWidth();
     
     choiceLabel.sd_layout
-    .leftSpaceToView(choiceBtn, 5)
+    .leftSpaceToView(choiceBtn, 0)
     .bottomSpaceToView(self.view, 35)
     .heightIs(16.5)
     .widthIs(100);
@@ -237,6 +237,10 @@
 
 //跳过
 - (void)jumpAction:(UIButton *)jumpBtn{
+    if (_choiceBtn.selected != YES) {
+           jxt_showToastMessage(@"请同意隐私政策", 0.75);
+           return;
+    }
     //用手机号，
      [self registerNetWorkType:@"vcode"];
     //用验证码获取
@@ -287,7 +291,7 @@
         return;
     }
     if (_choiceBtn.selected != YES) {
-        [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
+        jxt_showToastMessage(@"请同意隐私政策", 0.75);
         return;
     }
     //这边是密码获取
@@ -329,10 +333,16 @@
            NSString * ukey = [NSString stringWithFormat:@"uKey=%@",udid];
            [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:ukey andURLName:URL_KEY_GET_IOS  andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
                NSLog(@"=+++++++++++++++++++++++++++++++++++++++++++++++%@",responseObject);
-                jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
+//                jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
+               [SVProgressHUD showWithStatus:@"正在执行登录中..."];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.phoneStr andPasswordStr:pwd andPKey:responseObject[@"data"][@"pKey"] andUkey:responseObject[@"data"][@"uKey"] andContentType:@"JSON" andLoginMode:@"0" andComputerName:deviceName  andLoginArea:self.placeMark andBlock:^(id  _Nonnull responseObject, BOOL success) {
                         NSLog(@"----33333---------------%@",responseObject);
+                        [SVProgressHUD dismiss];
+                        //改变根控制器
+                        RSMainViewController * mainVc = [[RSMainViewController alloc]init];
+                        AppDelegate * appdelegate =(AppDelegate *)[UIApplication sharedApplication].delegate;
+                        appdelegate.window.rootViewController = mainVc;
                     }];
                 });
            }];

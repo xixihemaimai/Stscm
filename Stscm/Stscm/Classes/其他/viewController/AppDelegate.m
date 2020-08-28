@@ -31,16 +31,19 @@
     // Override point for customization after application launch.
     
     
-    
+    [SVProgressHUD setMinimumDismissTimeInterval:0.3];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo = [Usertilities GetNSUserDefaults];
     if (userInfo.loginToken.length < 1) {
         [Usertilities clearLocalUserModel];
         RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
         RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];
         self.window.rootViewController = myNav;
+//        [UserInfoContext clear];
+        [Usertilities clearLocalUserModel];
     }else{
         
-        NSLog(@"====================%@",userInfo.loginToken);
+        NSLog(@"=========2222222222222222222===========%@",userInfo.userHeadImageUrl);
        //这边要进行网络请求来进行获取用户信息
         NSString * parameter = [NSString string];
 //        NSString * content = @"e1fe219d0b2143d4ae9a41ea2c5c556";
@@ -58,7 +61,7 @@
                 RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
                 RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];
                 self.window.rootViewController = myNav;
-                [UserInfoContext clear];
+//                [UserInfoContext clear];
                 [Usertilities clearLocalUserModel];
             }
         }];

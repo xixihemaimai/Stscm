@@ -99,6 +99,7 @@
     //拼凑成一个16位的数
     int a = arc4random() % 100000;
     NSString *str = [NSString stringWithFormat:@"%06d", a];
+    //const
     NSString * const aes2 = [NSString stringWithFormat:@"%@%@",aes1,str];
     [user setObject:aes2 forKey:@"AES"];
     [user synchronize];
@@ -107,18 +108,24 @@
     //    NSString * codeStr = [NSString string];
     if ([type isEqualToString:@"pwd"]) {
         loginType = @"pwd";
+        password = [MyMD5 md5:password];
     }else{
         loginType = @"vcode";
     }
+//    computerName =@"Simulator";
+//    loginArea = @"未知";
     NSString * data = [NSString stringWithFormat:@"{userPhone:'%@',loginType:'%@',aesKey:'%@',password:'%@',verificationCode:'%@',loginMode:'%@',computerName:'%@',loginArea:'%@'}",phoneNumber,loginType,aes2,password,code,loginMode,computerName,loginArea];
+//    NSLog(@"=================================================================%@",data);
     //RSA加密
     NSString * dict = [RSAEncryptor encryptString:data publicKey:pKey];
+//    NSLog(@"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%@",dict);
+//    ukey = @"AF69B3D1-344B-41E2-8416-EA9B734F3EF3";
     NSDictionary * rsaEncryptor = @{@"data":dict,@"uKey":ukey};
     [network newReloadWebServiceNetDataUrl:url andType:request withParameters:rsaEncryptor andURLName:url andContentType:contentType withBlock:^(id  _Nonnull responseObject, BOOL success) {
         if (block) {
             NSDictionary * dict = [network decryptMethodWithDictionary:responseObject];
             NSLog(@"-----------------------%@",dict);
-            UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo;
+            
             //这边是登录接口的获取用户信息
 //            if (responseObject[@"data"][@"loggedAccount"][@"currentRole"] != nil) {
 //
@@ -177,11 +184,25 @@
 //                NSLog(@"=============232323232================================");
 //            }else{
 //                 NSLog(@"=============111111111================================");
-                userInfo = [UserInfo mj_objectWithKeyValues:dict];
-//            }
-            [Usertilities SetNSUserDefaults:userInfo];
             
-            NSLog(@"==============================%@",userInfo.loginToken);
+            [UserInfoContext sharedUserInfoContext].userInfo = [UserInfo mj_objectWithKeyValues:dict];
+            
+//            [UserInfoContext sharedUserInfoContext].userInfo.aesKey = dict[@"aesKey"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.loginArea = dict[@"loginArea"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.loginMode = dict[@"loginMode"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.loginTime = dict[@"loginTime"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.loginToken = dict[@"loginToken"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.passwordSet = dict[@"passwordSet"];
+//
+//            [UserInfoContext sharedUserInfoContext].userInfo.uid = dict[@"uid"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.userHeadImageUrl = dict[@"userHeadImageUrl"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.userName = dict[@"userName"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.userPhone = dict[@"userPhone"];
+//            [UserInfoContext sharedUserInfoContext].userInfo.visitor = dict[@"visitor"];
+//            }
+            
+            [Usertilities SetNSUserDefaults:[UserInfoContext sharedUserInfoContext].userInfo];
+            
             
             block(responseObject,YES);
         }

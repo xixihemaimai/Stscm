@@ -46,15 +46,16 @@
 		0466136424C14823004B570D /* RSRoleManementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136324C14823004B570D /* RSRoleManementCell.m */; };
 		0466136724C1567B004B570D /* RSAddRoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136624C1567B004B570D /* RSAddRoleViewController.m */; };
 		0466136A24C18A07004B570D /* RSAddRoleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0466136924C18A07004B570D /* RSAddRoleCell.m */; };
-		047EE9C924F603370025A6B7 /* JPImageresizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9B924F603370025A6B7 /* JPImageresizerView.m */; };
-		047EE9CA24F603370025A6B7 /* JPImageresizerSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9BB24F603370025A6B7 /* JPImageresizerSlider.m */; };
-		047EE9CB24F603370025A6B7 /* JPImageresizerFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9BD24F603370025A6B7 /* JPImageresizerFrameView.m */; };
-		047EE9CC24F603370025A6B7 /* JPImageresizerConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C224F603370025A6B7 /* JPImageresizerConfigure.m */; };
-		047EE9CD24F603370025A6B7 /* JPImageresizerBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C424F603370025A6B7 /* JPImageresizerBlurView.m */; };
-		047EE9CE24F603370025A6B7 /* CALayer+JPImageresizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C624F603370025A6B7 /* CALayer+JPImageresizer.m */; };
-		047EE9CF24F603370025A6B7 /* JPImageresizerVideoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C724F603370025A6B7 /* JPImageresizerVideoObject.m */; };
-		047EE9D024F603370025A6B7 /* JPImageresizerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9C824F603370025A6B7 /* JPImageresizerTool.m */; };
 		047EE9D324F60A170025A6B7 /* MockVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9D224F60A170025A6B7 /* MockVerifyView.m */; };
+		047EE9EA24F753240025A6B7 /* UILabel+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9D824F753240025A6B7 /* UILabel+ZZExtension.m */; };
+		047EE9EB24F753240025A6B7 /* ZZCutCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9D924F753240025A6B7 /* ZZCutCircle.m */; };
+		047EE9EC24F753240025A6B7 /* UIButton+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9DA24F753240025A6B7 /* UIButton+ZZExtension.m */; };
+		047EE9ED24F753240025A6B7 /* UIColor+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9E024F753240025A6B7 /* UIColor+ZZExtension.m */; };
+		047EE9EE24F753240025A6B7 /* ZZCutGridLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9E124F753240025A6B7 /* ZZCutGridLayer.m */; };
+		047EE9EF24F753240025A6B7 /* UIView+ZZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9E224F753240025A6B7 /* UIView+ZZExtension.m */; };
+		047EE9F024F753240025A6B7 /* ZZImageEditTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9E624F753240025A6B7 /* ZZImageEditTool.m */; };
+		047EE9F124F753240025A6B7 /* ZZCustomCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9E724F753240025A6B7 /* ZZCustomCameraViewController.m */; };
+		047EE9F224F753240025A6B7 /* ZZCustomCameraControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 047EE9E824F753240025A6B7 /* ZZCustomCameraControlView.m */; };
 		0486AFCD24DE35A1002FB95C /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486AFCC24DE35A0002FB95C /* UITextView+WZB.m */; };
 		0486AFD124E0EB9F002FB95C /* JHSysAlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486AFD024E0EB9F002FB95C /* JHSysAlertUtil.m */; };
 		0486AFD424E12167002FB95C /* RSTypeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486AFD324E12167002FB95C /* RSTypeListViewController.m */; };
@@ -187,25 +188,26 @@
 		0466136624C1567B004B570D /* RSAddRoleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAddRoleViewController.m; sourceTree = "<group>"; };
 		0466136824C18A07004B570D /* RSAddRoleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAddRoleCell.h; sourceTree = "<group>"; };
 		0466136924C18A07004B570D /* RSAddRoleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAddRoleCell.m; sourceTree = "<group>"; };
-		047EE9B824F603370025A6B7 /* JPImageresizerConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerConfigure.h; sourceTree = "<group>"; };
-		047EE9B924F603370025A6B7 /* JPImageresizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerView.m; sourceTree = "<group>"; };
-		047EE9BA24F603370025A6B7 /* CALayer+JPImageresizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+JPImageresizer.h"; sourceTree = "<group>"; };
-		047EE9BB24F603370025A6B7 /* JPImageresizerSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerSlider.m; sourceTree = "<group>"; };
-		047EE9BC24F603370025A6B7 /* JPImageresizerBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerBlurView.h; sourceTree = "<group>"; };
-		047EE9BD24F603370025A6B7 /* JPImageresizerFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerFrameView.m; sourceTree = "<group>"; };
-		047EE9BE24F603370025A6B7 /* JPImageresizerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerTool.h; sourceTree = "<group>"; };
-		047EE9BF24F603370025A6B7 /* JPImageresizerVideoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerVideoObject.h; sourceTree = "<group>"; };
-		047EE9C024F603370025A6B7 /* JPImageresizerTypedef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerTypedef.h; sourceTree = "<group>"; };
-		047EE9C124F603370025A6B7 /* JPImageresizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerView.h; sourceTree = "<group>"; };
-		047EE9C224F603370025A6B7 /* JPImageresizerConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerConfigure.m; sourceTree = "<group>"; };
-		047EE9C324F603370025A6B7 /* JPImageresizerFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerFrameView.h; sourceTree = "<group>"; };
-		047EE9C424F603370025A6B7 /* JPImageresizerBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerBlurView.m; sourceTree = "<group>"; };
-		047EE9C524F603370025A6B7 /* JPImageresizerSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPImageresizerSlider.h; sourceTree = "<group>"; };
-		047EE9C624F603370025A6B7 /* CALayer+JPImageresizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+JPImageresizer.m"; sourceTree = "<group>"; };
-		047EE9C724F603370025A6B7 /* JPImageresizerVideoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerVideoObject.m; sourceTree = "<group>"; };
-		047EE9C824F603370025A6B7 /* JPImageresizerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPImageresizerTool.m; sourceTree = "<group>"; };
 		047EE9D124F60A170025A6B7 /* MockVerifyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockVerifyView.h; sourceTree = "<group>"; };
 		047EE9D224F60A170025A6B7 /* MockVerifyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockVerifyView.m; sourceTree = "<group>"; };
+		047EE9D824F753240025A6B7 /* UILabel+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ZZExtension.m"; sourceTree = "<group>"; };
+		047EE9D924F753240025A6B7 /* ZZCutCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCutCircle.m; sourceTree = "<group>"; };
+		047EE9DA24F753240025A6B7 /* UIButton+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ZZExtension.m"; sourceTree = "<group>"; };
+		047EE9DB24F753240025A6B7 /* UIView+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZZExtension.h"; sourceTree = "<group>"; };
+		047EE9DC24F753240025A6B7 /* ZZCutGridLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCutGridLayer.h; sourceTree = "<group>"; };
+		047EE9DD24F753240025A6B7 /* ZZCustomCameraControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCustomCameraControlView.h; sourceTree = "<group>"; };
+		047EE9DE24F753240025A6B7 /* ZZCustomCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCustomCameraViewController.h; sourceTree = "<group>"; };
+		047EE9DF24F753240025A6B7 /* ZZImageEditTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZImageEditTool.h; sourceTree = "<group>"; };
+		047EE9E024F753240025A6B7 /* UIColor+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZZExtension.m"; sourceTree = "<group>"; };
+		047EE9E124F753240025A6B7 /* ZZCutGridLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCutGridLayer.m; sourceTree = "<group>"; };
+		047EE9E224F753240025A6B7 /* UIView+ZZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZZExtension.m"; sourceTree = "<group>"; };
+		047EE9E324F753240025A6B7 /* UIButton+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ZZExtension.h"; sourceTree = "<group>"; };
+		047EE9E424F753240025A6B7 /* ZZCutCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCutCircle.h; sourceTree = "<group>"; };
+		047EE9E524F753240025A6B7 /* UILabel+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ZZExtension.h"; sourceTree = "<group>"; };
+		047EE9E624F753240025A6B7 /* ZZImageEditTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZImageEditTool.m; sourceTree = "<group>"; };
+		047EE9E724F753240025A6B7 /* ZZCustomCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCustomCameraViewController.m; sourceTree = "<group>"; };
+		047EE9E824F753240025A6B7 /* ZZCustomCameraControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCustomCameraControlView.m; sourceTree = "<group>"; };
+		047EE9E924F753240025A6B7 /* UIColor+ZZExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZZExtension.h"; sourceTree = "<group>"; };
 		0486AFCB24DE35A0002FB95C /* UITextView+WZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WZB.h"; sourceTree = "<group>"; };
 		0486AFCC24DE35A0002FB95C /* UITextView+WZB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WZB.m"; sourceTree = "<group>"; };
 		0486AFCF24E0EB9F002FB95C /* JHSysAlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHSysAlertUtil.h; sourceTree = "<group>"; };
@@ -366,7 +368,7 @@
 		044758DA248DE6DC003BBBCF /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				047EE9B724F603370025A6B7 /* JPImageresizerView */,
+				047EE9D724F753240025A6B7 /* zzcustomCamera */,
 				047EE9B324F6026A0025A6B7 /* PuzzleVerify */,
 				048CBFDF24EBB7400059E6F9 /* UserInfoTool */,
 				048CBF8E24EB711D0059E6F9 /* UIColor+YMHex */,
@@ -555,28 +557,29 @@
 			path = ../../../../../../../PuzzleVerify;
 			sourceTree = "<group>";
 		};
-		047EE9B724F603370025A6B7 /* JPImageresizerView */ = {
+		047EE9D724F753240025A6B7 /* zzcustomCamera */ = {
 			isa = PBXGroup;
 			children = (
-				047EE9B824F603370025A6B7 /* JPImageresizerConfigure.h */,
-				047EE9B924F603370025A6B7 /* JPImageresizerView.m */,
-				047EE9BA24F603370025A6B7 /* CALayer+JPImageresizer.h */,
-				047EE9BB24F603370025A6B7 /* JPImageresizerSlider.m */,
-				047EE9BC24F603370025A6B7 /* JPImageresizerBlurView.h */,
-				047EE9BD24F603370025A6B7 /* JPImageresizerFrameView.m */,
-				047EE9BE24F603370025A6B7 /* JPImageresizerTool.h */,
-				047EE9BF24F603370025A6B7 /* JPImageresizerVideoObject.h */,
-				047EE9C024F603370025A6B7 /* JPImageresizerTypedef.h */,
-				047EE9C124F603370025A6B7 /* JPImageresizerView.h */,
-				047EE9C224F603370025A6B7 /* JPImageresizerConfigure.m */,
-				047EE9C324F603370025A6B7 /* JPImageresizerFrameView.h */,
-				047EE9C424F603370025A6B7 /* JPImageresizerBlurView.m */,
-				047EE9C524F603370025A6B7 /* JPImageresizerSlider.h */,
-				047EE9C624F603370025A6B7 /* CALayer+JPImageresizer.m */,
-				047EE9C724F603370025A6B7 /* JPImageresizerVideoObject.m */,
-				047EE9C824F603370025A6B7 /* JPImageresizerTool.m */,
+				047EE9D824F753240025A6B7 /* UILabel+ZZExtension.m */,
+				047EE9E524F753240025A6B7 /* UILabel+ZZExtension.h */,
+				047EE9E424F753240025A6B7 /* ZZCutCircle.h */,
+				047EE9D924F753240025A6B7 /* ZZCutCircle.m */,
+				047EE9DA24F753240025A6B7 /* UIButton+ZZExtension.m */,
+				047EE9E324F753240025A6B7 /* UIButton+ZZExtension.h */,
+				047EE9DB24F753240025A6B7 /* UIView+ZZExtension.h */,
+				047EE9E224F753240025A6B7 /* UIView+ZZExtension.m */,
+				047EE9DC24F753240025A6B7 /* ZZCutGridLayer.h */,
+				047EE9E124F753240025A6B7 /* ZZCutGridLayer.m */,
+				047EE9DD24F753240025A6B7 /* ZZCustomCameraControlView.h */,
+				047EE9E824F753240025A6B7 /* ZZCustomCameraControlView.m */,
+				047EE9DE24F753240025A6B7 /* ZZCustomCameraViewController.h */,
+				047EE9E724F753240025A6B7 /* ZZCustomCameraViewController.m */,
+				047EE9DF24F753240025A6B7 /* ZZImageEditTool.h */,
+				047EE9E624F753240025A6B7 /* ZZImageEditTool.m */,
+				047EE9E924F753240025A6B7 /* UIColor+ZZExtension.h */,
+				047EE9E024F753240025A6B7 /* UIColor+ZZExtension.m */,
 			);
-			path = JPImageresizerView;
+			path = zzcustomCamera;
 			sourceTree = "<group>";
 		};
 		0486AFCE24E0EB9F002FB95C /* JHAlertUtil */ = {
@@ -1099,7 +1102,7 @@
 				0466136724C1567B004B570D /* RSAddRoleViewController.m in Sources */,
 				0453CC5D24C58D30006ECA95 /* RSRoleTimeCell.m in Sources */,
 				04D6E813248DDEFF00BABB6F /* Stscm.xcdatamodeld in Sources */,
-				047EE9CA24F603370025A6B7 /* JPImageresizerSlider.m in Sources */,
+				047EE9EE24F753240025A6B7 /* ZZCutGridLayer.m in Sources */,
 				04F7D8CC24C043EB008CE45D /* RSCustomMenuCell.m in Sources */,
 				04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */,
 				0466135E24C140E2004B570D /* RSPersonFirstCell.m in Sources */,
@@ -1113,22 +1116,21 @@
 				0453CC6724C59559006ECA95 /* WSDatePickerView.m in Sources */,
 				0486AFD724E13495002FB95C /* RSTypeListCell.m in Sources */,
 				04F7D8C724C02A77008CE45D /* RSMineViewController.m in Sources */,
-				047EE9CC24F603370025A6B7 /* JPImageresizerConfigure.m in Sources */,
 				0453CC8524CEC6E3006ECA95 /* UIView+LLXAlertPop.m in Sources */,
-				047EE9CB24F603370025A6B7 /* JPImageresizerFrameView.m in Sources */,
+				047EE9EA24F753240025A6B7 /* UILabel+ZZExtension.m in Sources */,
 				048CBFE624EBB7400059E6F9 /* UserInfo.m in Sources */,
 				0453CC7E24C833EF006ECA95 /* RSPasswordViewController.m in Sources */,
 				04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */,
 				04475921249077A8003BBBCF /* ZZQEmptyView.m in Sources */,
 				0447591D248F8BBF003BBBCF /* RSCustomLabel.m in Sources */,
 				04FB05A724BEE680007DB579 /* RSLoginViewController.m in Sources */,
-				047EE9D024F603370025A6B7 /* JPImageresizerTool.m in Sources */,
 				04F7D8C424C02A57008CE45D /* RSMessageViewController.m in Sources */,
 				048CBF9124EB711E0059E6F9 /* UIColor+YMHex.m in Sources */,
-				047EE9CE24F603370025A6B7 /* CALayer+JPImageresizer.m in Sources */,
 				0453CC7B24C7D8B5006ECA95 /* RSAEncryptor.m in Sources */,
+				047EE9EB24F753240025A6B7 /* ZZCutCircle.m in Sources */,
 				047EE9D324F60A170025A6B7 /* MockVerifyView.m in Sources */,
 				04FEEF1624E4ED410063532C /* AmendCoordinate.m in Sources */,
+				047EE9EF24F753240025A6B7 /* UIView+ZZExtension.m in Sources */,
 				04F7D8D024C04A4A008CE45D /* RSMineInformationViewController.m in Sources */,
 				04475908248E0FB7003BBBCF /* RSStscmController.m in Sources */,
 				04FEEF1024E298300063532C /* XWCountryCodeController.m in Sources */,
@@ -1137,16 +1139,18 @@
 				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
 				04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */,
 				0486AFCD24DE35A1002FB95C /* UITextView+WZB.m in Sources */,
-				047EE9CF24F603370025A6B7 /* JPImageresizerVideoObject.m in Sources */,
 				0453CC8224C83917006ECA95 /* MyMD5.m in Sources */,
 				0453CC6F24C69CBF006ECA95 /* RSStscmAlertView.m in Sources */,
 				0453CC5A24C58944006ECA95 /* RSRoleUserCell.m in Sources */,
 				0466135D24C140E2004B570D /* RSPersonSecondCell.m in Sources */,
-				047EE9CD24F603370025A6B7 /* JPImageresizerBlurView.m in Sources */,
 				048CBFE824EBB7400059E6F9 /* UserInfoContext.m in Sources */,
+				047EE9F124F753240025A6B7 /* ZZCustomCameraViewController.m in Sources */,
 				048CBF8D24EB71180059E6F9 /* LSXPlacehoderTextView.m in Sources */,
+				047EE9ED24F753240025A6B7 /* UIColor+ZZExtension.m in Sources */,
 				0466136124C14771004B570D /* RSRoleManagementViewController.m in Sources */,
 				04475900248DEE09003BBBCF /* UIBarButtonItem+Item.m in Sources */,
+				047EE9EC24F753240025A6B7 /* UIButton+ZZExtension.m in Sources */,
+				047EE9F024F753240025A6B7 /* ZZImageEditTool.m in Sources */,
 				0488285B24EE6D6B00359508 /* RSLoggedAccount.m in Sources */,
 				044758FD248DECC2003BBBCF /* UIView+Frame.m in Sources */,
 				04FEEF0824E27E190063532C /* RSChagePhoneNumberViewController.m in Sources */,
@@ -1158,12 +1162,12 @@
 				0453CC5424C580BA006ECA95 /* RJTextField.m in Sources */,
 				0466136424C14823004B570D /* RSRoleManementCell.m in Sources */,
 				04FEEF1924E4F3A40063532C /* FSAES128.m in Sources */,
+				047EE9F224F753240025A6B7 /* ZZCustomCameraControlView.m in Sources */,
 				0453CC5724C5871E006ECA95 /* RSAddRoleHeaderView.m in Sources */,
 				0486AFD124E0EB9F002FB95C /* JHSysAlertUtil.m in Sources */,
 				04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */,
 				041925AD24BDA248002B794F /* RSRegisterViewController.m in Sources */,
 				0419256024B70907002B794F /* RSNetworkTool.m in Sources */,
-				047EE9C924F603370025A6B7 /* JPImageresizerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

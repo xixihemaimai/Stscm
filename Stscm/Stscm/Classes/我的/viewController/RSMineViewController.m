@@ -69,12 +69,21 @@
     userPhoneLabel.textAlignment = NSTextAlignmentCenter;
     userPhoneLabel.font = [UIFont systemFontOfSize:18];
     userPhoneLabel.textColor = [UIColor colorWithHexColorStr:@"#ffffff"];
-//    NSString * phoneStr = [UserInfoContext sharedUserInfoContext].userInfo.userName;
-//    NSString * withStr = @"*****";
-//    NSInteger fromIndex = 3;
-//    NSRange range = NSMakeRange(fromIndex,  withStr.length);
-//    NSString * phoneNumber = [phoneStr stringByReplacingCharactersInRange:range  withString:withStr];
-    userPhoneLabel.text = [UserInfoContext sharedUserInfoContext].userInfo.userName;
+    
+    if ([self isTrueMobile:[UserInfoContext sharedUserInfoContext].userInfo.userName]) {
+        //是电话号码
+            NSString * phoneStr = [UserInfoContext sharedUserInfoContext].userInfo.userName;
+            NSString * withStr = @"*****";
+            NSInteger fromIndex = 3;
+            NSRange range = NSMakeRange(fromIndex,  withStr.length);
+            NSString * phoneNumber = [phoneStr stringByReplacingCharactersInRange:range  withString:withStr];
+        userPhoneLabel.text = phoneNumber;
+    }else{
+        userPhoneLabel.text = [UserInfoContext sharedUserInfoContext].userInfo.userName;
+    }
+    
+
+    
     [headerView addSubview:userPhoneLabel];
     userPhoneLabel.frame = CGRectMake(0, CGRectGetMaxY(userImage.frame) + 8, SCW, 25);
     self.tableview.tableHeaderView = headerView;
@@ -106,7 +115,7 @@
         //删除本地存储的用户信息
         [Usertilities clearLocalUserModel];
         //删除用户单利的用户信息的对象
-        [UserInfoContext clear];
+//        [UserInfoContext clear];
         //这边要变成登录和注册的界面
         RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
         RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];
@@ -151,14 +160,27 @@
                //userInfo.userHeadImageUrl = responseObject;
                //[Usertilities SetNSUserDefaults:userInfo];
             }else{
-                UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo = [Usertilities GetNSUserDefaults];
+//                UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo = [Usertilities GetNSUserDefaults];
                 //userInfo.userPhone = responseObject;
                 //NSString * phoneStr = responseObject;
                 //NSString * withStr = @"*****";
                 //NSInteger fromIndex = 3;
                 //NSRange range = NSMakeRange(fromIndex,  withStr.length);
                 //NSString * phoneNumber = [phoneStr stringByReplacingCharactersInRange:range  withString:withStr];
-                self.userPhoneLabel.text = responseObject;
+                
+                if ([self isTrueMobile:responseObject]) {
+                    //是电话号码
+                    NSString * phoneStr = [UserInfoContext sharedUserInfoContext].userInfo.userName;
+                    NSString * withStr = @"*****";
+                    NSInteger fromIndex = 3;
+                    NSRange range = NSMakeRange(fromIndex,  withStr.length);
+                    NSString * phoneNumber = [phoneStr stringByReplacingCharactersInRange:range  withString:withStr];
+                    self.userPhoneLabel.text = phoneNumber;
+                }else{
+                    self.userPhoneLabel.text = [UserInfoContext sharedUserInfoContext].userInfo.userName;
+                }
+                
+//                self.userPhoneLabel.text = responseObject;
             }
         };
     }else if (indexPath.row == 1) {

@@ -769,7 +769,7 @@
                     //删除本地存储的用户信息
                     [Usertilities clearLocalUserModel];
                     //删除用户单利的用户信息的对象
-                    [UserInfoContext clear];
+//                    [UserInfoContext clear];
                     //这边要变成登录和注册的界面
                     RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
                     RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];

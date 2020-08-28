@@ -234,12 +234,12 @@
     
     choiceBtn.sd_layout
     .leftSpaceToView(self.view, 72)
-    .bottomSpaceToView(self.view, 37)
-    .widthIs(12)
+    .bottomSpaceToView(self.view, 33)
+    .widthIs(20)
     .heightEqualToWidth();
     
     choiceLabel.sd_layout
-    .leftSpaceToView(choiceBtn, 5)
+    .leftSpaceToView(choiceBtn, 0)
     .bottomSpaceToView(self.view, 35)
     .heightIs(16.5)
     .widthIs(100);
@@ -336,7 +336,10 @@
         //密码登录
         //手机号
         if (![self isTrueMobile:_account.textField.text]) {
-            [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+//            [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+            
+            jxt_showToastMessage(@"请输入正确的手机号", 0.75);
+            
             return;
         }
         //密码
@@ -357,7 +360,7 @@
         }
         //是否同意隐私政策
         if (_choiceBtn.selected != YES) {
-            [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
+            jxt_showToastMessage(@"请同意隐私政策", 0.75);
             return;
         }
         type = @"pwd";
@@ -365,17 +368,17 @@
         //验证码登录
         //手机号
         if (![self isTrueMobile:_account.textField.text]) {
-            [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+            jxt_showToastMessage(@"请输入正确的电话号码", 0.75);
             return;
         }
         //验证码
         if (_password.textField.text.length < 6 || _password.textField.text.length > 6) {
-            [SVProgressHUD showErrorWithStatus:@"请输入正确验证码"];
+            jxt_showToastMessage(@"请输入正确验证码", 0.75);
             return;
         }
         //是否同意隐私政策
         if (_choiceBtn.selected != YES) {
-            [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
+             jxt_showToastMessage(@"请同意隐私政策", 0.75);
             return;
         }
         type = @"vcode";
@@ -400,13 +403,15 @@
     }
     [self reloadUdid:^(BOOL isValue,NSString * PublickKeyTemp,NSString * Ukey) {
         if (isValue && PublickKeyTemp.length > 0) {
-            jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
+//            jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
+            [SVProgressHUD showWithStatus:@"正在执行登录中..."];
             NSLog(@"-----------------------%@",PublickKeyTemp);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.account.textField.text andPasswordStr:pwd andPKey:PublickKeyTemp andUkey:Ukey andContentType:@"JSON" andLoginMode:@"0" andComputerName:deviceName andLoginArea:self.placeMark andBlock:^(id  _Nonnull responseObject, BOOL success) {
-                     NSLog(@"-----11111--------------%@",responseObject);
+                   //  NSLog(@"-----11111--------------%@",responseObject);
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        jxt_dismissHUD();
+//                        jxt_dismissHUD();
+                        [SVProgressHUD dismiss];
                         //登录之后要获取用户信息，然后在跳转到下面的界面
                         //改变根控制器
                         RSMainViewController * mainVc = [[RSMainViewController alloc]init];
@@ -425,6 +430,8 @@
     //设备的唯一标识号
     NSString *udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     NSString * uKey = [NSString stringWithFormat:@"uKey=%@",udid];
+//    NSLog(@"========================================================================%@",uKey);
+//    uKey = [NSString stringWithFormat:@"uKey=AF69B3D1-344B-41E2-8416-EA9B734F3EF3"];
     [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:uKey andURLName:URL_KEY_GET_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
         NSLog(@"============323232==================%@",responseObject);
 //        NSLog(@"==============================%@",self.PublickKeyTemp);

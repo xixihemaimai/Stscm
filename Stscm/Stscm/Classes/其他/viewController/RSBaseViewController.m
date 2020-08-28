@@ -325,7 +325,7 @@
 //    }else{
         [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
            CLPlacemark *placeMark = placemarks.firstObject;
-            self.placeMark = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",placeMark.country,placeMark.administrativeArea,placeMark.subLocality,placeMark.locality,placeMark.subThoroughfare, placeMark.thoroughfare,placeMark.name];
+            self.placeMark = [NSString stringWithFormat:@"%@%@%@",placeMark.country,placeMark.administrativeArea,placeMark.locality];
 //                   for (CLPlacemark *placeMark in placemarks) {
 //                       NSLog(@"++++++++位置:%@", placeMark.name);
 //                       NSLog(@"街道:%@", placeMark.thoroughfare);

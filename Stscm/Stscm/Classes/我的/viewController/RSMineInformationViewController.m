@@ -9,11 +9,12 @@
 #import "RSMineInformationViewController.h"
 #import "RSPersonFirstCell.h"
 #import "RSPersonSecondCell.h"
-
+#import <Photos/Photos.h>
 //修改手机号
 #import "RSChagePhoneNumberViewController.h"
 //修改用户名
 #import "LSXAlertInputView.h"
+
 
 @interface RSMineInformationViewController ()<TZImagePickerControllerDelegate>
 
@@ -106,48 +107,65 @@
     if (indexPath.section == 0) {
         RSPersonFirstCell * cell = (RSPersonFirstCell *)[self.tableview cellForRowAtIndexPath:indexPath];
         NSDictionary * parameters =@{@"":@""};
-        TZImagePickerController * imagePicker = [[TZImagePickerController alloc]initWithMaxImagesCount:1 delegate:self];
-        imagePicker.allowTakePicture = YES;
-        imagePicker.allowTakeVideo = NO;
-        [imagePicker setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                for (int i=0; i<photos.count; i++)
-                {
-                    UIImage * tempImg = photos[i];
-                    
-                    //这边添加一个对图片进行裁剪的地方
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [RSNetworkTool getDifferentTypeWithDataUrlString:URL_HEAD_IMAGE_IOS andLogin_token:[UserInfoContext sharedUserInfoContext].userInfo.loginToken withParameters:parameters andRequest:@"POST" andURLName:URL_HEAD_IMAGE_IOS andVideoUrl:[NSURL URLWithString:@""] andType:@"image" andArray:[NSMutableArray array] andImage:tempImg withBlock:^(id  _Nonnull responseObject, BOOL success) {
-                            [cell.headerview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",URL_IOS_PICTURE,responseObject]] placeholderImage:[UIImage imageNamed:@"Group 2"]];
-                            
-                            UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo;
-                            userInfo.userHeadImageUrl = responseObject;
-                            [Usertilities SetNSUserDefaults:userInfo];
-                            
-                            
-                            if (weakSelf.backUp) {
-                                weakSelf.backUp(responseObject,0);
-                            }
-                        }];
-                    });
-                    
-                    
-                    
-                    
-                }
-            });
-        }];
+        
+        ZZCustomCameraViewController * customCameraVc = [[ZZCustomCameraViewController alloc]init];
         if ([UIDevice currentDevice].systemVersion.floatValue >= 13.0) {
-            imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
+            customCameraVc.modalPresentationStyle = UIModalPresentationFullScreen;
         }
-        [self presentViewController:imagePicker animated:YES completion:nil];
+        [self presentViewController:customCameraVc animated:true completion:nil];
+        customCameraVc.selectImgBlock = ^(UIImage * img,ZZCustomCameraViewController * vc) {
+            [vc dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"++++++++++++++++32==3=23==================");
+//            dispatch_async(dispatch_get_main_queue(), ^{
+                [RSNetworkTool getDifferentTypeWithDataUrlString:URL_HEAD_IMAGE_IOS andLogin_token:[UserInfoContext sharedUserInfoContext].userInfo.loginToken withParameters:parameters andRequest:@"POST" andURLName:URL_HEAD_IMAGE_IOS andVideoUrl:[NSURL URLWithString:@""] andType:@"image" andArray:[NSMutableArray array] andImage:img withBlock:^(id  _Nonnull responseObject, BOOL success) {
+                    [cell.headerview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",URL_IOS_PICTURE,responseObject]] placeholderImage:[UIImage imageNamed:@"Group 2"]];
+                    NSLog(@"+++=+++++=+++++++++++=+++++++2+++++=+++++++=====================%@",responseObject);
+                    [UserInfoContext sharedUserInfoContext].userInfo.userHeadImageUrl = responseObject;
+                    NSLog(@"+++=+++++=+++++++++++=++++++++++++=+++++++=====================%@",[UserInfoContext sharedUserInfoContext].userInfo.userHeadImageUrl);
+                    [Usertilities SetNSUserDefaults:[UserInfoContext sharedUserInfoContext].userInfo];
+                    if (weakSelf.backUp) {
+                        weakSelf.backUp(responseObject,0);
+                    }
+                }];
+//            });
+        };
+        
+        
+        
+        
+        //        TZImagePickerController * imagePicker = [[TZImagePickerController alloc]initWithMaxImagesCount:1 delegate:self];
+        //        imagePicker.allowTakePicture = YES;
+        //        imagePicker.maxImagesCount = 1;
+        //        imagePicker.allowCrop = YES;
+        //        imagePicker.allowPreview = YES;
+        //        imagePicker.showSelectBtn = NO;
+        //        imagePicker.allowTakeVideo = NO;
+        //        imagePicker.needCircleCrop = YES;
+        //        imagePicker.cropRect = CGRectMake(SCW/2 - 30, SCH/2 - 30, 60, 60);
+        //        [imagePicker setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //                for (int i=0; i<photos.count; i++)
+        //                {
+        //                    UIImage * tempImg = photos[i];
+        //                    dispatch_async(dispatch_get_main_queue(), ^{
+        //                        [RSNetworkTool getDifferentTypeWithDataUrlString:URL_HEAD_IMAGE_IOS andLogin_token:[UserInfoContext sharedUserInfoContext].userInfo.loginToken withParameters:parameters andRequest:@"POST" andURLName:URL_HEAD_IMAGE_IOS andVideoUrl:[NSURL URLWithString:@""] andType:@"image" andArray:[NSMutableArray array] andImage:tempImg withBlock:^(id  _Nonnull responseObject, BOOL success) {
+        //                            [cell.headerview sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",URL_IOS_PICTURE,responseObject]] placeholderImage:[UIImage imageNamed:@"Group 2"]];
+        //                            NSLog(@"+++=+++++=+++++++++++=+++++++2+++++=+++++++=====================%@",responseObject);
+        //                            [UserInfoContext sharedUserInfoContext].userInfo.userHeadImageUrl = responseObject;
+        //                            NSLog(@"+++=+++++=+++++++++++=++++++++++++=+++++++=====================%@",[UserInfoContext sharedUserInfoContext].userInfo.userHeadImageUrl);
+        //                            [Usertilities SetNSUserDefaults:[UserInfoContext sharedUserInfoContext].userInfo];
+        //                            if (weakSelf.backUp) {
+        //                                weakSelf.backUp(responseObject,0);
+        //                            }
+        //                        }];
+        //                    });
+        //                }
+        //            });
+        //        }];
+        //        if ([UIDevice currentDevice].systemVersion.floatValue >= 13.0) {
+        //            imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
+        //        }
+        //        [self presentViewController:imagePicker animated:YES completion:nil];
     }else{
         if (indexPath.row == 0) {
             //修改用户名---弹窗
@@ -161,7 +179,7 @@
                     NSDictionary * parameters = [NSDictionary dictionary];
                     parameters = @{@"data":aes2};
                     [RSNetworkTool netWorkToolWebServiceDataUrl:URL_USER_NAME_IOS andType:@"POST" withParameters:parameters andURLName:URL_USER_NAME_IOS andContentType:[UserInfoContext sharedUserInfoContext].userInfo.loginToken withBlock:^(id  _Nonnull responseObject, BOOL success) {
-
+                        
                         UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo;
                         userInfo.userName = contents;
                         [Usertilities SetNSUserDefaults:userInfo];
@@ -171,6 +189,8 @@
                             weakSelf.backUp(contents,1);
                         }
                     }];
+                }else{
+                    jxt_showToastTitle(@"请输入用户名称", 0.75);
                 }
             }];
             [alert show];

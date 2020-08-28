@@ -187,12 +187,12 @@
     
     choiceBtn.sd_layout
     .leftSpaceToView(self.view, 72)
-    .bottomSpaceToView(self.view, 37)
-    .widthIs(12)
+    .bottomSpaceToView(self.view, 33)
+    .widthIs(20)
     .heightEqualToWidth();
     
     choiceLabel.sd_layout
-    .leftSpaceToView(choiceBtn, 5)
+    .leftSpaceToView(choiceBtn, 0)
     .bottomSpaceToView(self.view, 35)
     .heightIs(16.5)
     .widthIs(100);
@@ -220,14 +220,14 @@
     codeName.text = @"验证码";
     againBtn.hidden = NO;
 }
+
 //FIXME:获取验证码的按键
 - (void)buttonAction:(UIButton *)sender{
     NSLog(@"----------------%@",_account.textField.text);
     NSLog(@"按钮事件");
     if (![self isTrueMobile:_account.textField.text]) {
-        [SVProgressHUD setMinimumDismissTimeInterval:0.3];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
+//        [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
+        jxt_showToastMessage(@"请输入正确的手机号", 0.75);
     }else{
         //此处可以先调接口，成功后再调此方法
         [self messageTimeUbutton:sender];
@@ -263,15 +263,16 @@
 - (void)registerAction:(UIButton *)registerBtn{
     //电话号码验证
     if (![self isTrueMobile:_account.textField.text]) {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的电话号码"];
+        jxt_showToastMessage(@"请输入正确的电话号码", 0.75);
         return;
     }
     if (_password.textField.text.length < 6 || _password.textField.text.length > 6) {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确验证码"];
+        jxt_showToastMessage(@"请输入正确验证码", 0.75);
         return;
     }
     if (_choiceBtn.selected != YES) {
-        [SVProgressHUD showErrorWithStatus:@"请同意隐私政策"];
+        jxt_showToastMessage(@"请同意隐私政策", 0.75);
+        
         return;
     }
     NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&verificationCode=%@",_account.textField.text,_password.textField.text];
