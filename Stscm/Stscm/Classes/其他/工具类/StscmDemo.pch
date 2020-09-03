@@ -67,6 +67,10 @@
 #import "NSString+DecimalsCalculation.h"
 #import "JHSysAlertUtil.h"
 #import "FSAES128.h"
+
+
+#import "RSUserInfoTool.h"
+
 /**用户信息模型*/
 #import "UserInfo.h"
 #import "UserInfoContext.h"

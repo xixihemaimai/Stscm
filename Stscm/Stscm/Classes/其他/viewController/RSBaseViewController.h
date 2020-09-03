@@ -124,6 +124,9 @@ typedef void(^CustomBlock)(NSInteger pageNum);
 - (NSString *)getDeviceName;
 /**这边是对网络请求参数进行加密的步骤*/
 - (NSString *)encryptAESDataKey:(NSString *)key;
+
+//通过64Base转换成图片
+- (UIImage *)baseWith64EncodedString:(NSString *)baseEncode;
 @end
 
 

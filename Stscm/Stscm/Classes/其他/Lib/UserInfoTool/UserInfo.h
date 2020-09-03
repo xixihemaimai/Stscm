@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RSLoggedAccountsMode.h"
+#import "RSLoggedAccount.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RSLoggedAccount;
 @interface UserInfo : NSObject<NSCopying>
 
 
@@ -53,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign)BOOL visitor;
 //当前账套
 @property (nonatomic,strong)RSLoggedAccount * loggedAccount;
+
+@property (nonatomic,strong)NSArray<RSLoggedAccountsMode *> * loggedAccounts;
 
 @end
 

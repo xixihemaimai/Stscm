@@ -29,9 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 //当前登录角色
 @property (nonatomic,strong)RSCurrentRole * currentRole;
 //用户下的角色列表
-
+@property (nonatomic,strong)NSArray<RSCurrentRole *> * currentRoles;
 //账套权限类
-
+@property (nonatomic,strong)NSString * accountPermission;
 
 
 @end

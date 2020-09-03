@@ -23,6 +23,7 @@
     [aCoder encodeObject:self.userName forKey:@"userName"];
     [aCoder encodeBool:self.visitor forKey:@"visitor"];
     [aCoder encodeObject:self.loggedAccount forKey:@"loggedAccount"];
+    [aCoder encodeObject:self.loggedAccounts forKey:@"loggedAccounts"];
     
 }
 
@@ -41,6 +42,7 @@
         self.passwordSet = [aDecoder decodeObjectForKey:@"passwordSet"];
         self.visitor = [aDecoder decodeBoolForKey:@"visitor"];
         self.loggedAccount = [aDecoder decodeObjectForKey:@"loggedAccount"];
+        self.loggedAccounts = [aDecoder decodeObjectForKey:@"loggedAccounts"];
     }
     return self;
 }

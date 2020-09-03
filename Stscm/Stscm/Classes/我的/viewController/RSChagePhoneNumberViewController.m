@@ -579,19 +579,19 @@
 //发送验证码
 - (void)sendCodeAction:(UIButton *)sendBtn{
     [self messageTimeUbutton:sendBtn];
-    NSString * phoneNumber = [NSString string];
+    NSString * phone = [NSString string];
     if (self.phoneType == 4) {
-       phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",self.phoneStr];
+         phone = [NSString stringWithFormat:@"%@",self.phoneStr];
      
     }else{
-        NSString * phone = [self delSpaceAndNewline:self.phoneStr];
-        phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",phone];
-        NSLog(@"---------------------%@",phoneNumber);
-        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_VERIFICATION_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_VERIFICATION_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
-            NSLog(@"---------------%@",responseObject);
-        }];
+         phone = [self delSpaceAndNewline:self.phoneStr];
+//        phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",phone];
+//        NSLog(@"---------------------%@",phoneNumber);
+//        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_VERIFICATION_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_VERIFICATION_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+//            NSLog(@"---------------%@",responseObject);
+//        }];
     }
-    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_IMAGE_GET_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_IMAGE_GET_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_IMAGE_GET_IOS andType:@"GET" withParameters:phone andURLName:URL_IMAGE_GET_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
              NSLog(@"=========================%@",responseObject);
              //这边是获取图片和位置
              //这边是成功之后的值
@@ -602,19 +602,16 @@
              verifyView.verifyId = responseObject[@"data"][@"verifyId"];
              [verifyView showView];
              //这边需要把返回的vcode值传回来在进行发送短信
-             
-        
-        
-         }];
-    
+             verifyView.mockBlock = ^(NSString * accesskey) {
+             NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&accessKey=%@",phone,accesskey];
+             [RSNetworkTool netWorkToolWebServiceDataUrl:URL_VERIFICATION_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_VERIFICATION_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+                NSLog(@"--------333333-------%@",responseObject);
+             }];
+        };
+    }];
 }
 
-//通过64Base转换成图片
-- (UIImage *)baseWith64EncodedString:(NSString *)baseEncode{
-    NSData * bigimageData = [[NSData alloc] initWithBase64EncodedString:baseEncode options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    UIImage * bigimage = [UIImage imageWithData:bigimageData];
-    return bigimage;
-}
+
 
 //- (void)textFieldDidBeginEditing:(UITextField *)textField{
 //    NSLog(@"====================================%ld",textField.tag);

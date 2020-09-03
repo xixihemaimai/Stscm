@@ -66,6 +66,7 @@
     _userImage.layer.masksToBounds = YES;
     
     UILabel * userPhoneLabel = [[UILabel alloc]init];
+    userPhoneLabel.numberOfLines = 0;
     userPhoneLabel.textAlignment = NSTextAlignmentCenter;
     userPhoneLabel.font = [UIFont systemFontOfSize:18];
     userPhoneLabel.textColor = [UIColor colorWithHexColorStr:@"#ffffff"];
@@ -85,7 +86,7 @@
 
     
     [headerView addSubview:userPhoneLabel];
-    userPhoneLabel.frame = CGRectMake(0, CGRectGetMaxY(userImage.frame) + 8, SCW, 25);
+    userPhoneLabel.frame = CGRectMake(0, CGRectGetMaxY(userImage.frame) + 8, SCW, 50);
     self.tableview.tableHeaderView = headerView;
     _userPhoneLabel = userPhoneLabel;
     

@@ -231,11 +231,31 @@
     }else{
         //此处可以先调接口，成功后再调此方法
         [self messageTimeUbutton:sender];
-        NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",_account.textField.text];
-        //这边要对发短信
-        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
-            NSLog(@"---------------%@",responseObject);
-        }];
+        RSWeakself
+        NSString * phone = [NSString string];
+        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_IMAGE_GET_IOS andType:@"GET" withParameters:phone andURLName:URL_IMAGE_GET_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+                    NSLog(@"=========================%@",responseObject);
+                    //这边是获取图片和位置
+                    //这边是成功之后的值
+                    MockVerifyView *verifyView = [[MockVerifyView alloc] init];
+                    verifyView.bigImage = [self baseWith64EncodedString:responseObject[@"data"][@"bigImage"]];
+                    verifyView.smallImage = [self baseWith64EncodedString:responseObject[@"data"][@"smallImage"]];
+                    verifyView.Y = [responseObject[@"data"][@"yStart"] doubleValue];
+                    verifyView.verifyId = responseObject[@"data"][@"verifyId"];
+                    [verifyView showView];
+                    //这边需要把返回的vcode值传回来在进行发送短信
+                    verifyView.mockBlock = ^(NSString * accesskey) {
+                    NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@&accessKey=%@",weakSelf.account.textField.text,accesskey];
+                    [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+                       NSLog(@"---------------%@",responseObject);
+                    }];
+               };
+           }];
+//        NSString * phoneNumber = [NSString stringWithFormat:@"phoneNumber=%@",_account.textField.text];
+//        //这边要对发短信
+//        [RSNetworkTool netWorkToolWebServiceDataUrl:URL_CODE_SEND_IOS andType:@"GET" withParameters:phoneNumber andURLName:URL_CODE_SEND_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
+//            NSLog(@"---------------%@",responseObject);
+//        }];
     }
 }
 //FIXME:是否同意需要隐私按键

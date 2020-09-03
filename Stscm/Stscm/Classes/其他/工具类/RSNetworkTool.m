@@ -125,85 +125,28 @@
         if (block) {
             NSDictionary * dict = [network decryptMethodWithDictionary:responseObject];
             NSLog(@"-----------------------%@",dict);
+            UserInfo * userInfo = [[UserInfo alloc]init];
+            [RSUserInfoTool initWithUserToolUserInfo:userInfo ResponseObject:dict];
             
-            //这边是登录接口的获取用户信息
-//            if (responseObject[@"data"][@"loggedAccount"][@"currentRole"] != nil) {
-//
-//                //UserInfo * userInfo = [UserInfo mj_objectWithKeyValues:responseObject[@"data"]];
-//                RSCurrentRole * currentRole = [RSCurrentRole mj_objectWithKeyValues:responseObject[@"data"][@"loggedAccount"][@"currentRole"]];
-//
-//                RSLoggedAccount * loggedAcount = [[RSLoggedAccount alloc]init];
-//
-//                loggedAcount.currentRole = currentRole;
-//                loggedAcount.accountId = [responseObject[@"data"][@"loggedAccount"][@"accountId"] integerValue];
-//                loggedAcount.accountType = responseObject[@"data"][@"loggedAccount"][@"accountType"];
-//                loggedAcount.accountName = responseObject[@"data"][@"loggedAccount"][@"accountName"];
-//                loggedAcount.relationType = responseObject[@"data"][@"loggedAccount"][@"relationType"];
-//                loggedAcount.relationPhone = responseObject[@"data"][@"loggedAccount"][@"relationPhone"];
-//                loggedAcount.accountUserId = [responseObject[@"data"][@"loggedAccount"][@"accountUserId"] integerValue];
-//                loggedAcount.accountUserName = responseObject[@"data"][@"loggedAccount"][@"accountUserName"];
-//
-//                userInfo.aesKey = responseObject[@"data"][@"aesKey"];
-//                userInfo.loginArea = responseObject[@"data"][@"loginArea"];
-//                userInfo.loginMode = responseObject[@"data"][@"loginMode"];
-//                userInfo.loginTime = responseObject[@"data"][@"loginTime"];
-//                userInfo.loginToken = responseObject[@"data"][@"loginToken"];
-//                userInfo.uid = responseObject[@"data"][@"uid"];
-//                userInfo.userHeadImageUrl = responseObject[@"data"][@"userHeadImageUrl"];
-//                userInfo.userName = responseObject[@"data"][@"userName"];
-//                userInfo.userPhone = responseObject[@"data"][@"userPhone"];
-//                userInfo.visitor = [responseObject[@"data"][@"visitor"] boolValue];
-//                userInfo.passwordSet = [responseObject[@"data"][@"passwordSet"] boolValue];
-//                userInfo.loggedAccount = loggedAcount;
-//
-//                NSLog(@"===========333333333==================================");
-//
-//            }else if (responseObject[@"data"][@"loggedAccount"] != NULL){
-//                //UserInfo * userInfo = [UserInfo mj_objectWithKeyValues:responseObject[@"data"]];
-//                RSLoggedAccount * loggedAcount = [[RSLoggedAccount alloc]init];
-//                loggedAcount.accountId = [responseObject[@"data"][@"loggedAccount"][@"accountId"] integerValue];
-//                loggedAcount.accountType = responseObject[@"data"][@"loggedAccount"][@"accountType"];
-//                loggedAcount.accountName = responseObject[@"data"][@"loggedAccount"][@"accountName"];
-//                loggedAcount.relationType = responseObject[@"data"][@"loggedAccount"][@"relationType"];
-//                loggedAcount.relationPhone = responseObject[@"data"][@"loggedAccount"][@"relationPhone"];
-//                loggedAcount.accountUserId = [responseObject[@"data"][@"loggedAccount"][@"accountUserId"] integerValue];
-//                loggedAcount.accountUserName = responseObject[@"data"][@"loggedAccount"][@"accountUserName"];
-//
-//                userInfo.aesKey = responseObject[@"data"][@"aesKey"];
-//                userInfo.loginArea = responseObject[@"data"][@"loginArea"];
-//                userInfo.loginMode = responseObject[@"data"][@"loginMode"];
-//                userInfo.loginTime = responseObject[@"data"][@"loginTime"];
-//                userInfo.loginToken = responseObject[@"data"][@"loginToken"];
-//                userInfo.uid = responseObject[@"data"][@"uid"];
-//                userInfo.userHeadImageUrl = responseObject[@"data"][@"userHeadImageUrl"];
-//                userInfo.userName = responseObject[@"data"][@"userName"];
-//                userInfo.userPhone = responseObject[@"data"][@"userPhone"];
-//                userInfo.visitor = [responseObject[@"data"][@"visitor"] boolValue];
-//                userInfo.passwordSet = [responseObject[@"data"][@"passwordSet"] boolValue];
-//                userInfo.loggedAccount = loggedAcount;
-//                NSLog(@"=============232323232================================");
-//            }else{
-//                 NSLog(@"=============111111111================================");
-            
-            [UserInfoContext sharedUserInfoContext].userInfo = [UserInfo mj_objectWithKeyValues:dict];
-            
-//            [UserInfoContext sharedUserInfoContext].userInfo.aesKey = dict[@"aesKey"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.loginArea = dict[@"loginArea"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.loginMode = dict[@"loginMode"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.loginTime = dict[@"loginTime"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.loginToken = dict[@"loginToken"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.passwordSet = dict[@"passwordSet"];
-//
-//            [UserInfoContext sharedUserInfoContext].userInfo.uid = dict[@"uid"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.userHeadImageUrl = dict[@"userHeadImageUrl"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.userName = dict[@"userName"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.userPhone = dict[@"userPhone"];
-//            [UserInfoContext sharedUserInfoContext].userInfo.visitor = dict[@"visitor"];
-//            }
-            
-            [Usertilities SetNSUserDefaults:[UserInfoContext sharedUserInfoContext].userInfo];
-            
-            
+//            [UserInfoContext sharedUserInfoContext].userInfo;
+//            = [UserInfo mj_objectWithKeyValues:dict];
+//            userInfo.aesKey = dict[@"aesKey"];
+//            userInfo.loginArea = dict[@"loginArea"];
+//            userInfo.loginMode = dict[@"loginMode"];
+//            userInfo.loginTime = dict[@"loginTime"];
+//            userInfo.loginToken = dict[@"loginToken"];
+//            userInfo.passwordSet = dict[@"passwordSet"];
+//            userInfo.uid = dict[@"uid"];
+//            userInfo.userHeadImageUrl = dict[@"userHeadImageUrl"];
+//            userInfo.userName = dict[@"userName"];
+//            userInfo.userPhone = dict[@"userPhone"];
+//            userInfo.visitor = dict[@"visitor"];
+//            NSLog(@"===============================================%@",[UserInfoContext sharedUserInfoContext].userInfo);
+//            [UserInfoContext sharedUserInfoContext].userInfo = userInfo;
+//            NSLog(@"+++++++++++++++++++++++++++++++++++++++++++++++%@",userInfo);
+//             NSLog(@"============121212=====================23232==============%@",[UserInfoContext sharedUserInfoContext].userInfo);
+//            NSLog(@"-----------------------------------------------%@",userInfo.loginToken);
+//            [Usertilities SetNSUserDefaults:[UserInfoContext sharedUserInfoContext].userInfo];
             block(responseObject,YES);
         }
     }];
@@ -399,10 +342,12 @@
                 block(responseObject,YES);
                 jxt_dismissHUD();
             }else{
+                [SVProgressHUD dismiss];
                 NSLog(@"-======================%@",responseObject[@"msg"]);
                 jxt_showToastTitle(responseObject[@"msg"], 0.75);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [SVProgressHUD dismiss];
             NSLog(@"=====2=33==================%@",error);
             jxt_showToastTitle(@"请求失败", 0.75);
         }];
@@ -415,9 +360,11 @@
                 jxt_dismissHUD();
             }else{
                 NSLog(@"-======================%@",responseObject[@"msg"]);
+                [SVProgressHUD dismiss];
                 jxt_showToastTitle(responseObject[@"msg"], 0.75);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [SVProgressHUD dismiss];
             NSLog(@"=====2=33==================%@",error);
             jxt_showToastTitle(@"请求失败", 0.75);
         }];
@@ -508,9 +455,11 @@
                 if ([urlName isEqualToString:URL_IMAGE_CHECK_IOS]) {
                     block(responseObject,false);
                 }
+                [SVProgressHUD dismiss];
                 jxt_showToastTitle(responseObject[@"msg"], 0.75);
             }
             if (error) {
+                [SVProgressHUD dismiss];
                  NSLog(@"+++++++++++3232++++++++++++");
                 jxt_showToastTitle(@"请求失败", 0.75);
                 return;
@@ -524,6 +473,7 @@
                 block(responseObject,YES);
                 jxt_dismissHUD();
             }else{
+                [SVProgressHUD dismiss];
                 NSLog(@"-======================%@",responseObject[@"msg"]);
                 if ([urlName isEqualToString:URL_USER_INFO_IOS]) {
                     block(responseObject,false);
@@ -533,7 +483,7 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"=====2=33==================%@",error);
             jxt_showToastTitle(@"请求失败", 0.75);
-            
+            [SVProgressHUD dismiss];
             if ([urlName isEqualToString:URL_USER_INFO_IOS]) {
                 NSString * responseObject = @"";
                 block(responseObject,false);

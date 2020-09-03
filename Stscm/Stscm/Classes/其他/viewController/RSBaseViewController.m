@@ -1109,5 +1109,12 @@ return encodedImageStr;
 }
 
 
+//通过64Base转换成图片
+- (UIImage *)baseWith64EncodedString:(NSString *)baseEncode{
+    NSData * bigimageData = [[NSData alloc] initWithBase64EncodedString:baseEncode options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    UIImage * bigimage = [UIImage imageWithData:bigimageData];
+    return bigimage;
+}
+
 
 @end

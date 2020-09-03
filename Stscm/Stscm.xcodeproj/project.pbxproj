@@ -68,6 +68,8 @@
 		048CBFE624EBB7400059E6F9 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBFE024EBB7400059E6F9 /* UserInfo.m */; };
 		048CBFE824EBB7400059E6F9 /* UserInfoContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBFE424EBB7400059E6F9 /* UserInfoContext.m */; };
 		048CBFEB24EBB9EE0059E6F9 /* Usertilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 048CBFEA24EBB9EE0059E6F9 /* Usertilities.m */; };
+		04C82C922500A027008D2EFA /* RSUserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C912500A027008D2EFA /* RSUserInfoTool.m */; };
+		04C82C952500C5A8008D2EFA /* RSLoggedAccountsMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C82C942500C5A8008D2EFA /* RSLoggedAccountsMode.m */; };
 		04D6E807248DDEFF00BABB6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E806248DDEFF00BABB6F /* AppDelegate.m */; };
 		04D6E80A248DDEFF00BABB6F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E809248DDEFF00BABB6F /* SceneDelegate.m */; };
 		04D6E80D248DDEFF00BABB6F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D6E80C248DDEFF00BABB6F /* ViewController.m */; };
@@ -232,6 +234,10 @@
 		048CBFE524EBB7400059E6F9 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		048CBFE924EBB9EE0059E6F9 /* Usertilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Usertilities.h; sourceTree = "<group>"; };
 		048CBFEA24EBB9EE0059E6F9 /* Usertilities.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Usertilities.m; sourceTree = "<group>"; };
+		04C82C902500A027008D2EFA /* RSUserInfoTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSUserInfoTool.h; sourceTree = "<group>"; };
+		04C82C912500A027008D2EFA /* RSUserInfoTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSUserInfoTool.m; sourceTree = "<group>"; };
+		04C82C932500C5A8008D2EFA /* RSLoggedAccountsMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSLoggedAccountsMode.h; sourceTree = "<group>"; };
+		04C82C942500C5A8008D2EFA /* RSLoggedAccountsMode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSLoggedAccountsMode.m; sourceTree = "<group>"; };
 		04D6E802248DDEFF00BABB6F /* 石材进销存.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "石材进销存.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D6E805248DDEFF00BABB6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04D6E806248DDEFF00BABB6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -624,6 +630,10 @@
 				0488285A24EE6D6B00359508 /* RSLoggedAccount.m */,
 				0488285C24EE78D400359508 /* RSCurrentRole.h */,
 				0488285D24EE78D400359508 /* RSCurrentRole.m */,
+				04C82C902500A027008D2EFA /* RSUserInfoTool.h */,
+				04C82C912500A027008D2EFA /* RSUserInfoTool.m */,
+				04C82C932500C5A8008D2EFA /* RSLoggedAccountsMode.h */,
+				04C82C942500C5A8008D2EFA /* RSLoggedAccountsMode.m */,
 			);
 			path = UserInfoTool;
 			sourceTree = "<group>";
@@ -1118,6 +1128,7 @@
 				04F7D8C724C02A77008CE45D /* RSMineViewController.m in Sources */,
 				0453CC8524CEC6E3006ECA95 /* UIView+LLXAlertPop.m in Sources */,
 				047EE9EA24F753240025A6B7 /* UILabel+ZZExtension.m in Sources */,
+				04C82C922500A027008D2EFA /* RSUserInfoTool.m in Sources */,
 				048CBFE624EBB7400059E6F9 /* UserInfo.m in Sources */,
 				0453CC7E24C833EF006ECA95 /* RSPasswordViewController.m in Sources */,
 				04475917248F7FEC003BBBCF /* RSPersonalEditionCell.m in Sources */,
@@ -1138,6 +1149,7 @@
 				0488285E24EE78D400359508 /* RSCurrentRole.m in Sources */,
 				044758FC248DECC2003BBBCF /* RSMyNavigationViewController.m in Sources */,
 				04475914248F7CFC003BBBCF /* RSStscmHeaderView.m in Sources */,
+				04C82C952500C5A8008D2EFA /* RSLoggedAccountsMode.m in Sources */,
 				0486AFCD24DE35A1002FB95C /* UITextView+WZB.m in Sources */,
 				0453CC8224C83917006ECA95 /* MyMD5.m in Sources */,
 				0453CC6F24C69CBF006ECA95 /* RSStscmAlertView.m in Sources */,
