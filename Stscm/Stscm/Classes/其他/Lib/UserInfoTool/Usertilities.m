@@ -29,4 +29,5 @@
     [defaults removeObjectForKey:@"usermodel"];
     [defaults synchronize];
 }
+
 @end

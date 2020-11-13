@@ -23,6 +23,13 @@
 {
     UIViewController *tempViewControl;
 }
+
+// 当前屏幕与设计尺寸 (iPhone6) 宽度比例
+@property ( nonatomic , assign ) CGFloat  autoSizeScaleW;
+// 当前屏幕与设计尺寸 (iPhone6) 高度比例
+@property ( nonatomic , assign ) CGFloat  autoSizeScaleH;
+
+
 @end
 
 @implementation AppDelegate
@@ -68,8 +75,82 @@
     [self settIQKeyMananger];
     //监测网络
     [self networkInspect];
+    
+    //适配
+    [self initAutoScaleSize];
     return YES;
 }
+
+
+- (void)initAutoScaleSize
+{
+    if (SCH==480)
+    {
+        //4s
+        _autoSizeScaleW =SCW/375;
+        _autoSizeScaleH =SCH/667;
+    }
+    else if(SCH==568)
+    {
+        //5
+        _autoSizeScaleW =SCW/375;
+        _autoSizeScaleH =SCH/667;
+    }
+    else if(SCH==667)
+     {
+//4.7
+        //6 6s 7 8 se
+        _autoSizeScaleW =SCW/375;
+        _autoSizeScaleH =SCH/667;
+    }
+    else if(SCH==736)
+    {
+//5.5
+        //6p 7p 8p
+        _autoSizeScaleW =SCW/375;
+        _autoSizeScaleH =SCH/736;
+    }else if(SCH== 812){
+//5.8
+     //iphonex iPhone XS iphone11pro
+        _autoSizeScaleW =SCW/375;
+        _autoSizeScaleH =SCH/812;
+
+
+    }else if(SCH== 896){
+//6.1
+     //iphonexr  iphone11  iphone xs max  iPhone 11 pro max
+         _autoSizeScaleW =SCW/414;
+        _autoSizeScaleH =SCH/896;
+
+    }else if(SCH== 780){
+       //iphone 12 mini
+        _autoSizeScaleW =SCW/360;
+        _autoSizeScaleH =SCH/780;
+ 
+    }else if(SCH == 844){
+       //iphone 12  iPhone 12 pro
+         _autoSizeScaleW =SCW/390;
+        _autoSizeScaleH =SCH/844;
+ 
+    }else if(SCH == 926){
+       //iPhone 12 pro max
+        _autoSizeScaleW =SCW/428;
+        _autoSizeScaleH =SCH/926;
+    }
+else
+    {
+        _autoSizeScaleW =1;
+        _autoSizeScaleH =1;
+    }
+}
+- (CGFloat)autoScaleW:(CGFloat)w{
+    return w * self.autoSizeScaleW;
+}
+- (CGFloat)autoScaleH:(CGFloat)h{
+    return h * self.autoSizeScaleH;
+}
+
+
 
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window{
     if (_allowRotation == true) {   // 如果属性值为YES,仅允许屏幕向左旋转,否则仅允许竖屏

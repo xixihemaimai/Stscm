@@ -85,7 +85,7 @@
     [areaBtn setTitle:@"+86" forState:UIControlStateNormal];
     [areaBtn setTitleColor: [UIColor colorWithHexColorStr:@"#333333"] forState:UIControlStateNormal];
     areaBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    [areaBtn addTarget:self action:@selector(choiceAreaNumberAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [areaBtn addTarget:self action:@selector(choiceAreaNumberAction:) forControlEvents:UIControlEventTouchUpInside];
     areaBtn.tag = 1;
     [inputView addSubview:areaBtn];
     _areaBtn = areaBtn;
@@ -208,7 +208,7 @@
     areaBtn.tag = 2;
     [areaBtn setTitleColor:[UIColor colorWithHexColorStr:@"#333333"] forState:UIControlStateNormal];
     areaBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-    [areaBtn addTarget:self action:@selector(choiceAreaNumberAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [areaBtn addTarget:self action:@selector(choiceAreaNumberAction:) forControlEvents:UIControlEventTouchUpInside];
     [inputView addSubview:areaBtn];
     _areaBtn = areaBtn;
     
@@ -762,23 +762,19 @@
                 //登出接口部分
                 NSDictionary * parameter = [NSDictionary dictionary];
                 [RSNetworkTool netWorkToolWebServiceDataUrl:URL_LOGOUT_IOS andType:@"POST" withParameters:parameter andURLName:URL_LOGOUT_IOS andContentType:[UserInfoContext sharedUserInfoContext].userInfo.loginToken withBlock:^(id  _Nonnull responseObject, BOOL success) {
-                    
                     //删除本地存储的用户信息
                     [Usertilities clearLocalUserModel];
                     //删除用户单利的用户信息的对象
-//                    [UserInfoContext clear];
+                    //[UserInfoContext clear];
                     //这边要变成登录和注册的界面
                     RSRegisterViewController * registerVc = [[RSRegisterViewController alloc]init];
                     RSMyNavigationViewController * myNav = [[RSMyNavigationViewController alloc]initWithRootViewController:registerVc];
                     AppDelegate * appdelegate =(AppDelegate *)[UIApplication sharedApplication].delegate;
                     appdelegate.window.rootViewController = myNav;
-                    
                 }];
                 //UserInfo * userInfo = [UserInfoContext sharedUserInfoContext].userInfo;
                 //userInfo.passwordSet = 1;
                 //[Usertilities SetNSUserDefaults:userInfo];
-                
-                
                 //[[NSNotificationCenter defaultCenter]postNotificationName:@"refreshUserInfromation" object:@{@"passwordSet":[NSString stringWithFormat:@"%d",userInfo.passwordSet],@"TYPE":@"2"}];
                 //[weakSelf.navigationController popToViewController:weakSelf.navigationController.viewControllers[1] animated:YES];
             }];

@@ -423,14 +423,14 @@
     }
     [self reloadUdid:^(BOOL isValue,NSString * PublickKeyTemp,NSString * Ukey) {
         if (isValue && PublickKeyTemp.length > 0) {
-//            jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
+            //jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
             [SVProgressHUD showWithStatus:@"正在执行登录中..."];
             NSLog(@"-----------------------%@",PublickKeyTemp);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.account.textField.text andPasswordStr:pwd andPKey:PublickKeyTemp andUkey:Ukey andContentType:@"JSON" andLoginMode:@"0" andComputerName:deviceName andLoginArea:self.placeMark andBlock:^(id  _Nonnull responseObject, BOOL success) {
-                   //  NSLog(@"-----11111--------------%@",responseObject);
+                    //NSLog(@"-----11111--------------%@",responseObject);
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                        jxt_dismissHUD();
+                        //jxt_dismissHUD();
                         [SVProgressHUD dismiss];
                         //登录之后要获取用户信息，然后在跳转到下面的界面
                         //改变根控制器
@@ -448,13 +448,13 @@
 
 - (void)reloadUdid:(void(^)(BOOL isValue,NSString * PublickKeyTemp,NSString * Ukey))Obtain{
     //设备的唯一标识号
-    NSString *udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSString * uKey = [NSString stringWithFormat:@"uKey=%@",udid];
-//    NSLog(@"========================================================================%@",uKey);
-//    uKey = [NSString stringWithFormat:@"uKey=AF69B3D1-344B-41E2-8416-EA9B734F3EF3"];
+//    NSString *udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    NSString * uKey = [NSString stringWithFormat:@"uKey=%@",[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    //NSLog(@"========================================================================%@",uKey);
+    //uKey = [NSString stringWithFormat:@"uKey=AF69B3D1-344B-41E2-8416-EA9B734F3EF3"];
     [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:uKey andURLName:URL_KEY_GET_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
         NSLog(@"============323232==================%@",responseObject);
-//        NSLog(@"==============================%@",self.PublickKeyTemp);
+        //NSLog(@"==============================%@",self.PublickKeyTemp);
         if (Obtain) {
           Obtain(true,responseObject[@"data"][@"pKey"],responseObject[@"data"][@"uKey"]);
         }

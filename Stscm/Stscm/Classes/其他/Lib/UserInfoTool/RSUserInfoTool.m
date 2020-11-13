@@ -28,7 +28,6 @@
     loggedAccount.accountName = responseObject[@"loggedAccount"][@"accountName"];
     loggedAccount.accountPermission = responseObject[@"loggedAccount"][@"accountPermission"];
     loggedAccount.accountType = responseObject[@"loggedAccount"][@"accountType"];
-    
     loggedAccount.accountUserId = [responseObject[@"loggedAccount"][@"accountUserId"] integerValue];
     loggedAccount.accountUserName = responseObject[@"loggedAccount"][@"accountUserName"];
     loggedAccount.relationPhone = responseObject[@"loggedAccount"][@"relationPhone"];

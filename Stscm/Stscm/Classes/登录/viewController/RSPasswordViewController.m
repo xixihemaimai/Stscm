@@ -225,8 +225,7 @@
     accountBtn.hidden = NO;
     jumpBtn.hidden = NO;
     alertLabel.hidden = NO;
-//    button.hidden = YES;
-    
+    //button.hidden = YES;
 }
 
 
@@ -238,11 +237,11 @@
 //跳过
 - (void)jumpAction:(UIButton *)jumpBtn{
     if (_choiceBtn.selected != YES) {
-           jxt_showToastMessage(@"请同意隐私政策", 0.75);
-           return;
+        jxt_showToastMessage(@"请同意隐私政策", 0.75);
+        return;
     }
     //用手机号，
-     [self registerNetWorkType:@"vcode"];
+    [self registerNetWorkType:@"vcode"];
     //用验证码获取
 }
 
@@ -316,28 +315,26 @@
         pwd = @"";
         code = self.codeStr;
     }
-    
     NSString* deviceName = [self getDeviceName];
-    NSLog(@"设备名称: %@",deviceName );  
-    
-    NSLog(@"------------1111------------------------%@",self.placeMark);
+    NSLog(@"设备名称: %@",deviceName );
+    //NSLog(@"------------1111------------------------%@",self.placeMark);
     if (self.placeMark == nil) {
         self.placeMark = @"未知";
     }
     RSWeakself
     [RSNetworkTool netWorkToolWebServiceDataUrl:URL_SUBMIT_IOS andType:@"POST" withParameters:phoneNumber andURLName:URL_SUBMIT_IOS andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
-        NSLog(@"==================================================");
+        //NSLog(@"==================================================");
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
            //设备的唯一标识号
-           NSString * udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-           NSString * ukey = [NSString stringWithFormat:@"uKey=%@",udid];
+//           NSString * udid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+           NSString * ukey = [NSString stringWithFormat:@"uKey=%@",[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
            [RSNetworkTool netWorkToolWebServiceDataUrl:URL_KEY_GET_IOS andType:@"GET" withParameters:ukey andURLName:URL_KEY_GET_IOS  andContentType:@"JSON" withBlock:^(id  _Nonnull responseObject, BOOL success) {
-               NSLog(@"=+++++++++++++++++++++++++++++++++++++++++++++++%@",responseObject);
+          //     NSLog(@"=+++++++++++++++++++++++++++++++++++++++++++++++%@",responseObject);
 //                jxt_showLoadingHUDTitleMessage(@"正在执行登录中", nil);
                [SVProgressHUD showWithStatus:@"正在执行登录中..."];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [RSNetworkTool loginUserUrl:URL_LOGIN_IOS requestType:@"POST" SopaStrPasswordAndCodeType:type andPasswordAndCode:code andPhoneNumber:weakSelf.phoneStr andPasswordStr:pwd andPKey:responseObject[@"data"][@"pKey"] andUkey:responseObject[@"data"][@"uKey"] andContentType:@"JSON" andLoginMode:@"0" andComputerName:deviceName  andLoginArea:self.placeMark andBlock:^(id  _Nonnull responseObject, BOOL success) {
-                        NSLog(@"----33333---------------%@",responseObject);
+            //            NSLog(@"----33333---------------%@",responseObject);
                         [SVProgressHUD dismiss];
                         //改变根控制器
                         RSMainViewController * mainVc = [[RSMainViewController alloc]init];

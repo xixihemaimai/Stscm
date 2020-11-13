@@ -19,6 +19,9 @@
 
 - (void)saveContext;
 
+- (CGFloat)autoScaleW:( CGFloat )w;
+- (CGFloat)autoScaleH:(CGFloat)h;
+
 
 @end
 

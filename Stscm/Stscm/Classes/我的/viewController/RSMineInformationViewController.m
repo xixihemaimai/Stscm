@@ -204,9 +204,21 @@
         }else{
             //修改密码
             RSChagePhoneNumberViewController * chagePhoneNumberVc = [[RSChagePhoneNumberViewController alloc]init];
+            NSString * plistPathCH = [[NSBundle mainBundle] pathForResource:@"sortedNameCH" ofType:@"plist"];
+            NSDictionary * dict = [[NSDictionary alloc] initWithContentsOfFile:plistPathCH];
+            NSString * showCodeSting = [NSString string];
+            NSArray * sectionArray = [dict valueForKey:@""];
+            if (sectionArray.count > indexPath.row) {
+                    showCodeSting = [sectionArray objectAtIndex:0];
+            }
+            NSArray  * array = [showCodeSting componentsSeparatedByString:@"+"];
+            NSString * countryName = [array.firstObject stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            NSString * code = array.lastObject;
+            NSLog(@"==================%@=====================%@",countryName,code);
+            
             chagePhoneNumberVc.phoneStr = [UserInfoContext sharedUserInfoContext].userInfo.userPhone;
             chagePhoneNumberVc.phoneType = 4;
-            chagePhoneNumberVc.areaStr = @"+86";
+            chagePhoneNumberVc.areaStr = [NSString stringWithFormat:@"+%@",code];
             [self.navigationController pushViewController:chagePhoneNumberVc animated:YES];
         }
     }
